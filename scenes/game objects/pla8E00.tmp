@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://gkr8sq0f7u2l"]
+
+[ext_resource type="Script" path="res://scenes/game objects/player.gd" id="1_c5mcm"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_041md"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pksv0"]
+height = 1.2
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_c5mcm")
+
+[node name="StandingCollisionShape" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_041md")
+disabled = true
+
+[node name="CrouchingCollisionShape" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.615093, 0)
+shape = SubResource("CapsuleShape3D_pksv0")
+
+[node name="FreelookPivot" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Head" type="Node3D" parent="FreelookPivot"]
+unique_name_in_owner = true
+
+[node name="Camera3D" type="Camera3D" parent="FreelookPivot/Head"]
+unique_name_in_owner = true
+
+[node name="CrouchingRayCastCheck" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+target_position = Vector3(0, 2, 0)
