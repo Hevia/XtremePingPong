@@ -1,0 +1,11 @@
+Model Information:
+* title:	Matt Mii Rig
+* source:	https://sketchfab.com/3d-models/matt-mii-rig-5582d0a7ec8e4b79810ac28e5bd610a4
+* author:	animatezach (https://sketchfab.com/animatezach)
+
+Model License:
+* license type:	CC-BY-NC-ND-4.0 (http://creativecommons.org/licenses/by-nc-nd/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions can not be distributed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Matt Mii Rig" (https://sketchfab.com/3d-models/matt-mii-rig-5582d0a7ec8e4b79810ac28e5bd610a4) by animatezach (https://sketchfab.com/animatezach) licensed under CC-BY-NC-ND-4.0 (http://creativecommons.org/licenses/by-nc-nd/4.0/)

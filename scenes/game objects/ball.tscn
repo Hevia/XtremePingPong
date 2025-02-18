@@ -1,10 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmadrerobybqv"]
+[gd_scene load_steps=6 format=3 uid="uid://dmadrerobybqv"]
 
 [ext_resource type="Script" path="res://scenes/game objects/ball.gd" id="1_275bg"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_grfoj"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ihrlk"]
+
 [sub_resource type="SphereMesh" id="SphereMesh_5xmaf"]
+material = SubResource("StandardMaterial3D_ihrlk")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_nw0gf"]
 
@@ -17,9 +20,14 @@ shape = SubResource("SphereShape3D_grfoj")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_5xmaf")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="LifetimeTimer" type="Timer" parent="."]
 
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_nw0gf")
+
+[node name="ColorswitcherTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.1
+one_shot = true
