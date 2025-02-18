@@ -1,11 +1,124 @@
-[gd_scene load_steps=4 format=3 uid="uid://gkr8sq0f7u2l"]
+[gd_scene load_steps=9 format=3 uid="uid://gkr8sq0f7u2l"]
 
 [ext_resource type="Script" path="res://scenes/game objects/player.gd" id="1_c5mcm"]
+[ext_resource type="PackedScene" uid="uid://d35jn7xjt32mw" path="res://assets/mdlTableTennisPaddle.glb" id="2_5ea66"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_041md"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pksv0"]
 height = 1.2
+
+[sub_resource type="Animation" id="Animation_gustj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mdlTableTennisPaddle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.178301, 1.6046, -0.481952)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mdlTableTennisPaddle:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.173585, -1.57902, 0.00142006)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("mdlTableTennisPaddle:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PaddleArea3D/CollisionShape3D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_buyvv"]
+resource_name = "swing_paddle"
+length = 0.4
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mdlTableTennisPaddle:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.178301, 1.6046, -0.481952), Vector3(0.0345168, 1.55502, -0.422462), Vector3(-0.396834, 1.40358, -0.266976), Vector3(0.178301, 1.6046, -0.481952)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mdlTableTennisPaddle:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.173585, -1.57902, 0.00142006), Vector3(-0.0327422, -1.24293, 0.506782), Vector3(-0.0153184, -0.186116, 0.992407), Vector3(-0.173585, -1.57902, 0.00142006)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("mdlTableTennisPaddle:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PaddleArea3D/CollisionShape3D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bmp6s"]
+_data = {
+"RESET": SubResource("Animation_gustj"),
+"swing_paddle": SubResource("Animation_buyvv")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ilbb6"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_c5mcm")
@@ -37,3 +150,18 @@ unique_name_in_owner = true
 [node name="CrouchingRayCastCheck" type="RayCast3D" parent="."]
 unique_name_in_owner = true
 target_position = Vector3(0, 2, 0)
+
+[node name="mdlTableTennisPaddle" parent="." instance=ExtResource("2_5ea66")]
+transform = Transform3D(-0.00797834, 0.17272, -0.984939, 0.00139872, 0.984971, 0.172715, 0.999967, 3.23169e-07, -0.00810002, 0.178301, 1.6046, -0.481952)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bmp6s")
+}
+
+[node name="PaddleArea3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PaddleArea3D"]
+transform = Transform3D(2.24241, 0, 0, 0, 1.42202, 0, 0, 0, 2.4578, 0, 1.37524, -1.26064)
+shape = SubResource("BoxShape3D_ilbb6")
+disabled = true

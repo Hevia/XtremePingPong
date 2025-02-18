@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://g1ab1prsq1x"]
+[gd_scene load_steps=9 format=3 uid="uid://g1ab1prsq1x"]
 
 [ext_resource type="Texture2D" uid="uid://bonq3336v7tnd" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="1_5uy5q"]
 [ext_resource type="Texture2D" uid="uid://fgsxe5nxy6q1" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_4pco4"]
 [ext_resource type="PackedScene" uid="uid://gkr8sq0f7u2l" path="res://scenes/game objects/player.tscn" id="3_4rpdc"]
+[ext_resource type="PackedScene" uid="uid://dmadrerobybqv" path="res://scenes/game objects/ball.tscn" id="4_8j0ie"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gs0mq"]
 albedo_texture = ExtResource("1_5uy5q")
@@ -30,8 +31,50 @@ use_collision = true
 size = Vector3(20, 1, 20)
 material = SubResource("StandardMaterial3D_gs0mq")
 
+[node name="CSGBox3D9" type="CSGBox3D" parent="Stage"]
+transform = Transform3D(0.468607, -0.438669, 0, 0.228747, 0.898649, 0, 0, 0, 0.309881, -14.3762, -2.79303, 7.46153)
+use_collision = true
+size = Vector3(20, 1, 20)
+material = SubResource("StandardMaterial3D_gs0mq")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9853, -2.60934, 0)
+use_collision = true
+size = Vector3(20, 1, 20)
+material = SubResource("StandardMaterial3D_gs0mq")
+
 [node name="CSGBox3D2" type="CSGBox3D" parent="Stage"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.19959, -12.474)
+use_collision = true
+size = Vector3(20, 1, 20)
+material = SubResource("StandardMaterial3D_gs0mq")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Stage"]
+transform = Transform3D(0.104866, 0, 0, 0, 10.4939, 0, 0, 0, 1.52775, 8.13909, 2.19959, 0.681385)
+use_collision = true
+size = Vector3(20, 1, 20)
+material = SubResource("StandardMaterial3D_gs0mq")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Stage"]
+transform = Transform3D(0.104866, 0, 0, 0, 10.4939, 0, 0, 0, 1.52775, -21.4611, 2.19959, 0.681385)
+use_collision = true
+size = Vector3(20, 1, 20)
+material = SubResource("StandardMaterial3D_gs0mq")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Stage"]
+transform = Transform3D(0.00364514, 0, -1.52683, 0, 10.4939, 0, 0.104803, 0, 0.0531046, -21.4611, 2.19959, -8.8546)
+use_collision = true
+size = Vector3(20, 1, 20)
+material = SubResource("StandardMaterial3D_gs0mq")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Stage"]
+transform = Transform3D(0.00364514, 0, -1.52683, 0, 10.4939, 0, 0.104803, 0, 0.0531046, -16.5251, 2.19959, 10.7038)
+use_collision = true
+size = Vector3(20, 1, 20)
+material = SubResource("StandardMaterial3D_gs0mq")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Stage"]
+transform = Transform3D(0.0593441, 0, -1.25958, 0, 10.4939, 0, 0.0864593, 0, 0.864555, 8.13909, 2.19959, 3.7145)
 use_collision = true
 size = Vector3(20, 1, 20)
 material = SubResource("StandardMaterial3D_gs0mq")
@@ -46,3 +89,13 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("3_4rpdc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.60253, 0, 4)
+
+[node name="Ball" parent="." instance=ExtResource("4_8j0ie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="Ball2" parent="." instance=ExtResource("4_8j0ie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0705, 1.34139, 1.1761)
+
+[node name="Ball3" parent="." instance=ExtResource("4_8j0ie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0547, 1.34139, 1.1761)

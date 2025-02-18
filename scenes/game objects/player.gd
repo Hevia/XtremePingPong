@@ -49,11 +49,32 @@ var sliding = false
 @onready var crouching_collision_shape: CollisionShape3D = %CrouchingCollisionShape
 @onready var crouching_ray_cast_check: RayCast3D = %CrouchingRayCastCheck
 @onready var head_bob_pivot: Node3D = %HeadBobPivot
-
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var paddle_area_3d: Area3D = $PaddleArea3D
+var hit_force = 100.0  # Adjust this to control hit strength
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	paddle_area_3d.area_entered.connect(on_paddle_area_entered)
 	
+func hitstop(time_scale, duration) -> void:
+	Engine.time_scale = time_scale
+	await(get_tree().create_timer(duration * time_scale).timeout)
+	Engine.time_scale = 1.0
+	
+func shake_screen():
+	pass
+	
+func on_paddle_area_entered(other_area: Area3D):
+	if other_area.owner is Ball:
+		var hit_direction = calculate_hit_direction()
+		var force = hit_direction * hit_force
+		hitstop(0.05, 0.7)
+		other_area.owner.apply_force(force)
+
+func calculate_hit_direction() -> Vector3:
+	return -global_transform.basis.z.normalized()
+
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -69,6 +90,10 @@ func _input(event):
 		var mouse_y_mov = -deg_to_rad(event.relative.y * B_MOUSE_SENSITIVITY)
 		head.rotate_x(mouse_y_mov)
 		head.rotation.x = clamp(head.rotation.x, HEAD_Y_CLAMP_DOWN, HEAD_Y_CLAMP_UP)
+
+func _process(delta):
+	if Input.is_action_pressed("primary") and not animation_player.is_playing():
+		animation_player.play("swing_paddle")
 		
 func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
