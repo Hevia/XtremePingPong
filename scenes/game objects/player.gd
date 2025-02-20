@@ -60,6 +60,8 @@ var slow_time_toggle = false
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var paddle_jump_raycast: RayCast3D = $FreelookPivot/Head/PaddleJumpRaycast
 
+@export var player_color: Color = Color.BLUE
+
 const PADDLE_JUMP_VELOCITY = 5.0
 
 var hit_force = 100.0  # Adjust this to control hit strength
@@ -84,11 +86,13 @@ func shake_screen():
 	
 func on_paddle_area_entered(other_area: Area3D):
 	if other_area.owner is Ball:
+		var ball = other_area.owner as Ball
 		var hit_direction = calculate_hit_direction()
 		var force = hit_direction * hit_force
 		hitstop(0.05, 0.7)
 		shake_screen()
-		other_area.owner.apply_force(force)
+		ball.apply_force(force)
+		ball.set_color(player_color)
 
 func calculate_hit_direction() -> Vector3:
 	return -global_transform.basis.z.normalized()

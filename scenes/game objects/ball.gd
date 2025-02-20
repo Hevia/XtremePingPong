@@ -12,9 +12,18 @@ var switch_colors = false
 var current_color: Color = Color.WHITE
 var next_color: Color = Color.WHITE
 
+var material_ref = null
+
+func _ready() -> void:
+	# Since the ball color might change a lot, we just have this ref to change often
+	material_ref = mesh_instance_3d.mesh.surface_get_material(0) as StandardMaterial3D
+
 func set_color(next_color: Color) -> void:
 	next_color = next_color
 	colorswitcher_timer.start()
+	
+	if material_ref:
+		material_ref.albedo_color = next_color
 
 func apply_force(force: Vector3):
 	# F = ma, so a = F/m
