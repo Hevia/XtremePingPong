@@ -16,7 +16,7 @@ material = SubResource("StandardMaterial3D_ekwaw")
 [node name="Ball" type="CharacterBody3D"]
 script = ExtResource("1_275bg")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="BallCollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_grfoj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -26,7 +26,7 @@ mesh = SubResource("SphereMesh_qv4px")
 
 [node name="Area3D" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="HitCollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_nw0gf")
 
 [node name="ColorswitcherTimer" type="Timer" parent="."]

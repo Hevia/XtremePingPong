@@ -14,6 +14,7 @@ const B_SLIDE_SPEED = 10.0
 const B_DASH_SPEED = 12.0
 const DASH_LENGTH_MAX = 1.0
 const SLOW_TIME_TOGGLE_SPEED = 0.1
+const MAX_SLIDE_GAS = 5.0
 
 var current_speed = 5.0
 var curr_jump_velocity = 4.5
@@ -26,6 +27,11 @@ var slide_vec = Vector2.ZERO
 var dash_timer = 0.0
 var dash_vec = Vector2.ZERO
 var last_velocity =  Vector3.ZERO
+var current_slide_gas = 0.0
+
+# Grabbing variables
+var grabbed_object_ref: Node3D = null
+var grab_ready = true
 
 # Head bobbing vars
 const head_bobbing_sprinting_speed = 22.0
@@ -59,16 +65,26 @@ var slow_time_toggle = false
 @onready var head_bob_pivot: Node3D = %HeadBobPivot
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var paddle_jump_raycast: RayCast3D = $FreelookPivot/Head/PaddleJumpRaycast
+@onready var grab_area_3d: Area3D = %GrabArea3D
+@onready var grab_marker_3d: Marker3D = $FreelookPivot/Head/GrabNode3D/GrabMarker3D
+@onready var grab_cooldown_timer: Timer = %GrabCooldownTimer
 
 @export var player_color: Color = Color.BLUE
 
+
+var pause_menu_scene = preload("res://scenes/menus/pause_screen.tscn")
+
 const PADDLE_JUMP_VELOCITY = 5.0
 
-var hit_force = 100.0  # Adjust this to control hit strength
+@export var hit_force = 110.0  # Adjust this to control hit strength
+@export var throw_force = 100.0
+
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	paddle_area_3d.area_entered.connect(on_paddle_area_entered)
+	grab_area_3d.area_entered.connect(on_grab_area_entered)
+	grab_cooldown_timer.timeout.connect(on_grab_timer_timeout)
 
 func reset_time() -> void:
 	if slow_time_toggle:
@@ -94,6 +110,20 @@ func on_paddle_area_entered(other_area: Area3D):
 		ball.apply_force(force)
 		ball.set_color(player_color)
 
+func on_grab_area_entered(other_area: Area3D):
+	if other_area.owner is Ball:
+		var ball = other_area.owner as Ball
+		ball.stop_movement()
+		ball.global_position = grab_marker_3d.global_position
+		grabbed_object_ref = ball
+		ball.set_grabbed_parent_ref(self)
+	
+func on_grab_timer_timeout() -> void:
+	grab_ready = true
+
+func get_marker_pos() -> Vector3:
+	return grab_marker_3d.global_position
+
 func calculate_hit_direction() -> Vector3:
 	return -global_transform.basis.z.normalized()
 
@@ -118,9 +148,32 @@ func _input(event):
 		head.rotate_x(mouse_y_mov)
 		head.rotation.x = clamp(head.rotation.x, HEAD_Y_CLAMP_DOWN, HEAD_Y_CLAMP_UP)
 
+func throw_object():
+	if grabbed_object_ref != null and grabbed_object_ref is Ball:
+		var force = calculate_hit_direction() * throw_force
+		grabbed_object_ref.released_from_grab()
+		grabbed_object_ref.apply_force(force)
+		grabbed_object_ref = null
+		
+
 func _process(_delta):
+	if Input.is_action_pressed("pause"):
+		add_child(pause_menu_scene.instantiate())
+		#get_tree().root.set_input_as_handled()
+		get_tree().paused = true
+		
 	if Input.is_action_pressed("primary") and not animation_player.is_playing():
 		animation_player.play("swing_paddle")
+		
+	if Input.is_action_pressed("secondary") and not animation_player.is_playing():
+		if grabbed_object_ref == null and grab_ready:
+			animation_player.play("grab")
+		elif grabbed_object_ref != null:
+			grab_ready = false
+			throw_object()
+			grab_cooldown_timer.start()
+			
+			
 	
 	if Input.is_action_just_pressed("slow time"):
 		slow_time_toggle = !slow_time_toggle
@@ -139,6 +192,10 @@ func _physics_process(delta: float) -> void:
 		print("we paddle jumping")
 		velocity.y = PADDLE_JUMP_VELOCITY
 	
+	if Input.is_action_just_released("crouch"):
+		sliding = false
+		walking = true
+	
 	# Crouching is dominant, we want it to overwrite sprint
 	if (Input.is_action_pressed("crouch") || sliding) && not dashing:
 		current_speed = lerp(current_speed, B_CROUCHING_SPEED, delta*lerp_speed)
@@ -147,7 +204,7 @@ func _physics_process(delta: float) -> void:
 		standing_collision_shape.disabled = true
 		
 		# Slide begin logic
-		if sprinting && input_dir != Vector2.ZERO:
+		if  input_dir != Vector2.ZERO:
 			sliding = true
 			slide_timer = SLIDE_LENGTH_MAX
 			slide_vec = input_dir
@@ -209,7 +266,8 @@ func _physics_process(delta: float) -> void:
 			slide_timer = 0.0
 			sliding = false
 			freelooking =  false
-	
+			
+
 	# Handle head bob
 	if sprinting:
 		current_head_bob_intensity = head_bobbing_sprinting_intensity

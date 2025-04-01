@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bytjq4yn4wbye"]
+
+[ext_resource type="PackedScene" uid="uid://d35jn7xjt32mw" path="res://assets/mdlTableTennisPaddle.glb" id="1_p6f6b"]
+
+[node name="mdlTableTennisPaddle" instance=ExtResource("1_p6f6b")]
