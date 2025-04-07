@@ -16,6 +16,7 @@ const DASH_LENGTH_MAX = 1.0
 const SLOW_TIME_TOGGLE_SPEED = 0.1
 const MAX_SLIDE_GAS = 5.0
 
+
 var current_speed = 5.0
 var curr_jump_velocity = 4.5
 var lerp_speed = 10.0 # Used to add friction, lower is more friction
@@ -28,6 +29,9 @@ var dash_timer = 0.0
 var dash_vec = Vector2.ZERO
 var last_velocity =  Vector3.ZERO
 var current_slide_gas = 0.0
+
+# Jump Buffer
+var jump_buffer_active = false
 
 # Grabbing variables
 var grabbed_object_ref: Node3D = null
@@ -68,6 +72,7 @@ var slow_time_toggle = false
 @onready var grab_area_3d: Area3D = %GrabArea3D
 @onready var grab_marker_3d: Marker3D = $FreelookPivot/Head/GrabNode3D/GrabMarker3D
 @onready var grab_cooldown_timer: Timer = %GrabCooldownTimer
+@onready var jump_buffer_timer: Timer = %JumpBufferTimer
 
 @export var player_color: Color = Color.BLUE
 
@@ -85,6 +90,7 @@ func _ready():
 	paddle_area_3d.area_entered.connect(on_paddle_area_entered)
 	grab_area_3d.area_entered.connect(on_grab_area_entered)
 	grab_cooldown_timer.timeout.connect(on_grab_timer_timeout)
+	jump_buffer_timer.timeout.connect(on_jump_timer_timeout)
 
 func reset_time() -> void:
 	if slow_time_toggle:
@@ -121,6 +127,9 @@ func on_grab_area_entered(other_area: Area3D):
 func on_grab_timer_timeout() -> void:
 	grab_ready = true
 
+func on_jump_timer_timeout() -> void:
+	jump_buffer_active = false
+
 func get_marker_pos() -> Vector3:
 	return grab_marker_3d.global_position
 
@@ -154,7 +163,10 @@ func throw_object():
 		grabbed_object_ref.released_from_grab()
 		grabbed_object_ref.apply_force(force)
 		grabbed_object_ref = null
-		
+
+func jump() -> void:
+	velocity.y = curr_jump_velocity
+	sliding = false
 
 func _process(_delta):
 	if Input.is_action_pressed("pause"):
@@ -208,7 +220,7 @@ func _physics_process(delta: float) -> void:
 			sliding = true
 			slide_timer = SLIDE_LENGTH_MAX
 			slide_vec = input_dir
-			freelooking = true
+			#freelooking = true
 		
 		dashing = false
 		walking = false
@@ -294,12 +306,19 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	else:
+		if jump_buffer_active:
+			jump()
+			jump_buffer_active = false
 
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor() and !crouching_ray_cast_check.is_colliding():
-		velocity.y = curr_jump_velocity
-		sliding = false
-	
+	if Input.is_action_just_pressed("jump")  and !crouching_ray_cast_check.is_colliding():
+		if is_on_floor():
+			jump()
+		else:
+			jump_buffer_active = true
+			jump_buffer_timer.start()
+
 	var input_vec = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	# Handle landing
