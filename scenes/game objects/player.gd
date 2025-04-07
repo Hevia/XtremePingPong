@@ -15,6 +15,8 @@ const B_DASH_SPEED = 12.0
 const DASH_LENGTH_MAX = 1.0
 const SLOW_TIME_TOGGLE_SPEED = 0.1
 const MAX_SLIDE_GAS = 5.0
+const B_MAX_DASH = 2
+const B_DASH_COOLDOWN = 0.4
 
 
 var current_speed = 5.0
@@ -30,8 +32,15 @@ var dash_vec = Vector2.ZERO
 var last_velocity =  Vector3.ZERO
 var current_slide_gas = 0.0
 
+# Dash variables
+var current_dash_stock = 2
+var queue_dash_cooldown = false # TODO: Need to use this later
+
 # Jump Buffer
 var jump_buffer_active = false
+
+# Coyote Time
+var coyote_time_active = true
 
 # Grabbing variables
 var grabbed_object_ref: Node3D = null
@@ -73,6 +82,9 @@ var slow_time_toggle = false
 @onready var grab_marker_3d: Marker3D = $FreelookPivot/Head/GrabNode3D/GrabMarker3D
 @onready var grab_cooldown_timer: Timer = %GrabCooldownTimer
 @onready var jump_buffer_timer: Timer = %JumpBufferTimer
+@onready var speed_lines_overlay: SpeedLines = $SpeedLinesOverlay
+@onready var coyote_timer: Timer = %CoyoteTimer
+@onready var dash_cooldown_timer: Timer = %DashCooldownTimer
 
 @export var player_color: Color = Color.BLUE
 
@@ -89,8 +101,12 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	paddle_area_3d.area_entered.connect(on_paddle_area_entered)
 	grab_area_3d.area_entered.connect(on_grab_area_entered)
+	
+	# Timers
 	grab_cooldown_timer.timeout.connect(on_grab_timer_timeout)
 	jump_buffer_timer.timeout.connect(on_jump_timer_timeout)
+	coyote_timer.timeout.connect(on_coyote_timer_timeout)
+	dash_cooldown_timer.timeout.connect(on_dash_timer_timeout)
 
 func reset_time() -> void:
 	if slow_time_toggle:
@@ -130,6 +146,12 @@ func on_grab_timer_timeout() -> void:
 func on_jump_timer_timeout() -> void:
 	jump_buffer_active = false
 
+func on_coyote_timer_timeout() -> void:
+	coyote_time_active = false
+
+func on_dash_timer_timeout() -> void:
+	current_dash_stock += 1
+
 func get_marker_pos() -> Vector3:
 	return grab_marker_3d.global_position
 
@@ -163,10 +185,29 @@ func throw_object():
 		grabbed_object_ref.released_from_grab()
 		grabbed_object_ref.apply_force(force)
 		grabbed_object_ref = null
+		
+func can_dash() -> bool:
+	return current_dash_stock > 0 && !dashing
+
+func dash() -> void:
+	print("current_dash_stock")
+	print(current_dash_stock)
+	current_dash_stock -= 1
+	if dash_cooldown_timer.is_stopped():
+		dash_cooldown_timer.start()
+	else:
+		queue_dash_cooldown = true
+	dashing = true
+	walking = false
+	sprinting = false
+	sliding = false
+	dash_timer = DASH_LENGTH_MAX
+	
 
 func jump() -> void:
 	velocity.y = curr_jump_velocity
 	sliding = false
+	coyote_time_active = false
 
 func _process(_delta):
 	if Input.is_action_pressed("pause"):
@@ -184,24 +225,23 @@ func _process(_delta):
 			grab_ready = false
 			throw_object()
 			grab_cooldown_timer.start()
-			
-			
-	
-	if Input.is_action_just_pressed("slow time"):
-		slow_time_toggle = !slow_time_toggle
-		
-		if slow_time_toggle:
-			Engine.time_scale = SLOW_TIME_TOGGLE_SPEED
-		else:
-			Engine.time_scale = 1.0
 		
 func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	
+	
+	if velocity.length() > 10:
+		speed_lines_overlay.set_speed_lines_density(1.0)
+	elif velocity.length() > 8:
+		speed_lines_overlay.set_speed_lines_density(0.5)
+	elif velocity.length() > 6:
+		speed_lines_overlay.set_speed_lines_density(0.2)
+	else:
+		speed_lines_overlay.set_speed_lines_density(0.0)
+	
 	if handle_paddle_jump():
-		print("we paddle jumping")
 		velocity.y = PADDLE_JUMP_VELOCITY
 	
 	if Input.is_action_just_released("crouch"):
@@ -256,12 +296,8 @@ func _physics_process(delta: float) -> void:
 		freelook_pivot.rotation.y = lerp(freelook_pivot.rotation.y, 0.0, delta*lerp_speed)
 	
 	# Trigger dashing
-	if Input.is_action_pressed("dash") && not sliding && input_dir != Vector2.ZERO:
-		dashing = true
-		walking = false
-		sprinting = false
-		sliding = false
-		dash_timer = DASH_LENGTH_MAX
+	if can_dash() && Input.is_action_pressed("dash") && not sliding && input_dir != Vector2.ZERO:
+		dash()
 		dash_vec = input_dir
 	
 	# Handle dashing
@@ -306,14 +342,19 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		
+		if coyote_timer.is_stopped():
+			coyote_timer.start()
 	else:
+		coyote_time_active = true
+		coyote_timer.stop()
 		if jump_buffer_active:
 			jump()
 			jump_buffer_active = false
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump")  and !crouching_ray_cast_check.is_colliding():
-		if is_on_floor():
+		if coyote_time_active:
 			jump()
 		else:
 			jump_buffer_active = true

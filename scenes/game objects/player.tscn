@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://gkr8sq0f7u2l"]
+[gd_scene load_steps=11 format=3 uid="uid://gkr8sq0f7u2l"]
 
 [ext_resource type="Script" path="res://scenes/game objects/player.gd" id="1_c5mcm"]
 [ext_resource type="PackedScene" uid="uid://d35jn7xjt32mw" path="res://assets/mdlTableTennisPaddle.glb" id="2_5ea66"]
+[ext_resource type="PackedScene" uid="uid://btgnmxh5wgqxw" path="res://scenes/ui/speed_lines_overlay.tscn" id="3_qy3ex"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_041md"]
 
@@ -246,11 +247,24 @@ libraries = {
 "": SubResource("AnimationLibrary_bmp6s")
 }
 
-[node name="GrabCooldownTimer" type="Timer" parent="."]
+[node name="SpeedLinesOverlay" parent="." instance=ExtResource("3_qy3ex")]
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="CoyoteTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
+
+[node name="JumpBufferTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
+
+[node name="GrabCooldownTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="JumpBufferTimer" type="Timer" parent="."]
+[node name="DashCooldownTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
-wait_time = 0.2
 one_shot = true
