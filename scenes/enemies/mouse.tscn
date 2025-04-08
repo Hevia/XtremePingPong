@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dudet02t5myau"]
+[gd_scene load_steps=8 format=3 uid="uid://dudet02t5myau"]
 
 [ext_resource type="Script" path="res://scenes/components/hurtbox_component_3d.gd" id="1_jspxw"]
+[ext_resource type="Script" path="res://scenes/enemies/mouse.gd" id="1_xo63x"]
 [ext_resource type="Script" path="res://scenes/components/health_component.gd" id="2_vvc0g"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c6awk"]
@@ -16,6 +17,7 @@ height = 1.25
 
 [node name="Mouse" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.766701, 0)
+script = ExtResource("1_xo63x")
 
 [node name="HurtboxComponent" type="Area3D" parent="." node_paths=PackedStringArray("health_component")]
 collision_layer = 0

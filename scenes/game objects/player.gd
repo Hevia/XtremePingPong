@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Player extends CharacterBase
 
 # B_ refers to Base_
 const B_WALKING_SPEED = 5.0
@@ -85,6 +85,8 @@ var slow_time_toggle = false
 @onready var speed_lines_overlay: SpeedLines = $SpeedLinesOverlay
 @onready var coyote_timer: Timer = %CoyoteTimer
 @onready var dash_cooldown_timer: Timer = %DashCooldownTimer
+@onready var arms_anim_player: AnimationPlayer = %ArmsAnimPlayer
+@onready var weapon_rig: Node3D = %WeaponRig
 
 @export var player_color: Color = Color.BLUE
 
@@ -217,10 +219,12 @@ func _process(_delta):
 		
 	if Input.is_action_pressed("primary") and not animation_player.is_playing():
 		animation_player.play("swing_paddle")
+		arms_anim_player.play("swing_paddle")
 		
 	if Input.is_action_pressed("secondary") and not animation_player.is_playing():
 		if grabbed_object_ref == null and grab_ready:
 			animation_player.play("grab")
+			arms_anim_player.play("grab")
 		elif grabbed_object_ref != null:
 			grab_ready = false
 			throw_object()
