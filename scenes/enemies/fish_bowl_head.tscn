@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://dexbd75gmjttf"]
+
+[ext_resource type="Script" path="res://scenes/components/hurtbox_component_3d.gd" id="1_h3747"]
+[ext_resource type="Script" path="res://scenes/components/health_component.gd" id="2_04vnv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1r5d1"]
+radius = 0.8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3mbm2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_vc06r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v3w5x"]
+albedo_color = Color(1.39579e-06, 0.557204, 0.557348, 1)
+
+[node name="FishBowlHead" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="HurtboxComponent" type="Area3D" parent="." node_paths=PackedStringArray("health_component")]
+script = ExtResource("1_h3747")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtboxComponent"]
+shape = SubResource("CapsuleShape3D_1r5d1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_3mbm2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_vc06r")
+surface_material_override/0 = SubResource("StandardMaterial3D_v3w5x")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_04vnv")

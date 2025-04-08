@@ -95,6 +95,13 @@ secondary={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="World Collision"
+3d_physics/layer_2="Hurtboxes"
+3d_physics/layer_3="Hitboxes"
+3d_physics/layer_4="Grabables"
+
 [physics]
 
 3d/physics_engine="JoltPhysics3D"
