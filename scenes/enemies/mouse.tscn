@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://dudet02t5myau"]
 
-[ext_resource type="Script" path="res://scenes/components/hurtbox_component_3d.gd" id="1_jspxw"]
-[ext_resource type="Script" path="res://scenes/enemies/mouse.gd" id="1_xo63x"]
-[ext_resource type="Script" path="res://scenes/components/health_component.gd" id="2_vvc0g"]
+[ext_resource type="Script" uid="uid://jqctocarg5rh" path="res://scenes/components/hurtbox_component_3d.gd" id="1_jspxw"]
+[ext_resource type="Script" uid="uid://sd6weicqaou" path="res://scenes/enemies/mouse.gd" id="1_xo63x"]
+[ext_resource type="Script" uid="uid://6lmdyb8yon5s" path="res://scenes/components/health_component.gd" id="2_vvc0g"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c6awk"]
 

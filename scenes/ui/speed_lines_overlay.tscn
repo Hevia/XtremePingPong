@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://btgnmxh5wgqxw"]
 
-[ext_resource type="Shader" path="res://resources/speed_lines.gdshader" id="1_7i7q0"]
-[ext_resource type="Script" path="res://scenes/ui/speed_lines_overlay.gd" id="1_qdwce"]
+[ext_resource type="Shader" uid="uid://di7k8nmbym016" path="res://resources/speed_lines.gdshader" id="1_7i7q0"]
+[ext_resource type="Script" uid="uid://dv0xqgynwmer2" path="res://scenes/ui/speed_lines_overlay.gd" id="1_qdwce"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_535ql"]
 noise_type = 5
@@ -12,6 +12,7 @@ noise = SubResource("FastNoiseLite_535ql")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ppo7n"]
 shader = ExtResource("1_7i7q0")
+shader_parameter/noise = SubResource("NoiseTexture2D_c5ykq")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_count = 2.0
 shader_parameter/line_density = 0.0
@@ -19,7 +20,6 @@ shader_parameter/line_faloff = 1.0
 shader_parameter/mask_size = 0.0
 shader_parameter/mask_edge = 1.0
 shader_parameter/animation_speed = 20.0
-shader_parameter/noise = SubResource("NoiseTexture2D_c5ykq")
 
 [node name="SpeedLinesOverlay" type="Control"]
 layout_mode = 3

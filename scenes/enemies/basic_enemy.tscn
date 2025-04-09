@@ -1,13 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://cdpegiu7wpcgs"]
 
-[ext_resource type="PackedScene" uid="uid://cca8284yua203" path="res://assets/matt_mii_rig/scene.gltf" id="1_cdybj"]
+[sub_resource type="Resource" id="Resource_tgb66"]
+metadata/__load_path__ = "res://assets/matt_mii_rig/scene.gltf"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8ykc1"]
 height = 1.58483
 
 [node name="BasicEnemy" type="CharacterBody3D"]
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_cdybj")]
+[node name="Sketchfab_Scene" parent="."]
 transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

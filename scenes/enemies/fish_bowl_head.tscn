@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dexbd75gmjttf"]
 
-[ext_resource type="Script" path="res://scenes/components/hurtbox_component_3d.gd" id="1_h3747"]
-[ext_resource type="Script" path="res://scenes/components/health_component.gd" id="2_04vnv"]
+[ext_resource type="Script" uid="uid://jqctocarg5rh" path="res://scenes/components/hurtbox_component_3d.gd" id="1_h3747"]
+[ext_resource type="Script" uid="uid://6lmdyb8yon5s" path="res://scenes/components/health_component.gd" id="2_04vnv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1r5d1"]
 radius = 0.8

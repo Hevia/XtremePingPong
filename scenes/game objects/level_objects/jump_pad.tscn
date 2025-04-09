@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bod1hcvwmskyn"]
 
 [ext_resource type="Texture2D" uid="uid://bonq3336v7tnd" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="1_haswx"]
-[ext_resource type="Script" path="res://scenes/game objects/level_objects/jump_pad.gd" id="1_i57y7"]
+[ext_resource type="Script" uid="uid://c0px3rgoppchj" path="res://scenes/game objects/level_objects/jump_pad.gd" id="1_i57y7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbg4s"]
 albedo_color = Color(0.741176, 0.027451, 0.0588235, 1)
