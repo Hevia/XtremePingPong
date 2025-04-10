@@ -40,3 +40,6 @@ shape = SubResource("CapsuleShape3D_jb50d")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("2_vvc0g")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true

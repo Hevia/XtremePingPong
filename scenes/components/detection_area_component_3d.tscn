@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://qr1ksy7vf7t6"]
+
+[ext_resource type="Script" uid="uid://rs3v5l8l3jsu" path="res://scenes/components/detection_area_component_3d.gd" id="1_xk23w"]
+
+[node name="DetectionAreaComponent3D" type="Area3D"]
+script = ExtResource("1_xk23w")
