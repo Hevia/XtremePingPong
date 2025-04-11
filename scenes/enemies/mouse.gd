@@ -1,25 +1,69 @@
-class_name Mouse extends CharacterBase
+class_name Mouse extends EnemyBase
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
+@onready var detection_area_component_3d: DetectionAreaComponent3D = $DetectionAreaComponent3D
 
-@export var player: Player
+# Lower this to update the path more often
 
-const SPEED = 5.0
+@export var B_SPEED = 15.0
+var path_update_window = 0
+var is_searching: bool = true
+var player_ref: Player
+
+
 const JUMP_VELOCITY = 4.5
 
 func _ready() -> void:
-	navigation_agent_3d.set_target_position(player.global_position)
+	detection_area_component_3d.area_entered.connect(on_detection_area_entered)
+
+
+func update_path_ticks():
+	path_update_window += 1
 	
+	if path_update_window >= B_PATH_UPDATE_TICKS:
+		path_update_window = 0
+		
+		if player_ref:
+			navigation_agent_3d.set_target_position(player_ref.global_position)
+
+func search_for_player():
+	if check_if_los(player_ref.global_position):
+		is_searching = false
+		navigation_agent_3d.set_target_position(player_ref.global_position)
+
+func update_search_ticks():
+	search_tick_window += 1
+	
+	if player_ref and search_tick_window >= ENEMY_SEARCH_TICKS:
+		search_tick_window = 0
+		search_for_player()
+
+func check_for_search_reset():
+	if not player_ref:
+		is_searching = true
+		player_ref = null
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		
-	var destination = navigation_agent_3d.get_next_path_position()
-	var local_destination = destination - global_position # woaw this is how you get the local position??
-	var direction = local_destination.normalized()
+	if not is_searching:
+		update_path_ticks()
+	else:
+		update_search_ticks()
 	
-	velocity = SPEED * direction
-
+	if player_ref:
+		var destination = navigation_agent_3d.get_next_path_position()
+		var local_destination = destination - global_position # woaw this is how you get the local position??
+		var direction = local_destination.normalized()
+	
+		velocity = B_SPEED * direction
+	
+	check_for_search_reset()
 	move_and_slide()
+
+func on_detection_area_entered(other_area: Area3D):
+	if is_searching and other_area and other_area.owner and other_area.owner is Player:
+		player_ref = other_area.owner
+		search_for_player()

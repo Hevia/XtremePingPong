@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6xh88xvg8hlh"]
+
+[ext_resource type="Script" uid="uid://jfpx4nrpwv2m" path="res://scenes/game objects/rigid_body_ball.gd" id="1_1g573"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_grfoj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ekwaw"]
+resource_local_to_scene = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_qv4px"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ekwaw")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nw0gf"]
+
+[node name="RigidBodyBall" type="RigidBody3D"]
+script = ExtResource("1_1g573")
+
+[node name="BallCollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_grfoj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_qv4px")
+
+[node name="LifetimeTimer" type="Timer" parent="."]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="HitCollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_nw0gf")
+
+[node name="ColorswitcherTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.1
+one_shot = true

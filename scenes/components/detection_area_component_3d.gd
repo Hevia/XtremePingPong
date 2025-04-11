@@ -1,1 +1,1 @@
-extends Area3D
+class_name DetectionAreaComponent3D extends Area3D

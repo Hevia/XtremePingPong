@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://bjahu6p2iv2vr"]
+
+[ext_resource type="PackedScene" uid="uid://gkr8sq0f7u2l" path="res://scenes/game objects/player.tscn" id="1_k4yau"]
+[ext_resource type="PackedScene" uid="uid://c6xh88xvg8hlh" path="res://scenes/game objects/rigid_body_ball.tscn" id="2_s081u"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_03ded"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_jrxbq"]
+sky_material = SubResource("ProceduralSkyMaterial_03ded")
+
+[sub_resource type="Environment" id="Environment_esh27"]
+background_mode = 2
+sky = SubResource("Sky_jrxbq")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k4yau"]
+friction = 0.2
+bounce = 1.0
+
+[node name="PhysicsTest" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_esh27")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(30, 1, 30)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 0.036417, -0.999337, 0, 0.999337, 0.036417, 0, -1, -2.81239)
+use_collision = true
+size = Vector3(10, 1, 10)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.336964, 0.941315, 0.0195534, 3.72529e-09, -0.020768, 0.999785, 0.941518, -0.336891, -0.00699806, 6.6135, 1.04344, 1.54464)
+use_collision = true
+size = Vector3(10, 1, 10)
+
+[node name="Player" parent="." instance=ExtResource("1_k4yau")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.0077)
+
+[node name="RigidBodyBall" parent="." instance=ExtResource("2_s081u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.56378, 0)
+mass = 0.2
+physics_material_override = SubResource("PhysicsMaterial_k4yau")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dexbd75gmjttf"]
+[gd_scene load_steps=8 format=3 uid="uid://dexbd75gmjttf"]
 
 [ext_resource type="Script" uid="uid://jqctocarg5rh" path="res://scenes/components/hurtbox_component_3d.gd" id="1_h3747"]
+[ext_resource type="Script" uid="uid://bp3rqtseg3bnp" path="res://scenes/enemies/fish_bowl_head.gd" id="1_mj6hu"]
 [ext_resource type="Script" uid="uid://6lmdyb8yon5s" path="res://scenes/components/health_component.gd" id="2_04vnv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1r5d1"]
@@ -14,7 +15,7 @@ radius = 0.8
 albedo_color = Color(1.39579e-06, 0.557204, 0.557348, 1)
 
 [node name="FishBowlHead" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_mj6hu")
 
 [node name="HurtboxComponent" type="Area3D" parent="." node_paths=PackedStringArray("health_component")]
 script = ExtResource("1_h3747")
