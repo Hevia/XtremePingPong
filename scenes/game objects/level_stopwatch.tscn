@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ppixqf0ilql2"]
+
+[ext_resource type="Script" uid="uid://o2vtwwv6o3rv" path="res://scenes/game objects/level_stopwatch.gd" id="1_sgakg"]
+
+[node name="LevelStopwatch" type="Node"]
+script = ExtResource("1_sgakg")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dexbd75gmjttf"]
+[gd_scene load_steps=9 format=3 uid="uid://dexbd75gmjttf"]
 
 [ext_resource type="Script" uid="uid://jqctocarg5rh" path="res://scenes/components/hurtbox_component_3d.gd" id="1_h3747"]
 [ext_resource type="Script" uid="uid://bp3rqtseg3bnp" path="res://scenes/enemies/fish_bowl_head.gd" id="1_mj6hu"]
@@ -13,6 +13,8 @@ radius = 0.8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v3w5x"]
 albedo_color = Color(1.39579e-06, 0.557204, 0.557348, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_mj6hu"]
 
 [node name="FishBowlHead" type="CharacterBody3D"]
 script = ExtResource("1_mj6hu")
@@ -33,3 +35,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_v3w5x")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("2_04vnv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00376743, 0.468243, -0.144635)
+mesh = SubResource("SphereMesh_mj6hu")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.474771, -1.00711)

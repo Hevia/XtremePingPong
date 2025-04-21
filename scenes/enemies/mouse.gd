@@ -1,17 +1,6 @@
 class_name Mouse extends EnemyBase
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
-@onready var detection_area_component_3d: DetectionAreaComponent3D = $DetectionAreaComponent3D
-
-# Lower this to update the path more often
-
-@export var B_SPEED = 15.0
-var path_update_window = 0
-var is_searching: bool = true
-var player_ref: Player
-
-
-const JUMP_VELOCITY = 4.5
 
 func _ready() -> void:
 	detection_area_component_3d.area_entered.connect(on_detection_area_entered)
@@ -26,10 +15,12 @@ func update_path_ticks():
 		if player_ref:
 			navigation_agent_3d.set_target_position(player_ref.global_position)
 
+
 func search_for_player():
 	if check_if_los(player_ref.global_position):
 		is_searching = false
 		navigation_agent_3d.set_target_position(player_ref.global_position)
+
 
 func update_search_ticks():
 	search_tick_window += 1
@@ -38,10 +29,6 @@ func update_search_ticks():
 		search_tick_window = 0
 		search_for_player()
 
-func check_for_search_reset():
-	if not player_ref:
-		is_searching = true
-		player_ref = null
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

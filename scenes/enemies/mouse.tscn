@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dudet02t5myau"]
+[gd_scene load_steps=8 format=3 uid="uid://dudet02t5myau"]
 
 [ext_resource type="Script" uid="uid://jqctocarg5rh" path="res://scenes/components/hurtbox_component_3d.gd" id="1_jspxw"]
 [ext_resource type="Script" uid="uid://sd6weicqaou" path="res://scenes/enemies/mouse.gd" id="1_xo63x"]
 [ext_resource type="Script" uid="uid://6lmdyb8yon5s" path="res://scenes/components/health_component.gd" id="2_vvc0g"]
-[ext_resource type="PackedScene" uid="uid://qr1ksy7vf7t6" path="res://scenes/components/detection_area_component_3d.tscn" id="4_i4xcy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c6awk"]
 
@@ -15,10 +14,6 @@ albedo_color = Color(0.670588, 1, 1, 1)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jb50d"]
 radius = 0.6
 height = 1.25
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_i4xcy"]
-height = 10.662
-radius = 1.58
 
 [node name="Mouse" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.766701, 0)
@@ -48,10 +43,3 @@ script = ExtResource("2_vvc0g")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 debug_enabled = true
-
-[node name="DetectionAreaComponent3D" parent="." instance=ExtResource("4_i4xcy")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionAreaComponent3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 2.58594)
-shape = SubResource("CylinderShape3D_i4xcy")
-debug_color = Color(0.939678, 0.216034, 0.308812, 0.42)

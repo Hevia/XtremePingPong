@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://2s2qtkxhaasb"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_kl7ro"]
+top_radius = 0.0
+
+[node name="Spikes" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.989333, -0.145669, 0, 0.145669, 0.989333, -0.0759097, 0, 0)
+mesh = SubResource("CylinderMesh_kl7ro")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.921131, 0.372733, -0.112194, -0.364614, 0.927126, 0.0865747, 0.136287, -0.0388391, 0.989908, 0.460082, 0, -1.34538)
+mesh = SubResource("CylinderMesh_kl7ro")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.949946, 0.16155, -0.267403, -0.211165, 0.962822, -0.168478, 0.230243, 0.216511, 0.948743, -0.872481, -0.284228, -0.987623)
+mesh = SubResource("CylinderMesh_kl7ro")
+skeleton = NodePath("../MeshInstance3D")

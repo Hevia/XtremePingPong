@@ -46,6 +46,8 @@ var coyote_time_active = true
 var grabbed_object_ref: Node3D = null
 var grab_ready = true
 
+var can_swing = true
+
 # Head bobbing vars
 const head_bobbing_sprinting_speed = 22.0
 const head_bobbing_walking_speed = 14.0
@@ -87,6 +89,7 @@ var slow_time_toggle = false
 @onready var dash_cooldown_timer: Timer = %DashCooldownTimer
 @onready var arms_anim_player: AnimationPlayer = %ArmsAnimPlayer
 @onready var weapon_rig: Node3D = %WeaponRig
+@onready var can_swing_timer: Timer = $Timers/CanSwingTimer
 
 @export var player_color: Color = Color.BLUE
 
@@ -109,6 +112,7 @@ func _ready():
 	jump_buffer_timer.timeout.connect(on_jump_timer_timeout)
 	coyote_timer.timeout.connect(on_coyote_timer_timeout)
 	dash_cooldown_timer.timeout.connect(on_dash_timer_timeout)
+	can_swing_timer.timeout.connect(on_can_swing_timer_timeout)
 
 func reset_time() -> void:
 	if slow_time_toggle:
@@ -129,7 +133,7 @@ func on_paddle_area_entered(other_area: Area3D):
 		var ball = other_area.owner as Ball
 		var hit_direction = calculate_hit_direction()
 		var force = hit_direction * hit_force
-		hitstop(0.05, 0.7)
+		#hitstop(0.05, 0.7)
 		shake_screen()
 		ball.apply_force(force)
 		ball.set_color(player_color)
@@ -192,8 +196,6 @@ func can_dash() -> bool:
 	return current_dash_stock > 0 && !dashing
 
 func dash() -> void:
-	print("current_dash_stock")
-	print(current_dash_stock)
 	current_dash_stock -= 1
 	if dash_cooldown_timer.is_stopped():
 		dash_cooldown_timer.start()
@@ -204,7 +206,9 @@ func dash() -> void:
 	sprinting = false
 	sliding = false
 	dash_timer = DASH_LENGTH_MAX
-	
+
+func on_can_swing_timer_timeout():
+	can_swing = true
 
 func jump() -> void:
 	velocity.y = curr_jump_velocity
@@ -217,9 +221,21 @@ func _process(_delta):
 		#get_tree().root.set_input_as_handled()
 		get_tree().paused = true
 		
-	if Input.is_action_pressed("primary") and not animation_player.is_playing():
-		animation_player.play("swing_paddle")
+	if Input.is_action_just_pressed("slow time"):
+		slow_time_toggle = true
+		reset_time()
+	elif Input.is_action_just_released("slow time"):
+		slow_time_toggle = false
+		reset_time() # TODO: Use a better func name
+		
+	if Input.is_action_pressed("primary") and can_swing:
+		if arms_anim_player.is_playing():
+			arms_anim_player.stop()
+		
+		#animation_player.play("swing_paddle")
 		arms_anim_player.play("swing_paddle")
+		can_swing_timer.start()
+		can_swing = false
 		
 	if Input.is_action_pressed("secondary") and not animation_player.is_playing():
 		if grabbed_object_ref == null and grab_ready:
