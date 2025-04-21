@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dudet02t5myau"]
+[gd_scene load_steps=10 format=3 uid="uid://dudet02t5myau"]
 
 [ext_resource type="Script" uid="uid://jqctocarg5rh" path="res://scenes/components/hurtbox_component_3d.gd" id="1_jspxw"]
 [ext_resource type="Script" uid="uid://sd6weicqaou" path="res://scenes/enemies/mouse.gd" id="1_xo63x"]
 [ext_resource type="Script" uid="uid://6lmdyb8yon5s" path="res://scenes/components/health_component.gd" id="2_vvc0g"]
+[ext_resource type="Script" uid="uid://diposicq7ld2c" path="res://scenes/components/hitbox_component_3d.gd" id="4_i4xcy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c6awk"]
 
@@ -15,13 +16,16 @@ albedo_color = Color(0.670588, 1, 1, 1)
 radius = 0.6
 height = 1.25
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_prgl8"]
+size = Vector3(1.1, 1.1, 1.1)
+
 [node name="Mouse" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.766701, 0)
 script = ExtResource("1_xo63x")
 
 [node name="HurtboxComponent" type="Area3D" parent="." node_paths=PackedStringArray("health_component")]
-collision_layer = 0
-collision_mask = 2
+collision_layer = 2
+collision_mask = 6
 script = ExtResource("1_jspxw")
 health_component = NodePath("../HealthComponent")
 
@@ -40,6 +44,16 @@ shape = SubResource("CapsuleShape3D_jb50d")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("2_vvc0g")
+max_health = 1.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 debug_enabled = true
+
+[node name="HitboxComponent3D" type="Area3D" parent="."]
+script = ExtResource("4_i4xcy")
+damage = 1.0
+metadata/_custom_type_script = "uid://diposicq7ld2c"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.214447, 0)
+shape = SubResource("BoxShape3D_prgl8")

@@ -1,7 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://2s2qtkxhaasb"]
+[gd_scene load_steps=4 format=3 uid="uid://2s2qtkxhaasb"]
+
+[ext_resource type="Script" uid="uid://diposicq7ld2c" path="res://scenes/components/hitbox_component_3d.gd" id="1_m112f"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_kl7ro"]
 top_radius = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nbp67"]
+size = Vector3(1.78271, 1.91357, 2)
 
 [node name="Spikes" type="Node3D"]
 
@@ -18,3 +23,11 @@ skeleton = NodePath("../MeshInstance3D")
 transform = Transform3D(0.949946, 0.16155, -0.267403, -0.211165, 0.962822, -0.168478, 0.230243, 0.216511, 0.948743, -0.872481, -0.284228, -0.987623)
 mesh = SubResource("CylinderMesh_kl7ro")
 skeleton = NodePath("../MeshInstance3D")
+
+[node name="HitboxComponent3D" type="Area3D" parent="."]
+script = ExtResource("1_m112f")
+metadata/_custom_type_script = "uid://diposicq7ld2c"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0593262, -0.084308, -0.663548)
+shape = SubResource("BoxShape3D_nbp67")

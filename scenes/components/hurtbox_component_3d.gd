@@ -5,14 +5,12 @@ signal hit
 
 @export var health_component: Node
 
-
 func _ready():
 	area_entered.connect(on_area_entered)
 
-
-func on_area_entered(other_area: Area2D):
-	#if not other_area is HitboxComponent:
-	#	return
+func on_area_entered(other_area: Area3D):
+	if not other_area is HitboxComponent3D:
+		return
 	
 	if health_component == null:
 		return

@@ -48,6 +48,8 @@ var grab_ready = true
 
 var can_swing = true
 
+var can_throw_paddle = false
+
 # Head bobbing vars
 const head_bobbing_sprinting_speed = 22.0
 const head_bobbing_walking_speed = 14.0
@@ -93,7 +95,7 @@ var slow_time_toggle = false
 
 @export var player_color: Color = Color.BLUE
 
-
+var paddle_throwable_scene = preload("res://scenes/game objects/paddle_throwable.tscn")
 var pause_menu_scene = preload("res://scenes/menus/pause_screen.tscn")
 
 const PADDLE_JUMP_VELOCITY = 5.0
@@ -214,6 +216,16 @@ func jump() -> void:
 	velocity.y = curr_jump_velocity
 	sliding = false
 	coyote_time_active = false
+	
+func throw_paddle():
+	var paddle_instance = paddle_throwable_scene.instantiate() as PaddleThrowable
+	var entity_layer = get_tree().get_first_node_in_group("entity_layer")
+	if entity_layer:
+		entity_layer.add_child(paddle_instance)
+		paddle_instance.global_position = grab_marker_3d.global_position #TODO: Use a better one
+		var hit_direction = calculate_hit_direction()
+		var force = hit_direction * hit_force
+		paddle_instance.apply_force(force)
 
 func _process(_delta):
 	if Input.is_action_pressed("pause"):
@@ -236,7 +248,17 @@ func _process(_delta):
 		arms_anim_player.play("swing_paddle")
 		can_swing_timer.start()
 		can_swing = false
+	
+	# TODO: Use our own timer
+	if Input.is_action_just_pressed("throw_paddle") and can_swing:
+		if arms_anim_player.is_playing():
+			arms_anim_player.stop()
 		
+		arms_anim_player.play("throw_paddle")
+		can_swing_timer.start()
+		can_swing = false
+		throw_paddle()
+	
 	if Input.is_action_pressed("secondary") and not animation_player.is_playing():
 		if grabbed_object_ref == null and grab_ready:
 			animation_player.play("grab")
