@@ -20,6 +20,8 @@ albedo_color = Color(1.39579e-06, 0.557204, 0.557348, 1)
 script = ExtResource("1_mj6hu")
 
 [node name="HurtboxComponent" type="Area3D" parent="." node_paths=PackedStringArray("health_component")]
+collision_layer = 2
+collision_mask = 6
 script = ExtResource("1_h3747")
 health_component = NodePath("../HealthComponent")
 

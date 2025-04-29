@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6lx8m12vwbql"]
+
+[ext_resource type="Script" uid="uid://do4silg2ippml" path="res://scenes/game objects/throwable_gate.gd" id="1_yhjku"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mx6wy"]
+albedo_color = Color(1, 0.352859, 0.326903, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_le4on"]
+material = SubResource("StandardMaterial3D_mx6wy")
+size = Vector3(2, 3, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fdtf7"]
+points = PackedVector3Array(-1, -1.5, -0.5, -1, -1.5, 0.5, -1, 1.5, -0.5, 1, -1.5, -0.5, 1, -1.5, 0.5, -1, 1.5, 0.5, 1, 1.5, -0.5, 1, 1.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2j7b7"]
+size = Vector3(2, 3, 1.2)
+
+[node name="ThrowableGate" type="CharacterBody3D"]
+script = ExtResource("1_yhjku")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_le4on")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_fdtf7")
+
+[node name="PaddleDetectorArea3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PaddleDetectorArea3D"]
+shape = SubResource("BoxShape3D_2j7b7")

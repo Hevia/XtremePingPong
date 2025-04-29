@@ -17,6 +17,8 @@ const SLOW_TIME_TOGGLE_SPEED = 0.1
 const MAX_SLIDE_GAS = 5.0
 const B_MAX_DASH = 2
 const B_DASH_COOLDOWN = 0.4
+const B_MAX_CHARGE = 100
+const B_CHARGE_RATE = 25
 
 
 var current_speed = 5.0
@@ -46,9 +48,12 @@ var coyote_time_active = true
 var grabbed_object_ref: Node3D = null
 var grab_ready = true
 
+# Primary + throwing + charging
 var can_swing = true
-
 var can_throw_paddle = false
+var is_charging = false
+var current_charge = 0
+var holding_swing = false
 
 # Head bobbing vars
 const head_bobbing_sprinting_speed = 22.0
@@ -164,6 +169,7 @@ func get_marker_pos() -> Vector3:
 	return grab_marker_3d.global_position
 
 func calculate_hit_direction() -> Vector3:
+	print(-global_transform.basis.z.normalized())
 	return -global_transform.basis.z.normalized()
 
 func handle_paddle_jump():
@@ -227,6 +233,37 @@ func throw_paddle():
 		var force = hit_direction * hit_force
 		paddle_instance.apply_force(force)
 
+# Called by anim player to pause the paddle animation if we're charging
+func can_pause_paddle():
+	if holding_swing:
+		arms_anim_player.speed_scale = 0
+
+func can_resume_paddle_anim():
+	if not holding_swing:
+		arms_anim_player.speed_scale = 1.25
+	
+
+func swing_paddle():
+	if arms_anim_player.is_playing():
+		arms_anim_player.stop()
+	
+	can_resume_paddle_anim()
+	arms_anim_player.play("swing_paddle")
+
+	
+	
+func handle_primary_input():
+	if can_swing and Input.is_action_pressed("primary") :
+		holding_swing = true
+		swing_paddle()
+		
+	if can_swing and Input.is_action_just_released("primary"):
+		holding_swing = false
+		swing_paddle()
+		can_swing_timer.start()
+		can_swing = false
+		
+
 func _process(_delta):
 	if Input.is_action_pressed("pause"):
 		add_child(pause_menu_scene.instantiate())
@@ -240,14 +277,8 @@ func _process(_delta):
 		slow_time_toggle = false
 		reset_time() # TODO: Use a better func name
 		
-	if Input.is_action_pressed("primary") and can_swing:
-		if arms_anim_player.is_playing():
-			arms_anim_player.stop()
-		
-		#animation_player.play("swing_paddle")
-		arms_anim_player.play("swing_paddle")
-		can_swing_timer.start()
-		can_swing = false
+	handle_primary_input()
+
 	
 	# TODO: Use our own timer
 	if Input.is_action_just_pressed("throw_paddle") and can_swing:
