@@ -169,8 +169,19 @@ func get_marker_pos() -> Vector3:
 	return grab_marker_3d.global_position
 
 func calculate_hit_direction() -> Vector3:
-	print(-global_transform.basis.z.normalized())
-	return -global_transform.basis.z.normalized()
+	# Get the horizontal direction (forward/backward/left/right)
+	var forward_dir = -global_transform.basis.z.normalized()
+	
+	# Incorporate the vertical look angle from head rotation
+	var up_dir = global_transform.basis.y.normalized()
+	
+	# Create a direction that combines the horizontal direction with the vertical look angle
+	var hit_direction = Basis(global_transform.basis.x, up_dir, forward_dir).rotated(global_transform.basis.x, head.rotation.x)
+	
+	# Extract the combined forward direction
+	var final_direction = hit_direction.z.normalized()
+	
+	return final_direction
 
 func handle_paddle_jump():
 	if not is_on_floor() and paddle_jump_raycast.enabled and paddle_jump_raycast.is_colliding():
