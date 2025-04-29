@@ -131,7 +131,10 @@ func hitstop(time_scale, duration) -> void:
 	Engine.time_scale = time_scale
 	await(get_tree().create_timer(duration * time_scale).timeout)
 	reset_time()
-	
+
+func trigger_hitmarker():
+	pass
+
 func shake_screen():
 	pass
 	
@@ -143,6 +146,7 @@ func on_paddle_area_entered(other_area: Area3D):
 		#hitstop(0.05, 0.7)
 		shake_screen()
 		ball.apply_force(force)
+		ball.set_last_hit_by(self)
 		ball.set_color(player_color)
 
 func on_grab_area_entered(other_area: Area3D):
