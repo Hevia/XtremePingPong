@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnmdyijam3gp4"]
+
+[ext_resource type="Script" uid="uid://bgm3h47m2w8rl" path="res://scenes/ui/hitmarker.gd" id="1_4w68y"]
+[ext_resource type="Texture2D" uid="uid://bupspfre6of7m" path="res://assets/crosshair/White/crosshair086.png" id="2_psyit"]
+
+[node name="Hitmarker" type="CanvasLayer"]
+script = ExtResource("1_4w68y")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_psyit")
+
+[node name="LifetimeTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+autostart = true

@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dudet02t5myau"]
+[gd_scene load_steps=12 format=3 uid="uid://dudet02t5myau"]
 
 [ext_resource type="Script" uid="uid://jqctocarg5rh" path="res://scenes/components/hurtbox_component_3d.gd" id="1_jspxw"]
 [ext_resource type="Script" uid="uid://sd6weicqaou" path="res://scenes/enemies/mouse.gd" id="1_xo63x"]
 [ext_resource type="Script" uid="uid://6lmdyb8yon5s" path="res://scenes/components/health_component.gd" id="2_vvc0g"]
 [ext_resource type="Script" uid="uid://diposicq7ld2c" path="res://scenes/components/hitbox_component_3d.gd" id="4_i4xcy"]
+[ext_resource type="PackedScene" uid="uid://dejmusi3xe1tg" path="res://scenes/components/auto_aim_area_component_3d.tscn" id="5_prgl8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c6awk"]
 
@@ -18,6 +19,9 @@ height = 1.25
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_prgl8"]
 size = Vector3(1.1, 1.1, 1.1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3ljmq"]
+radius = 2.004
 
 [node name="Mouse" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.766701, 0)
@@ -57,3 +61,9 @@ metadata/_custom_type_script = "uid://diposicq7ld2c"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.214447, 0)
 shape = SubResource("BoxShape3D_prgl8")
+
+[node name="AutoAimAreaComponent3D" parent="." instance=ExtResource("5_prgl8")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AutoAimAreaComponent3D"]
+shape = SubResource("SphereShape3D_3ljmq")
+debug_color = Color(0.990695, 0.0919863, 1.92523e-07, 0.42)

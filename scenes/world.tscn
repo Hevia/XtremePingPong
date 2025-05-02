@@ -142,7 +142,7 @@ shape = SubResource("CylinderShape3D_4mrxx")
 debug_color = Color(0.939678, 0.216034, 0.308812, 0.42)
 
 [node name="FishBowlHead" parent="Enemies" node_paths=PackedStringArray("detection_area_component_3d") instance=ExtResource("6_4mrxx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.6376, -34.7382)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.6376, -48.7205)
 detection_area_component_3d = NodePath("DetectionAreaComponent3D")
 
 [node name="DetectionAreaComponent3D" parent="Enemies/FishBowlHead" instance=ExtResource("5_i7141")]
@@ -155,6 +155,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.60253, 0, 4)
 
 [node name="Ball" parent="." instance=ExtResource("4_8j0ie")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="Ball" parent="Ball" instance=ExtResource("4_8j0ie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98301, 0.775793, -6.07333)
 
 [node name="Ball2" parent="." instance=ExtResource("4_8j0ie")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0705, 1.34139, 1.1761)

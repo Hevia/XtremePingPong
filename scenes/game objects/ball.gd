@@ -26,7 +26,7 @@ var last_hit_by: CharacterBase = null
 func _ready() -> void:
 	# Since the ball color might change a lot, we just have this ref to change often
 	material_ref = mesh_instance_3d.mesh.surface_get_material(0) as StandardMaterial3D
-	hitbox_component_3d.body_entered.connect(on_hitbox_area_entered)
+	hitbox_component_3d.area_entered.connect(on_hitbox_area_entered)
 
 func stop_movement() -> void:
 	velocity = Vector3.ZERO
@@ -63,7 +63,7 @@ func released_from_grab():
 	hit_collision_shape_3d.disabled = false
 
 func curve_towards_target(next_target: Node3D) -> void:
-	if not is_grabbed and next_target:
+	if not is_grabbed and next_target and next_target is Node3D:
 		target_ref = next_target
 		var direction_to_target = (target_ref.global_position - global_position).normalized()
 		var force = direction_to_target * BASE_SPEED
@@ -98,7 +98,7 @@ func handle_ricochet(collision: KinematicCollision3D):
 	#align_to_velocity()  
 	#ricochets_remaining -= 1  
 
-func on_hitbox_area_entered(other_body: Node3D):
-	if other_body is CharacterBase:
+func on_hitbox_area_entered(other_area: Area3D):
+	if other_area.owner is CharacterBase:
 		if last_hit_by and last_hit_by is Player:
 			(last_hit_by as Player).trigger_hitmarker()

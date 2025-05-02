@@ -97,11 +97,15 @@ var slow_time_toggle = false
 @onready var arms_anim_player: AnimationPlayer = %ArmsAnimPlayer
 @onready var weapon_rig: Node3D = %WeaponRig
 @onready var can_swing_timer: Timer = $Timers/CanSwingTimer
+@onready var auto_aim_raycast_3d: RayCast3D = %AutoAimRaycast3D
 
 @export var player_color: Color = Color.BLUE
 
+# Preload scenes
 var paddle_throwable_scene = preload("res://scenes/game objects/paddle_throwable.tscn")
 var pause_menu_scene = preload("res://scenes/menus/pause_screen.tscn")
+var small_hitmarker = preload("res://scenes/ui/hitmarker.tscn")
+var paddle_hitmarker = preload("res://scenes/ui/small_paddle_hitmarker.tscn")
 
 const PADDLE_JUMP_VELOCITY = 5.0
 
@@ -133,21 +137,38 @@ func hitstop(time_scale, duration) -> void:
 	reset_time()
 
 func trigger_hitmarker():
-	pass
+	var hitmarker_instance = small_hitmarker.instantiate()
+	camera_3d.add_child(hitmarker_instance)
+
+func trigger_small_paddle_hitmarker():
+	var hitmarker_instance = paddle_hitmarker.instantiate()
+	camera_3d.add_child(hitmarker_instance)
 
 func shake_screen():
 	pass
 	
+func is_auto_aim_targetting():
+	if auto_aim_raycast_3d and auto_aim_raycast_3d.is_colliding():
+		var collider = auto_aim_raycast_3d.get_collider() as Area3D
+		if collider and collider.owner:
+			return collider.owner
+	else:
+		return null
+		
 func on_paddle_area_entered(other_area: Area3D):
 	if other_area.owner is Ball:
 		var ball = other_area.owner as Ball
 		var hit_direction = calculate_hit_direction()
 		var force = hit_direction * hit_force
-		#hitstop(0.05, 0.7)
+		hitstop(0.05, 0.3)
 		shake_screen()
+		trigger_small_paddle_hitmarker()
+		var enemy_target = is_auto_aim_targetting()
 		ball.apply_force(force)
 		ball.set_last_hit_by(self)
 		ball.set_color(player_color)
+		if enemy_target:
+			ball.curve_towards_target(enemy_target)
 
 func on_grab_area_entered(other_area: Area3D):
 	if other_area.owner is Ball:

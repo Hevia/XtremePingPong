@@ -108,6 +108,7 @@ throw_paddle={
 3d_physics/layer_4="Grabables"
 3d_physics/layer_5="Level Obstacles"
 3d_physics/layer_6="Detectables"
+3d_physics/layer_7="AutoAim"
 
 [physics]
 
