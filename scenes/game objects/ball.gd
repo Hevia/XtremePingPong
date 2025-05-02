@@ -38,11 +38,20 @@ func set_color(target_color: Color) -> void:
 	if material_ref:
 		material_ref.albedo_color = next_color
 
-func apply_force(force: Vector3):
-	# F = ma, so a = F/m
+func apply_force(force: Vector3, momentum_retention = 0.7) -> void:
+	# Store the previous velocity magnitude (speed)
+	var prev_speed = velocity.length()
+	
+	# Calculate new direction from force
 	var acceleration = force / mass
-	# In Godot, we typically apply changes directly to velocity
-	velocity += acceleration
+	var new_direction = acceleration.normalized()
+	
+	# Set velocity in the new direction
+	velocity = new_direction * acceleration.length()
+	
+	# Add a percentage of the previous speed to the new velocity (in the new direction)
+	velocity += new_direction * (prev_speed * momentum_retention)
+	
 	# Ensure the ball is aligned with its new velocity
 	align_to_velocity()
 	
