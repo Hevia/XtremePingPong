@@ -5,6 +5,7 @@ class_name Ball extends CharacterBody3D
 @onready var ball_collision_shape_3d: CollisionShape3D = $BallCollisionShape3D
 @onready var hit_collision_shape_3d: CollisionShape3D = $Area3D/HitCollisionShape3D
 @onready var hitbox_component_3d: HitboxComponent3D = $HitboxComponent3D
+@onready var lock_on_timer: Timer = %LockOnTimer
 
 const BASE_SPEED = 60.0  
 var ricochets_remaining = 100  
@@ -20,13 +21,16 @@ var is_grabbed = false
 var grabbed_parent: Node3D = null
 
 var target_ref: Node3D = null
+var is_locked_on = false
 
 var last_hit_by: CharacterBase = null
+
 
 func _ready() -> void:
 	# Since the ball color might change a lot, we just have this ref to change often
 	material_ref = mesh_instance_3d.mesh.surface_get_material(0) as StandardMaterial3D
 	hitbox_component_3d.area_entered.connect(on_hitbox_area_entered)
+	lock_on_timer.timeout.connect(on_lock_on_timer_timeout)
 
 func stop_movement() -> void:
 	velocity = Vector3.ZERO
@@ -74,9 +78,19 @@ func released_from_grab():
 func curve_towards_target(next_target: Node3D) -> void:
 	if not is_grabbed and next_target and next_target is Node3D:
 		target_ref = next_target
-		var direction_to_target = (target_ref.global_position - global_position).normalized()
-		var force = direction_to_target * BASE_SPEED
+		is_locked_on = true
+		var force = find_force_to_target(target_ref)
+		lock_on_timer.start()
 		apply_force(force)
+
+func find_force_to_target(target: Node3D, desired_speed = BASE_SPEED):
+	if target:
+		var direction_to_target = (target.global_position - global_position).normalized()
+		var force = direction_to_target * BASE_SPEED
+		return force
+	else:
+		return Vector3.ZERO
+	
 
 func _physics_process(delta):
 	if is_grabbed:
@@ -85,9 +99,14 @@ func _physics_process(delta):
 		else:
 			released_from_grab()
 	else:
-		# Add the gravity.
-		if not is_on_floor():
+		# If we're locked on to target, ignore gravity and lets focus on going to the target
+		if is_locked_on and target_ref:
+			var force = find_force_to_target(target_ref)
+			apply_force(force)
+		elif not is_on_floor():
 			velocity += get_gravity() * delta
+		
+		
 			
 		var collision = move_and_collide(velocity * delta)  
 		if collision:  
@@ -111,3 +130,6 @@ func on_hitbox_area_entered(other_area: Area3D):
 	if other_area.owner is CharacterBase:
 		if last_hit_by and last_hit_by is Player:
 			(last_hit_by as Player).trigger_hitmarker()
+
+func on_lock_on_timer_timeout():
+	is_locked_on = false

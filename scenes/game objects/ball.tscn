@@ -45,3 +45,7 @@ isProjectile = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent3D"]
 shape = SubResource("SphereShape3D_er8da")
 debug_color = Color(0.920547, 5.92008e-05, 0.69448, 0.42)
+
+[node name="LockOnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
