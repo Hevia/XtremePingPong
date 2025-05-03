@@ -1,10 +1,9 @@
 class_name Player extends CharacterBase
 
 # B_ refers to Base_
-const B_WALKING_SPEED = 5.0
-const B_SPRINTING_SPEED = 8.0
-const B_CROUCHING_SPEED = 3.0
-const B_JUMP_VELOCITY = 4.5
+var B_WALKING_SPEED = 5.0
+var B_SPRINTING_SPEED = 8.0
+var B_CROUCHING_SPEED = 3.0
 const B_MOUSE_SENSITIVITY = 0.4
 const HEAD_Y_CLAMP_DOWN = deg_to_rad(-89)
 const HEAD_Y_CLAMP_UP = deg_to_rad(90)
@@ -20,6 +19,13 @@ const B_DASH_COOLDOWN = 0.4
 const B_MAX_CHARGE = 100
 const B_CHARGE_RATE = 25
 
+# Jump Movement Variables
+const B_JUMP_PEAK_TIME = 0.5
+const B_JUMP_FALL_TIME = 0.5
+const B_JUMP_HEIGHT = 2.0
+const B_JUMP_DISTANCE = 4.0
+var jump_gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var fall_gravity = 5.0
 
 var current_speed = 5.0
 var curr_jump_velocity = 4.5
@@ -115,6 +121,9 @@ const PADDLE_JUMP_VELOCITY = 5.0
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	caclulate_movement_parameters()
+	
+	# Signals
 	paddle_area_3d.area_entered.connect(on_paddle_area_entered)
 	grab_area_3d.area_entered.connect(on_grab_area_entered)
 	
@@ -300,6 +309,16 @@ func handle_primary_input():
 		can_swing = false
 		
 
+func caclulate_movement_parameters() -> void:
+	# Equation for better jump pulled from Building a Better Jump Godot 4 by Chaff
+	jump_gravity = (2*B_JUMP_HEIGHT)/pow(B_JUMP_PEAK_TIME,2)
+	fall_gravity = (2*B_JUMP_HEIGHT)/pow(B_JUMP_FALL_TIME,2)
+	curr_jump_velocity = jump_gravity * B_JUMP_PEAK_TIME
+	
+	# Constant modifer to make walking less slow/miserable
+	B_WALKING_SPEED = 2.0 + (B_JUMP_DISTANCE/(B_JUMP_PEAK_TIME+B_JUMP_FALL_TIME))
+	B_CROUCHING_SPEED = B_WALKING_SPEED
+
 func _process(_delta):
 	if Input.is_action_pressed("pause"):
 		add_child(pause_menu_scene.instantiate())
@@ -340,7 +359,7 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	
-	
+	# Speed lines overlay
 	if velocity.length() > 10:
 		speed_lines_overlay.set_speed_lines_density(1.0)
 	elif velocity.length() > 8:
@@ -450,7 +469,11 @@ func _physics_process(delta: float) -> void:
 		
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		# Different gravity if were jumping vs just falling
+		if velocity.y > 0:
+			velocity.y -= jump_gravity * delta
+		else:
+			velocity.y -= fall_gravity * delta
 		
 		if coyote_timer.is_stopped():
 			coyote_timer.start()
