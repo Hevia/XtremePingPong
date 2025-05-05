@@ -12,6 +12,7 @@ class_name EnemyBase extends CharacterBase
 var search_tick_window = 0
 var is_searching: bool = true
 var player_ref: Player
+var can_attack: bool = false
 
 func check_for_search_reset():
 	if not player_ref:

@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://c6lx8m12vwbql"]
+[gd_scene load_steps=10 format=4 uid="uid://c6lx8m12vwbql"]
 
 [ext_resource type="Script" uid="uid://do4silg2ippml" path="res://scenes/game objects/throwable_gate.gd" id="1_yhjku"]
 [ext_resource type="Texture2D" uid="uid://cc3vx5xulbub4" path="res://assets/textures/props/TargetTex.png" id="2_mx6wy"]
+[ext_resource type="PackedScene" uid="uid://dp1wpl8tbfyuh" path="res://scenes/components/health_component.tscn" id="3_fdtf7"]
+[ext_resource type="PackedScene" uid="uid://bt640cn1jf6m8" path="res://scenes/components/hurtbox_component_3d.tscn" id="4_2j7b7"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_le4on"]
 height = 0.6
@@ -57,13 +59,6 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 shape = SubResource("CylinderShape3D_le4on")
 debug_color = Color(0.973924, 0, 0.430504, 0.42)
 
-[node name="PaddleDetectorArea3D" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PaddleDetectorArea3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-shape = SubResource("CylinderShape3D_le4on")
-debug_color = Color(0.973924, 0, 0.430504, 0.42)
-
 [node name="TargetModel" type="Node3D" parent="."]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 
@@ -71,3 +66,14 @@ transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_fdtf7")
 mesh = SubResource("ArrayMesh_br14g")
 skeleton = NodePath("")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_fdtf7")]
+max_health = 1.0
+
+[node name="HurtboxComponent3D" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_2j7b7")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtboxComponent3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_le4on")
+debug_color = Color(0.973924, 0, 0.430504, 0.42)

@@ -120,6 +120,8 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_oryfj")
 
 [node name="HitboxComponent3D" parent="." instance=ExtResource("1_ytlke")]
+isProjectile = true
+team = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.697512, 0)

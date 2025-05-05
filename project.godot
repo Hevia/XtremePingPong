@@ -29,6 +29,10 @@ folder_colors={
 "res://scenes/": "green"
 }
 
+[global_group]
+
+entity_layer=""
+
 [input]
 
 forward={

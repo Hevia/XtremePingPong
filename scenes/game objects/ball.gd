@@ -41,6 +41,9 @@ func set_color(target_color: Color) -> void:
 	
 	if material_ref:
 		material_ref.albedo_color = next_color
+		
+func set_team(new_team: Constants.Teams) -> void:
+	hitbox_component_3d.set_team(new_team)
 
 func apply_force(force: Vector3, momentum_retention = 0.7) -> void:
 	# Store the previous velocity magnitude (speed)

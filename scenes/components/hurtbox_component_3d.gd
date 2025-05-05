@@ -3,7 +3,7 @@ class_name HurtboxComponent
 
 signal hit
 
-@export var health_component: Node
+@export var health_component: HealthComponent
 
 func _ready():
 	area_entered.connect(on_area_entered)
@@ -15,7 +15,12 @@ func on_area_entered(other_area: Area3D):
 	if health_component == null:
 		return
 	
-	var hitbox_component = other_area #as HitboxComponent
+	
+	var hitbox_component = other_area as HitboxComponent3D
+	
+	if hitbox_component.team == Constants.Teams.None:
+		return
+	
 	health_component.damage(hitbox_component.damage)
 	
 	if other_area.isProjectile:

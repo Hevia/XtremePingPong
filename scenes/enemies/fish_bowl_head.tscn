@@ -41,6 +41,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_v3w5x")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("2_04vnv")
+max_health = 1.0
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00376743, 0.468243, -0.144635)
@@ -54,3 +55,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.474771, -1.00711)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AutoAimAreaComponent3D"]
 shape = SubResource("SphereShape3D_v5bhp")
 debug_color = Color(0.97818, 0.118813, 0.22276, 0.42)
+
+[node name="AttackTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
+
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.6
+one_shot = true

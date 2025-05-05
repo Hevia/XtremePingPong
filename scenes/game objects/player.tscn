@@ -2254,3 +2254,7 @@ offset_bottom = 40.0
 
 [node name="DebugPanel" parent="UserInterface" instance=ExtResource("6_314dk")]
 layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 200.0
+offset_bottom = 40.0
