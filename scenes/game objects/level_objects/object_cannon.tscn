@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://1svmbegxbhcd"]
+
+[ext_resource type="Script" uid="uid://btrg7wcn7lndv" path="res://scenes/game objects/level_objects/object_cannon.gd" id="1_ggkgt"]
+
+[node name="ObjectCannon" type="Node3D"]
+script = ExtResource("1_ggkgt")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.486511, 0.769056, -0.0222168)
+size = Vector3(1.97302, 0.57074, 0.665527)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.109924, 0.183594, 0)
+size = Vector3(0.780151, 0.632813, 1)
+
+[node name="ShootMarker3D" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.56916, 0.720223, 0)
+
+[node name="ShootTimer" type="Timer" parent="."]
+unique_name_in_owner = true
