@@ -124,13 +124,11 @@ func handle_ricochet(collision: KinematicCollision3D):
 	#if ricochets_remaining <= 0:  
 		#queue_free()  
 		#return  
-
 	velocity = velocity.bounce(collision.get_normal())  
-	#align_to_velocity()  
-	#ricochets_remaining -= 1  
+
 
 func on_hitbox_area_entered(other_area: Area3D):
-	if other_area.owner is CharacterBase:
+	if other_area.owner is CharacterBody3D:
 		if last_hit_by and last_hit_by is Player:
 			(last_hit_by as Player).trigger_hitmarker()
 

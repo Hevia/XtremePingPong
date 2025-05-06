@@ -15,7 +15,7 @@ material = SubResource("StandardMaterial3D_ekwaw")
 [sub_resource type="SphereShape3D" id="SphereShape3D_nw0gf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_er8da"]
-radius = 0.6
+radius = 0.62
 
 [node name="Ball" type="CharacterBody3D"]
 script = ExtResource("1_275bg")
@@ -39,7 +39,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="HitboxComponent3D" parent="." instance=ExtResource("2_er8da")]
-damage = 1.0
+damage = 2.0
 isProjectile = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent3D"]

@@ -116,7 +116,7 @@ var paddle_hitmarker = preload("res://scenes/ui/small_paddle_hitmarker.tscn")
 const PADDLE_JUMP_VELOCITY = 5.0
 
 @export var hit_force = 110.0  # Adjust this to control hit strength
-@export var throw_force = 100.0
+@export var throw_force = 200.0
 
 
 func _ready():
@@ -176,6 +176,7 @@ func on_paddle_area_entered(other_area: Area3D):
 		ball.apply_force(force)
 		ball.set_last_hit_by(self)
 		ball.set_color(player_color)
+		ball.set_team(Constants.Teams.Player)
 		if enemy_target:
 			ball.curve_towards_target(enemy_target)
 
@@ -239,11 +240,13 @@ func _input(event):
 		head.rotation.x = clamp(head.rotation.x, HEAD_Y_CLAMP_DOWN, HEAD_Y_CLAMP_UP)
 
 func throw_object():
+	grab_ready = false
 	if grabbed_object_ref != null and grabbed_object_ref is Ball:
 		var force = calculate_hit_direction() * throw_force
 		grabbed_object_ref.released_from_grab()
 		grabbed_object_ref.apply_force(force)
 		grabbed_object_ref = null
+	grab_cooldown_timer.start()
 		
 func can_dash() -> bool:
 	return current_dash_stock > 0 && !dashing
@@ -347,12 +350,10 @@ func _process(_delta):
 	
 	if Input.is_action_pressed("secondary") and not animation_player.is_playing():
 		if grabbed_object_ref == null and grab_ready:
-			animation_player.play("grab")
-			arms_anim_player.play("grab")
+			#animation_player.play("grab")
+			arms_anim_player.play("grab_2")  # grab_2 has the Marker 3D placements
 		elif grabbed_object_ref != null:
-			grab_ready = false
-			throw_object()
-			grab_cooldown_timer.start()
+			arms_anim_player.play("throw")
 		
 func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.

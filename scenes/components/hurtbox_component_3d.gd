@@ -11,10 +11,9 @@ func _ready():
 func on_area_entered(other_area: Area3D):
 	if not other_area is HitboxComponent3D:
 		return
-	
+
 	if health_component == null:
 		return
-	
 	
 	var hitbox_component = other_area as HitboxComponent3D
 	
@@ -23,8 +22,8 @@ func on_area_entered(other_area: Area3D):
 	
 	health_component.damage(hitbox_component.damage)
 	
-	if other_area.isProjectile:
-		other_area.owner.call_deferred("decrease_health")
+	#if other_area.isProjectile:
+	#	other_area.owner.call_deferred("decrease_health")
 	
 	# TODO: Maybe we want the floating text from Crowvolution?
 	#var floating_text = floating_text_scene.instantiate() as Node2D
