@@ -17,7 +17,7 @@ func on_area_entered(other_area: Area3D):
 		return
 	
 	var hitbox_component = other_area as HitboxComponent3D
-	
+		
 	# No friendly fire!
 	if hitbox_component.team == self_team:
 		return

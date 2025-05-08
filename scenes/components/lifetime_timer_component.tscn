@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://byoftfsv72dou"]
+
+[ext_resource type="Script" uid="uid://tu2hxkjbsg2f" path="res://scenes/components/lifetime_timer_component.gd" id="1_bepam"]
+
+[node name="LifetimeTimerComponent" type="Timer"]
+one_shot = true
+script = ExtResource("1_bepam")

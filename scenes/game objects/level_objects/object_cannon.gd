@@ -26,6 +26,7 @@ func _physics_process(delta: float) -> void:
 			projectile_instance.global_transform = shoot_marker_3d.global_transform
 			var dir_vec = shoot_marker_3d.global_transform.basis.z.normalized()
 			projectile_instance.velocity = dir_vec * projectile_shoot_speed
+			projectile_instance.start_timer()
 		
 	
 func on_shoot_timer_timeout():

@@ -276,10 +276,13 @@ func throw_paddle():
 	var entity_layer = get_tree().get_first_node_in_group("entity_layer")
 	if entity_layer:
 		entity_layer.add_child(paddle_instance)
+		paddle_instance.set_thrown_by(self)
 		paddle_instance.global_position = grab_marker_3d.global_position #TODO: Use a better one
 		var hit_direction = calculate_hit_direction()
 		var force = hit_direction * hit_force
 		paddle_instance.apply_force(force)
+		
+		
 
 # Called by anim player to pause the paddle animation if we're charging
 func can_pause_paddle():

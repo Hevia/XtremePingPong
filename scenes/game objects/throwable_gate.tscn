@@ -73,6 +73,7 @@ max_health = 1.0
 
 [node name="HurtboxComponent3D" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_2j7b7")]
 health_component = NodePath("../HealthComponent")
+self_team = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtboxComponent3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -2.4609e-09, 0.0562988)
