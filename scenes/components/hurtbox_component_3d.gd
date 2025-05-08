@@ -4,6 +4,7 @@ class_name HurtboxComponent
 signal hit
 
 @export var health_component: HealthComponent
+@export var self_team: Constants.Teams =  Constants.Teams.None
 
 func _ready():
 	area_entered.connect(on_area_entered)
@@ -17,7 +18,8 @@ func on_area_entered(other_area: Area3D):
 	
 	var hitbox_component = other_area as HitboxComponent3D
 	
-	if hitbox_component.team == Constants.Teams.None:
+	# No friendly fire!
+	if hitbox_component.team == self_team:
 		return
 	
 	health_component.damage(hitbox_component.damage)

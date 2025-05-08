@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://2s2qtkxhaasb"]
+[gd_scene load_steps=8 format=3 uid="uid://2s2qtkxhaasb"]
 
-[ext_resource type="Script" uid="uid://diposicq7ld2c" path="res://scenes/components/hitbox_component_3d.gd" id="1_m112f"]
+[ext_resource type="Script" uid="uid://cdaf82ms4mytm" path="res://scenes/game objects/spikes.gd" id="1_nbp67"]
+[ext_resource type="PackedScene" uid="uid://74od70l2slni" path="res://scenes/components/hitbox_component_3d.tscn" id="2_nbp67"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_kl7ro"]
 top_radius = 0.0
@@ -18,6 +19,7 @@ points = PackedVector3Array(-0.5, -1, 0, -0.497651, -1, -0.0490407, -0.497651, -
 size = Vector3(1.78271, 1.91357, 2)
 
 [node name="Spikes" type="CharacterBody3D"]
+script = ExtResource("1_nbp67")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.989333, -0.145669, 0, 0.145669, 0.989333, -0.0759097, 0, 0)
@@ -45,10 +47,9 @@ skeleton = NodePath("../MeshInstance3D")
 transform = Transform3D(0.949946, 0.16155, -0.267403, -0.211165, 0.962822, -0.168478, 0.230243, 0.216511, 0.948743, -0.872481, -0.284228, -0.987623)
 shape = SubResource("ConvexPolygonShape3D_cynyw")
 
-[node name="HitboxComponent3D" type="Area3D" parent="."]
-script = ExtResource("1_m112f")
-metadata/_custom_type_script = "uid://diposicq7ld2c"
+[node name="HitboxComponent3D" parent="." instance=ExtResource("2_nbp67")]
+team = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent3D"]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="HitboxComponent3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0593262, -0.084308, -0.663548)
 shape = SubResource("BoxShape3D_nbp67")
