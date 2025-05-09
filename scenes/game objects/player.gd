@@ -181,12 +181,13 @@ func on_paddle_area_entered(other_area: Area3D):
 			ball.curve_towards_target(enemy_target)
 
 func on_grab_area_entered(other_area: Area3D):
-	if other_area.owner is Ball:
+	if grab_ready and other_area.owner is Ball and grabbed_object_ref == null:
 		var ball = other_area.owner as Ball
 		ball.stop_movement()
 		ball.global_position = grab_marker_3d.global_position
 		grabbed_object_ref = ball
 		ball.set_grabbed_parent_ref(self)
+
 	
 func on_grab_timer_timeout() -> void:
 	grab_ready = true
@@ -242,9 +243,15 @@ func _input(event):
 func throw_object():
 	grab_ready = false
 	if grabbed_object_ref != null and grabbed_object_ref is Ball:
+		var enemy_target = is_auto_aim_targetting()
 		var force = calculate_hit_direction() * throw_force
 		grabbed_object_ref.released_from_grab()
 		grabbed_object_ref.apply_force(force)
+		grabbed_object_ref.set_last_hit_by(self)
+		grabbed_object_ref.set_color(player_color)
+		grabbed_object_ref.set_team(Constants.Teams.Player)
+		if enemy_target:
+			grabbed_object_ref.curve_towards_target(enemy_target)
 		grabbed_object_ref = null
 	grab_cooldown_timer.start()
 		

@@ -1,3 +1,163 @@
-[gd_scene format=3 uid="uid://boq8dgorruqhs"]
+[gd_scene load_steps=12 format=3 uid="uid://boq8dgorruqhs"]
+
+[ext_resource type="PackedScene" uid="uid://biebk77iwy1p5" path="res://scenes/environment.tscn" id="1_0u1o1"]
+[ext_resource type="Material" uid="uid://b2tmxvpji4wwy" path="res://assets/materials/greybox.tres" id="2_eikmf"]
+[ext_resource type="PackedScene" uid="uid://c6lx8m12vwbql" path="res://scenes/game objects/throwable_gate.tscn" id="3_8lm47"]
+[ext_resource type="PackedScene" uid="uid://1svmbegxbhcd" path="res://scenes/game objects/level_objects/object_cannon.tscn" id="4_6501t"]
+[ext_resource type="PackedScene" uid="uid://gkr8sq0f7u2l" path="res://scenes/game objects/player.tscn" id="4_hsvy7"]
+[ext_resource type="PackedScene" uid="uid://2s2qtkxhaasb" path="res://scenes/game objects/spikes.tscn" id="5_px8cs"]
+[ext_resource type="PackedScene" uid="uid://dexbd75gmjttf" path="res://scenes/enemies/fish_bowl_head.tscn" id="6_px8cs"]
+[ext_resource type="PackedScene" uid="uid://dcb0agy4esnmg" path="res://scenes/entity_layer.tscn" id="7_5ocye"]
+[ext_resource type="PackedScene" uid="uid://qr1ksy7vf7t6" path="res://scenes/components/detection_area_component_3d.tscn" id="7_k61t3"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_6501t"]
+vertices = PackedVector3Array(-2.30814, 1, -57.5676, -2.30814, 1, -50.3176, 2.44186, 1, -50.3176, 2.44186, 1, -57.5676, -2.30814, 1, -44.8176, -2.30814, 1, -37.3176, 2.44186, 1, -37.3176, 2.44186, 1, -44.8176, -2.30814, 1, -31.8176, -2.30814, 1, -24.5676, 2.44186, 1, -24.5676, 2.44186, 1, -31.8176, -2.30814, 1, -19.3176, -2.30814, 1, -12.0676, 2.44186, 1, -12.3176, 2.44186, 1, -19.3176, -2.05814, 1, -4.81764, -2.05814, 1, 2.18236, 2.44186, 1, 2.18236, 2.44186, 1, -4.81764)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13), PackedInt32Array(19, 18, 16), PackedInt32Array(16, 18, 17)]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6mv0q"]
+radius = 34.8737
 
 [node name="W1-3" type="Node3D"]
+
+[node name="Environment" parent="." instance=ExtResource("1_0u1o1")]
+
+[node name="Level" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_6501t")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.245972, 0, -1.26887)
+use_collision = true
+size = Vector3(5.58716, 1, 8.03791)
+material = ExtResource("2_eikmf")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.133786, 0, -15.7217)
+use_collision = true
+size = Vector3(5.58716, 1, 8.03791)
+material = ExtResource("2_eikmf")
+
+[node name="ThrowableGate" parent="Level" instance=ExtResource("3_8lm47")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.680774, 2.79267, -11.7573)
+
+[node name="ObjectCannon" parent="Level" instance=ExtResource("4_6501t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.55814, 1.44249, -7.64257)
+cannon_projectile = ExtResource("5_px8cs")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.133786, 0, -28.1316)
+use_collision = true
+size = Vector3(5.58716, 1, 8.03791)
+material = ExtResource("2_eikmf")
+
+[node name="ObjectCannon2" parent="Level" instance=ExtResource("4_6501t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.55814, 1.44249, -22.1393)
+projectile_shoot_cadence = 0.9
+cannon_projectile = ExtResource("5_px8cs")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.133786, 0, -41.0566)
+use_collision = true
+size = Vector3(5.58716, 1, 8.03791)
+material = ExtResource("2_eikmf")
+
+[node name="ObjectCannon3" parent="Level" instance=ExtResource("4_6501t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.55814, 1.44249, -35.0643)
+projectile_shoot_cadence = 1.25
+cannon_projectile = ExtResource("5_px8cs")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.133786, 0, -54.0487)
+use_collision = true
+size = Vector3(5.58716, 1, 8.03791)
+material = ExtResource("2_eikmf")
+
+[node name="FishBowlHead" parent="Level" node_paths=PackedStringArray("detection_area_component_3d") instance=ExtResource("6_px8cs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.157738, 2.14789, -52.7885)
+detection_area_component_3d = NodePath("DetectionAreaComponent3D")
+
+[node name="DetectionAreaComponent3D" parent="Level/FishBowlHead" instance=ExtResource("7_k61t3")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/FishBowlHead/DetectionAreaComponent3D"]
+shape = SubResource("SphereShape3D_6mv0q")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Level"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -17.4482, 0, -83.9845)
+use_collision = true
+size = Vector3(33.7653, 1, 54.1884)
+material = ExtResource("2_eikmf")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Level"]
+transform = Transform3D(-3.09086e-08, -0.707107, -0.707107, 1, -4.37114e-08, 0, -3.09086e-08, -0.707107, 0.707107, -0.397796, 4.99396, -62.494)
+use_collision = true
+size = Vector3(11.281, 1, 28.6521)
+material = ExtResource("2_eikmf")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7404, 0, -63.2849)
+use_collision = true
+size = Vector3(5.58716, 1, 8.03791)
+material = ExtResource("2_eikmf")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4517, 0, -73.2816)
+use_collision = true
+size = Vector3(5.58716, 1, 8.03791)
+material = ExtResource("2_eikmf")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Level"]
+transform = Transform3D(-3.09086e-08, -0.707107, 0.707107, 1, -4.37114e-08, 0, 3.09086e-08, 0.707107, 0.707107, -19.5647, 4.99396, -62.494)
+use_collision = true
+size = Vector3(11.281, 1, 28.6521)
+material = ExtResource("2_eikmf")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Level"]
+transform = Transform3D(-3.09086e-08, -0.707107, 0.707107, 1, -4.37114e-08, 0, 3.09086e-08, 0.707107, 0.707107, 1.75863, 4.99396, -89.0862)
+use_collision = true
+size = Vector3(11.281, 1, 35.3885)
+material = ExtResource("2_eikmf")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Level"]
+transform = Transform3D(-3.09086e-08, -0.707107, -0.707107, 1, -4.37114e-08, 0, -3.09086e-08, -0.707107, 0.707107, -49.1711, 6.43879, -90.1232)
+use_collision = true
+size = Vector3(14.1707, 1, 22.8456)
+material = ExtResource("2_eikmf")
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Level"]
+transform = Transform3D(-0.715181, 0, 0.69894, 0, 1, 0, -0.69894, 0, -0.715181, -55.4743, 0, -129.973)
+use_collision = true
+size = Vector3(64.9824, 1, 54.1884)
+material = ExtResource("2_eikmf")
+
+[node name="ObjectCannon4" parent="Level" instance=ExtResource("4_6501t")]
+transform = Transform3D(0.707354, 0, -0.70686, 0, 1, 0, 0.70686, 0, 0.707354, -43.0093, 1.44249, -91.4709)
+projectile_expire_time = 4.0
+projectile_shoot_cadence = 1.25
+cannon_projectile = ExtResource("5_px8cs")
+
+[node name="ObjectCannon5" parent="Level" instance=ExtResource("4_6501t")]
+transform = Transform3D(0.707354, 0, -0.70686, 0, 1, 0, 0.70686, 0, 0.707354, -32.0596, 1.44249, -94.2698)
+projectile_expire_time = 4.0
+projectile_shoot_cadence = 1.25
+cannon_projectile = ExtResource("5_px8cs")
+
+[node name="ObjectCannon6" parent="Level" instance=ExtResource("4_6501t")]
+transform = Transform3D(0.707354, 0, -0.70686, 0, 1, 0, 0.70686, 0, 0.707354, -28.6691, 1.44249, -101.48)
+projectile_expire_time = 4.0
+projectile_shoot_cadence = 1.25
+cannon_projectile = ExtResource("5_px8cs")
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Level"]
+transform = Transform3D(-3.09086e-08, -0.707107, -0.707107, 1, -4.37114e-08, 0, -3.09086e-08, -0.707107, 0.707107, 7.07159, 6.43879, -90.1232)
+use_collision = true
+size = Vector3(14.1707, 1, 22.8456)
+material = ExtResource("2_eikmf")
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Level"]
+transform = Transform3D(-3.09086e-08, -0.707107, 0.707107, 1, -4.37114e-08, 0, 3.09086e-08, 0.707107, 0.707107, -14.4206, 4.99396, -96.883)
+use_collision = true
+size = Vector3(11.281, 1, 40.4331)
+material = ExtResource("2_eikmf")
+
+[node name="Player" parent="." instance=ExtResource("4_hsvy7")]
+
+[node name="Entities" parent="." instance=ExtResource("7_5ocye")]
