@@ -18,7 +18,7 @@ albedo_color = Color(1.39579e-06, 0.557204, 0.557348, 1)
 [sub_resource type="SphereMesh" id="SphereMesh_mj6hu"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_v5bhp"]
-radius = 1.252
+radius = 1.35078
 
 [node name="FishBowlHead" type="CharacterBody3D"]
 script = ExtResource("1_mj6hu")

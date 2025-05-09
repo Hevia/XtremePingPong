@@ -21,7 +21,7 @@ height = 1.25
 size = Vector3(1.1, 1.1, 1.1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3ljmq"]
-radius = 2.004
+radius = 2.11329
 
 [node name="Mouse" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.766701, 0)

@@ -1,7 +1,9 @@
-[gd_scene load_steps=31 format=4 uid="uid://gkr8sq0f7u2l"]
+[gd_scene load_steps=33 format=4 uid="uid://gkr8sq0f7u2l"]
 
 [ext_resource type="Script" uid="uid://bu7ysokbowts4" path="res://scenes/game objects/player.gd" id="1_c5mcm"]
 [ext_resource type="PackedScene" uid="uid://d35jn7xjt32mw" path="res://assets/mdlTableTennisPaddle.glb" id="2_5ea66"]
+[ext_resource type="PackedScene" uid="uid://crcjrt2hc1nbd" path="res://scenes/ui/lock_on_indicator.tscn" id="2_jerf6"]
+[ext_resource type="PackedScene" uid="uid://dg7fjaqrpau3i" path="res://scenes/ui/default_reticle.tscn" id="3_1eir6"]
 [ext_resource type="PackedScene" uid="uid://btgnmxh5wgqxw" path="res://scenes/ui/speed_lines_overlay.tscn" id="3_qy3ex"]
 [ext_resource type="Script" uid="uid://6lmdyb8yon5s" path="res://scenes/components/health_component.gd" id="4_3330k"]
 [ext_resource type="PackedScene" uid="uid://bt640cn1jf6m8" path="res://scenes/components/hurtbox_component_3d.tscn" id="5_314dk"]
@@ -2731,6 +2733,12 @@ libraries = {
 &"": SubResource("AnimationLibrary_ov5x8")
 }
 autoplay = "idle"
+
+[node name="LockOnIndicator" parent="FreelookPivot/Head/HeadBobPivot/Camera3D" instance=ExtResource("2_jerf6")]
+unique_name_in_owner = true
+visible = false
+
+[node name="DefaultReticle" parent="FreelookPivot/Head/HeadBobPivot/Camera3D" instance=ExtResource("3_1eir6")]
 
 [node name="PaddleJumpRaycast" type="RayCast3D" parent="FreelookPivot/Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.266055, 0)

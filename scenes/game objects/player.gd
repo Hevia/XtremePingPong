@@ -2,6 +2,7 @@ class_name Player extends CharacterBase
 
 # B_ refers to Base_
 var B_WALKING_SPEED = 5.0
+var B_WALKING_BONUS = 5.0
 var B_SPRINTING_SPEED = 8.0
 var B_CROUCHING_SPEED = 3.0
 const B_MOUSE_SENSITIVITY = 0.4
@@ -104,6 +105,7 @@ var slow_time_toggle = false
 @onready var weapon_rig: Node3D = %WeaponRig
 @onready var can_swing_timer: Timer = $Timers/CanSwingTimer
 @onready var auto_aim_raycast_3d: RayCast3D = %AutoAimRaycast3D
+@onready var lock_on_indicator: Node2D = %LockOnIndicator
 
 @export var player_color: Color = Color.BLUE
 
@@ -117,6 +119,8 @@ const PADDLE_JUMP_VELOCITY = 5.0
 
 @export var hit_force = 110.0  # Adjust this to control hit strength
 @export var throw_force = 200.0
+
+var enemy_target_ref: CharacterBody3D = null
 
 
 func _ready():
@@ -172,13 +176,13 @@ func on_paddle_area_entered(other_area: Area3D):
 		hitstop(0.05, 0.3)
 		shake_screen()
 		trigger_small_paddle_hitmarker()
-		var enemy_target = is_auto_aim_targetting()
+		enemy_target_ref = is_auto_aim_targetting()
 		ball.apply_force(force)
 		ball.set_last_hit_by(self)
 		ball.set_color(player_color)
 		ball.set_team(Constants.Teams.Player)
-		if enemy_target:
-			ball.curve_towards_target(enemy_target)
+		if enemy_target_ref:
+			ball.curve_towards_target(enemy_target_ref)
 
 func on_grab_area_entered(other_area: Area3D):
 	if grab_ready and other_area.owner is Ball and grabbed_object_ref == null:
@@ -243,15 +247,15 @@ func _input(event):
 func throw_object():
 	grab_ready = false
 	if grabbed_object_ref != null and grabbed_object_ref is Ball:
-		var enemy_target = is_auto_aim_targetting()
+		enemy_target_ref = is_auto_aim_targetting()
 		var force = calculate_hit_direction() * throw_force
 		grabbed_object_ref.released_from_grab()
 		grabbed_object_ref.apply_force(force)
 		grabbed_object_ref.set_last_hit_by(self)
 		grabbed_object_ref.set_color(player_color)
 		grabbed_object_ref.set_team(Constants.Teams.Player)
-		if enemy_target:
-			grabbed_object_ref.curve_towards_target(enemy_target)
+		if enemy_target_ref:
+			grabbed_object_ref.curve_towards_target(enemy_target_ref)
 		grabbed_object_ref = null
 	grab_cooldown_timer.start()
 		
@@ -329,10 +333,21 @@ func caclulate_movement_parameters() -> void:
 	curr_jump_velocity = jump_gravity * B_JUMP_PEAK_TIME
 	
 	# Constant modifer to make walking less slow/miserable
-	B_WALKING_SPEED = 2.0 + (B_JUMP_DISTANCE/(B_JUMP_PEAK_TIME+B_JUMP_FALL_TIME))
+	B_WALKING_SPEED = B_WALKING_BONUS + (B_JUMP_DISTANCE/(B_JUMP_PEAK_TIME+B_JUMP_FALL_TIME))
 	B_CROUCHING_SPEED = B_WALKING_SPEED
+	
+func draw_lock_on_reticle():
+	if enemy_target_ref:
+		print("were in lock on...")
+		lock_on_indicator.visible = true
+		lock_on_indicator.global_position = camera_3d.unproject_position(enemy_target_ref.global_position)
+		#var viewport_rect = get_viewport()
+	else:
+		lock_on_indicator.visible = false
 
 func _process(_delta):
+	draw_lock_on_reticle()
+	
 	if Input.is_action_pressed("pause"):
 		add_child(pause_menu_scene.instantiate())
 		#get_tree().root.set_input_as_handled()
@@ -369,6 +384,9 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
+	
+	# TODO: Not sure if this needs to be in physics or process
+	enemy_target_ref = is_auto_aim_targetting()
 	
 	# Speed lines overlay
 	if velocity.length() > 10:

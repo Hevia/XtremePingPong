@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://crcjrt2hc1nbd"]
+[gd_scene load_steps=2 format=3 uid="uid://dg7fjaqrpau3i"]
 
-[ext_resource type="Texture2D" uid="uid://saknb755vala" path="res://assets/crosshair/White/crosshair186.png" id="1_21675"]
+[ext_resource type="Texture2D" uid="uid://nl62hx6y46et" path="res://assets/crosshair/White/crosshair179.png" id="1_ofx8k"]
 
-[node name="LockOnIndicator" type="Node2D"]
+[node name="DefaultReticle" type="CanvasLayer"]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 8
@@ -21,4 +21,4 @@ size_flags_vertical = 4
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
-texture = ExtResource("1_21675")
+texture = ExtResource("1_ofx8k")
