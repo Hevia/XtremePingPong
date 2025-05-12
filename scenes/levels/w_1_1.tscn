@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bk2gwve2q8ntk"]
+[gd_scene load_steps=14 format=3 uid="uid://bk2gwve2q8ntk"]
 
 [ext_resource type="PackedScene" uid="uid://biebk77iwy1p5" path="res://scenes/environment.tscn" id="1_q2v23"]
 [ext_resource type="Material" uid="uid://b2tmxvpji4wwy" path="res://assets/materials/greybox.tres" id="2_4geqx"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://c6lx8m12vwbql" path="res://scenes/game objects/throwable_gate.tscn" id="5_evlf6"]
 [ext_resource type="PackedScene" uid="uid://dexbd75gmjttf" path="res://scenes/enemies/fish_bowl_head.tscn" id="6_frnh5"]
 [ext_resource type="PackedScene" uid="uid://qr1ksy7vf7t6" path="res://scenes/components/detection_area_component_3d.tscn" id="7_frnh5"]
+[ext_resource type="PackedScene" uid="uid://bphii4n3scmky" path="res://scenes/game objects/level_objects/goal.tscn" id="8_6rvjq"]
+[ext_resource type="PackedScene" uid="uid://wogcod6yirg4" path="res://scenes/levels/w_1_2.tscn" id="9_2p250"]
 [ext_resource type="PackedScene" uid="uid://dcb0agy4esnmg" path="res://scenes/entity_layer.tscn" id="9_r5f0m"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_r5f0m"]
@@ -143,6 +145,7 @@ material = ExtResource("2_4geqx")
 
 [node name="JumpPad3" parent="Level/GrabFinishArea" instance=ExtResource("3_ae1wu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.2852, 12.5514, -54.8285)
+jump_pad_strength = 25.0
 
 [node name="ThrowableGate" parent="Level/GrabFinishArea" instance=ExtResource("5_evlf6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.9871, 14.8097, -64.52)
@@ -176,6 +179,10 @@ transform = Transform3D(5.08846e-10, 0.011641, 0.999932, 1, -4.37114e-08, 0, 4.3
 use_collision = true
 size = Vector3(6.37378, 1, 11.0184)
 material = ExtResource("2_4geqx")
+
+[node name="Goal" parent="Level" instance=ExtResource("8_6rvjq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.1157, 26.8879, -44.5607)
+next_scene = ExtResource("9_2p250")
 
 [node name="Player" parent="." instance=ExtResource("2_td3wb")]
 

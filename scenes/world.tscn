@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://g1ab1prsq1x"]
+[gd_scene load_steps=20 format=3 uid="uid://g1ab1prsq1x"]
 
 [ext_resource type="PackedScene" uid="uid://biebk77iwy1p5" path="res://scenes/environment.tscn" id="1_e3hyu"]
 [ext_resource type="PackedScene" uid="uid://bod1hcvwmskyn" path="res://scenes/game objects/level_objects/jump_pad.tscn" id="2_pnp52"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://c6lx8m12vwbql" path="res://scenes/game objects/throwable_gate.tscn" id="5_w7kh3"]
 [ext_resource type="PackedScene" uid="uid://dexbd75gmjttf" path="res://scenes/enemies/fish_bowl_head.tscn" id="6_4mrxx"]
 [ext_resource type="PackedScene" uid="uid://bep265r1hemyt" path="res://scenes/terrain/basic_platform.tscn" id="6_e3hyu"]
+[ext_resource type="PackedScene" uid="uid://q4d16b8ujfde" path="res://scenes/game objects/arc_jump_pad.tscn" id="7_o8fc1"]
+[ext_resource type="PackedScene" uid="uid://cefxljdlu2rw" path="res://scenes/game objects/level_objects/boost_gate.tscn" id="8_xo05s"]
 [ext_resource type="PackedScene" uid="uid://dcb0agy4esnmg" path="res://scenes/entity_layer.tscn" id="12_q5onr"]
 [ext_resource type="PackedScene" uid="uid://1svmbegxbhcd" path="res://scenes/game objects/level_objects/object_cannon.tscn" id="13_jhx03"]
 
@@ -121,6 +123,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6587, 3.85772, -9.00787)
 
 [node name="BasicPlatform" parent="Stage" instance=ExtResource("6_e3hyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1367, 2.37412, -28.1246)
+
+[node name="ArcJumpPad" parent="Stage" instance=ExtResource("7_o8fc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1836, -1.07136, -1.13265)
+
+[node name="BoostGate" parent="Stage" instance=ExtResource("8_xo05s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5084, 0, -3.72761)
 
 [node name="Enemies" type="Node3D" parent="."]
 

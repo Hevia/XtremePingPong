@@ -34,7 +34,7 @@ material = ExtResource("2_rcjcq")
 
 [node name="JumpPad2" parent="Level" instance=ExtResource("3_s6omy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.228583, 13.6475, -17.2326)
-jump_pad_strength = 16.0
+jump_pad_strength = 25.0
 
 [node name="ThrowableGate" parent="Level" instance=ExtResource("4_rcjcq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.59274, -5.43118)
@@ -61,7 +61,7 @@ material = ExtResource("2_rcjcq")
 
 [node name="JumpPad2" parent="Level/JumpLevel2" instance=ExtResource("3_s6omy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.228583, 31.4992, -29.0706)
-jump_pad_strength = 16.0
+jump_pad_strength = 35.0
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Level/JumpLevel2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.243217, 30.8992, -33.233)
@@ -92,7 +92,7 @@ material = ExtResource("2_rcjcq")
 
 [node name="JumpPad2" parent="Level/JumpLevel3" instance=ExtResource("3_s6omy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.228583, 31.4992, -29.0706)
-jump_pad_strength = 16.0
+jump_pad_strength = 35.0
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Level/JumpLevel3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.243217, 30.8992, -33.233)
