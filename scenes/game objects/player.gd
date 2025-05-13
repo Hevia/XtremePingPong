@@ -41,6 +41,7 @@ var dash_vec = Vector2.ZERO
 var last_velocity =  Vector3.ZERO
 var current_slide_gas = 0.0
 
+
 # Dash variables
 var current_dash_stock = 2
 var queue_dash_cooldown = false # TODO: Need to use this later
@@ -312,7 +313,7 @@ func swing_paddle():
 	can_resume_paddle_anim()
 	arms_anim_player.play("swing_paddle")
 
-	
+
 	
 func handle_primary_input():
 	if can_swing and Input.is_action_pressed("primary") :
@@ -381,9 +382,13 @@ func _process(_delta):
 			arms_anim_player.play("throw")
 		
 func _physics_process(delta: float) -> void:
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("left", "right", "forward", "backward")
+
+	var input_dir: Vector2 = Vector2.ZERO
+		
+	if not lock_control:
+		input_dir = Input.get_vector("left", "right", "forward", "backward")
+	elif lock_control:
+		input_dir = Vector2.ZERO
 	
 	# TODO: Not sure if this needs to be in physics or process
 	enemy_target_ref = is_auto_aim_targetting()
@@ -525,10 +530,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Handle landing
 	if is_on_floor():
-		# Use this to handle different landings, small, heavy, etc
-		if last_velocity.y <= -4.0:
-			pass # Play a small camera bump animation
-			
+		reset_control()
 	
 	# Handle air control
 	if is_on_floor():

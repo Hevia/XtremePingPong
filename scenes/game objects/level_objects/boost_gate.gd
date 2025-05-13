@@ -6,8 +6,9 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	boost_area_3d.body_entered.connect(on_boost_area_entered)
+	boost_area_3d.area_entered.connect(on_boost_area_entered)
 
-func on_boost_area_entered(other_body: Node3D):
-	if other_body and other_body is CharacterBase:
-		(other_body as CharacterBase).force_hspeed(horizontal_speed_boost)
+func on_boost_area_entered(other_area: Node3D):
+	print(other_area)
+	if other_area and other_area.owner is CharacterBase or other_area.owner is Player:
+		(other_area.owner as CharacterBase).force_speed(horizontal_speed_boost)

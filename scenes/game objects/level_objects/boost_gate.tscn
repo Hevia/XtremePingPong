@@ -1,9 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://cefxljdlu2rw"]
+[gd_scene load_steps=5 format=3 uid="uid://cefxljdlu2rw"]
 
 [ext_resource type="Script" uid="uid://bhp6sbr1df281" path="res://scenes/game objects/level_objects/boost_gate.gd" id="1_mei72"]
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mei72"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mei72"]
-albedo_color = Color(0, 1, 1, 0.490196)
+albedo_color = Color(0, 1, 1, 0.596078)
+albedo_texture = SubResource("PlaceholderTexture2D_mei72")
 proximity_fade_enabled = true
 proximity_fade_distance = 4096.0
 
