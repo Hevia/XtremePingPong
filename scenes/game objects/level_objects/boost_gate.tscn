@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cefxljdlu2rw"]
+[gd_scene load_steps=6 format=3 uid="uid://cefxljdlu2rw"]
 
 [ext_resource type="Script" uid="uid://bhp6sbr1df281" path="res://scenes/game objects/level_objects/boost_gate.gd" id="1_mei72"]
+[ext_resource type="PackedScene" uid="uid://n8od5lwhtmgi" path="res://scenes/buffs/boost_gate_buff.tscn" id="2_2ggtd"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mei72"]
 
@@ -15,6 +16,7 @@ radius = 3.1
 
 [node name="BoostGate" type="Node3D"]
 script = ExtResource("1_mei72")
+buff = ExtResource("2_2ggtd")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1.1152e-09, 0.0255127)
