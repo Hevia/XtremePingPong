@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bk2gwve2q8ntk"]
+[gd_scene load_steps=19 format=3 uid="uid://bk2gwve2q8ntk"]
 
 [ext_resource type="PackedScene" uid="uid://biebk77iwy1p5" path="res://scenes/environment.tscn" id="1_q2v23"]
 [ext_resource type="PackedScene" uid="uid://bll7ewpiaocvf" path="res://scenes/terrain/small_grass_platform.tscn" id="2_2p250"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cipck1f310w8t" path="res://scenes/terrain/xl_grassy_plain.tscn" id="8_x0rb5"]
 [ext_resource type="PackedScene" uid="uid://wogcod6yirg4" path="res://scenes/levels/w_1_2.tscn" id="9_2p250"]
 [ext_resource type="PackedScene" uid="uid://dcb0agy4esnmg" path="res://scenes/entity_layer.tscn" id="9_r5f0m"]
+[ext_resource type="PackedScene" uid="uid://bntm22wvetonj" path="res://scenes/terrain/sea_wall_straight_full.tscn" id="11_j8ys7"]
 [ext_resource type="PackedScene" uid="uid://dwvssq6m7j6xu" path="res://scenes/environment/toon_ocean.tscn" id="15_362ma"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_r5f0m"]
@@ -126,14 +127,18 @@ jump_pad_strength = 25.0
 [node name="ThrowableGate" parent="Level/GrabFinishArea" instance=ExtResource("5_evlf6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.9871, 14.8097, -64.52)
 
-[node name="CSGBox3D17" type="CSGBox3D" parent="Level/GrabFinishArea"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 29.0658, 25.2862, -44.5629)
-use_collision = true
-size = Vector3(6.37378, 1, 6.64042)
-material = ExtResource("2_4geqx")
+[node name="Goal" parent="Level/GrabFinishArea" instance=ExtResource("8_6rvjq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.1096, 26.8879, -39.2052)
+next_scene = ExtResource("9_2p250")
 
 [node name="XLGrassyPlain" parent="Level/GrabFinishArea" instance=ExtResource("8_x0rb5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.96289, 10.6383, -49.1045)
+
+[node name="SmallGrassPlatform" parent="Level/GrabFinishArea" instance=ExtResource("2_2p250")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.0415, 23.9926, -37.7097)
+
+[node name="SeaWallStraightFull" parent="Level/GrabFinishArea" instance=ExtResource("11_j8ys7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.80742, 0, -63.192)
 
 [node name="FishBowlHead" parent="Level" node_paths=PackedStringArray("detection_area_component_3d") instance=ExtResource("6_frnh5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.6272, 14.0983, -60.1245)
@@ -158,10 +163,6 @@ transform = Transform3D(5.08846e-10, 0.011641, 0.999932, 1, -4.37114e-08, 0, 4.3
 use_collision = true
 size = Vector3(6.37378, 1, 11.0184)
 material = ExtResource("2_4geqx")
-
-[node name="Goal" parent="Level" instance=ExtResource("8_6rvjq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.1157, 26.8879, -44.5607)
-next_scene = ExtResource("9_2p250")
 
 [node name="Player" parent="." instance=ExtResource("2_td3wb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.635039, -1.2141)

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bntm22wvetonj"]
+
+[ext_resource type="MeshLibrary" uid="uid://bvw1ju3umwm66" path="res://resources/sea_walls_mesh_library.tres" id="1_06p8q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w0bv2"]
+size = Vector3(6.85553, 9.02609, 21.5408)
+
+[node name="SeaWallStraightFull" type="StaticBody3D"]
+disable_mode = 1
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_06p8q")
+data = {
+"cells": PackedInt32Array(1, 0, 0)
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.92776, 5.34383, -0.150024)
+shape = SubResource("BoxShape3D_w0bv2")
