@@ -21,7 +21,7 @@ Shaker="*res://addons/shaker/src/Shaker.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/IVX_VertexColorImportSwapper/plugin.cfg")
 
 [file_customization]
 

@@ -2830,7 +2830,7 @@ shape = SubResource("CapsuleShape3D_wncu4")
 
 [node name="HealthComponent" type="Node" parent="Components"]
 script = ExtResource("4_3330k")
-max_health = 100.0
+max_health = 2.0
 metadata/_custom_type_script = "uid://6lmdyb8yon5s"
 
 [node name="HurtboxComponent3D" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_314dk")]

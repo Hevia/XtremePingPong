@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m51mkebk2rfl"
-path.s3tc="res://.godot/imported/Sand Test Tex.png-2d22527a703dda1a18557f127e5b238a.s3tc.ctex"
+uid="uid://dqp5k6bx8hmm7"
+path.s3tc="res://.godot/imported/otriel.png-1155fd749382a89a2b9b9384008ac9c6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/Sand Test Tex.png"
-dest_files=["res://.godot/imported/Sand Test Tex.png-2d22527a703dda1a18557f127e5b238a.s3tc.ctex"]
+source_file="res://assets/textures/otriel.png"
+dest_files=["res://.godot/imported/otriel.png-1155fd749382a89a2b9b9384008ac9c6.s3tc.ctex"]
 
 [params]
 

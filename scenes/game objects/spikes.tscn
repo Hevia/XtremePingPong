@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://2s2qtkxhaasb"]
+[gd_scene load_steps=9 format=4 uid="uid://2s2qtkxhaasb"]
 
 [ext_resource type="Script" uid="uid://cdaf82ms4mytm" path="res://scenes/game objects/spikes.gd" id="1_nbp67"]
 [ext_resource type="PackedScene" uid="uid://74od70l2slni" path="res://scenes/components/hitbox_component_3d.tscn" id="2_nbp67"]
@@ -42,6 +42,8 @@ shadow_mesh = SubResource("ArrayMesh_a2rh1")
 [sub_resource type="SphereShape3D" id="SphereShape3D_nbp67"]
 radius = 0.983611
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_cynyw"]
+
 [node name="Spikes" type="CharacterBody3D"]
 script = ExtResource("1_nbp67")
 
@@ -60,3 +62,6 @@ shape = SubResource("SphereShape3D_nbp67")
 
 [node name="LifetimeTimerComponent" parent="." instance=ExtResource("3_cynyw")]
 unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_cynyw")

@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m51mkebk2rfl"
-path.s3tc="res://.godot/imported/Sand Test Tex.png-2d22527a703dda1a18557f127e5b238a.s3tc.ctex"
+uid="uid://chx3tn4huvecl"
+path="res://.godot/imported/SeaWallTex.png-3e56ffea965b2b12dc52034f6364cf63.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/Sand Test Tex.png"
-dest_files=["res://.godot/imported/Sand Test Tex.png-2d22527a703dda1a18557f127e5b238a.s3tc.ctex"]
+source_file="res://assets/textures/SeaWallTex.png"
+dest_files=["res://.godot/imported/SeaWallTex.png-3e56ffea965b2b12dc52034f6364cf63.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

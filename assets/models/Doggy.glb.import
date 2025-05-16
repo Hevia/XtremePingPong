@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bbv8hk2hy817m"
-path="res://.godot/imported/FishBowlHead.glb-9f9a2fa0d442d3e43bdd7a4d284aff55.scn"
+uid="uid://bdhy6003l87ys"
+path="res://.godot/imported/Doggy.glb-b0f854b48198410844b436e708968cb3.scn"
 
 [deps]
 
-source_file="res://assets/models/FishBowlHead.glb"
-dest_files=["res://.godot/imported/FishBowlHead.glb-9f9a2fa0d442d3e43bdd7a4d284aff55.scn"]
+source_file="res://assets/models/Doggy.glb"
+dest_files=["res://.godot/imported/Doggy.glb-b0f854b48198410844b436e708968cb3.scn"]
 
 [params]
 

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm2m7lv26rovs"]
+
+[ext_resource type="PackedScene" uid="uid://dkfknavywgwdk" path="res://scenes/terrain/simple_grass_circle.tscn" id="1_ditub"]
+
+[node name="GrassPieces" type="Node3D"]
+
+[node name="SimpleGrassCircle" parent="." instance=ExtResource("1_ditub")]

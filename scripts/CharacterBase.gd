@@ -36,6 +36,7 @@ var direction = Vector3.ZERO
 
 var lock_control = false
 
+
 func caclulate_movement_parameters() -> void:
 	# Equation for better jump pulled from Building a Better Jump Godot 4 by Chaff
 	jump_gravity = (2*B_JUMP_HEIGHT)/pow(B_JUMP_PEAK_TIME,2)
@@ -50,7 +51,7 @@ func caclulate_movement_parameters() -> void:
 func reset_control() -> void:
 	lock_control = false
 	
-func add_timed_buff(buffdef: BuffDef, time: float):
+func add_timed_buff(buffdef: PackedScene, time: float):
 	if buffdef and time:
 		var buff_def_instance: BuffDef = buffdef.instantiate()
 		self.add_child(buff_def_instance)
@@ -67,7 +68,5 @@ func force_jump(forced_jump_velocity) -> void:
 	velocity.y = forced_jump_velocity
 
 func apply_force(dir_velocity: Vector3) -> void:
-	print(dir_velocity)
-	lock_control = true
 	velocity = Vector3.ZERO
 	velocity = dir_velocity

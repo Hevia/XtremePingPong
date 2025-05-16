@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkfknavywgwdk"]
+
+[ext_resource type="MeshLibrary" uid="uid://dc6w5g5f42h7o" path="res://resources/grass_mesh_library.tres" id="1_8cfgc"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fvwx5"]
+height = 1.53992
+radius = 1.99805
+
+[node name="SimpleGrassCircle" type="StaticBody3D"]
+disable_mode = 1
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_8cfgc")
+data = {
+"cells": PackedInt32Array(0, 0, 1441803, 0, 65535, 1441804, 65535, 0, 1441802, 65535, 65535, 1441801)
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.867493, 0)
+shape = SubResource("CylinderShape3D_fvwx5")

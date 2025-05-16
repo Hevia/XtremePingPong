@@ -12,6 +12,7 @@ sky_material = SubResource("PanoramaSkyMaterial_cq8b3")
 background_mode = 2
 sky = SubResource("Sky_dcbwv")
 tonemap_mode = 2
+tonemap_exposure = 0.7
 glow_enabled = true
 
 [node name="Environment" type="Node3D"]
