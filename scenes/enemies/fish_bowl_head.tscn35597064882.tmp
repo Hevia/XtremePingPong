@@ -10038,9 +10038,16 @@ _data = {
 &"Suprise": SubResource("Animation_t8spe")
 }
 
-[node name="FishBowlHead" type="CharacterBody3D" node_paths=PackedStringArray("los_ray_cast_3d")]
+[node name="FishBowlHead" type="CharacterBody3D"]
 script = ExtResource("1_mj6hu")
-los_ray_cast_3d = NodePath("LOSRayCast3D")
+BASE_BALL_SHOOT_SPEED = null
+ATTACK_TIMING = null
+COOLDOWN_TIMING = null
+JUMP_VELOCITY = null
+B_SPEED = null
+B_PATH_UPDATE_TICKS = null
+ENEMY_SEARCH_TICKS = null
+path_update_window = null
 
 [node name="HurtboxComponent" type="Area3D" parent="." node_paths=PackedStringArray("health_component")]
 collision_layer = 2
