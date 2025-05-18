@@ -1,5 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://bk2gwve2q8ntk"]
+[gd_scene load_steps=19 format=3 uid="uid://bk2gwve2q8ntk"]
 
+[ext_resource type="Script" uid="uid://bkj8suvgdui8q" path="res://scripts/sp_level.gd" id="1_j8ys7"]
 [ext_resource type="PackedScene" uid="uid://biebk77iwy1p5" path="res://scenes/environment.tscn" id="1_q2v23"]
 [ext_resource type="PackedScene" uid="uid://bll7ewpiaocvf" path="res://scenes/terrain/small_grass_platform.tscn" id="2_2p250"]
 [ext_resource type="Material" uid="uid://b2tmxvpji4wwy" path="res://assets/materials/greybox.tres" id="2_4geqx"]
@@ -23,7 +24,9 @@ polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Arr
 [sub_resource type="SphereShape3D" id="SphereShape3D_r5f0m"]
 radius = 28.6444
 
-[node name="W1-1" type="Node3D"]
+[node name="W1-1" type="Node3D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_j8ys7")
+player = NodePath("Player")
 
 [node name="Environment" parent="." instance=ExtResource("1_q2v23")]
 
@@ -150,6 +153,7 @@ material = ExtResource("2_4geqx")
 
 [node name="Player" parent="." instance=ExtResource("2_td3wb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.635039, -1.2141)
+ANIMATION_SCALE_SPEED = 1.35
 
 [node name="Entities" parent="." instance=ExtResource("9_r5f0m")]
 

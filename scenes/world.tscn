@@ -1,6 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://g1ab1prsq1x"]
+[gd_scene load_steps=26 format=3 uid="uid://g1ab1prsq1x"]
 
 [ext_resource type="PackedScene" uid="uid://biebk77iwy1p5" path="res://scenes/environment.tscn" id="1_e3hyu"]
+[ext_resource type="Script" uid="uid://bkj8suvgdui8q" path="res://scripts/sp_level.gd" id="1_pm21f"]
 [ext_resource type="PackedScene" uid="uid://bod1hcvwmskyn" path="res://scenes/game objects/level_objects/jump_pad.tscn" id="2_pnp52"]
 [ext_resource type="Material" uid="uid://b2tmxvpji4wwy" path="res://assets/materials/greybox.tres" id="2_q5onr"]
 [ext_resource type="PackedScene" uid="uid://gkr8sq0f7u2l" path="res://scenes/game objects/player.tscn" id="3_4rpdc"]
@@ -38,8 +39,9 @@ radius = 12.5887
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_qfnet"]
 
-[node name="World" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.160832, -1.90735e-06, 0.0654716)
+[node name="World" type="Node3D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_pm21f")
+player = NodePath("Player")
 
 [node name="Environment" parent="." instance=ExtResource("1_e3hyu")]
 
@@ -197,6 +199,7 @@ shape = SubResource("SphereShape3D_7r4gi")
 
 [node name="Player" parent="." instance=ExtResource("3_4rpdc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.60253, 0, 4)
+ANIMATION_SCALE_SPEED = 1.35
 
 [node name="Ball4" parent="." instance=ExtResource("4_8j0ie")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98301, 3.77579, -6.07333)

@@ -1,6 +1,5 @@
 class_name Player extends CharacterBase
 
-
 var freelook_tilt_amt = 5.0
 var slide_timer = 0.0
 var slide_vec = Vector2.ZERO
@@ -75,6 +74,7 @@ var slow_time_toggle = false
 @onready var can_swing_timer: Timer = $Timers/CanSwingTimer
 @onready var auto_aim_raycast_3d: RayCast3D = %AutoAimRaycast3D
 @onready var lock_on_indicator: Node2D = %LockOnIndicator
+@onready var health_component: HealthComponent = %HealthComponent
 
 @export var player_color: Color = Color.BLUE
 
@@ -106,6 +106,8 @@ func _ready():
 	coyote_timer.timeout.connect(on_coyote_timer_timeout)
 	dash_cooldown_timer.timeout.connect(on_dash_timer_timeout)
 	can_swing_timer.timeout.connect(on_can_swing_timer_timeout)
+	
+	arms_anim_player.speed_scale = ANIMATION_SCALE_SPEED
 
 func reset_time() -> void:
 	if slow_time_toggle:
@@ -256,11 +258,15 @@ func throw_paddle():
 	var entity_layer = get_tree().get_first_node_in_group("entity_layer")
 	if entity_layer:
 		entity_layer.add_child(paddle_instance)
+		paddle_instance.set_team(Constants.Teams.Player)
 		paddle_instance.set_last_hit_or_thrown_by(self)
 		paddle_instance.global_position = grab_marker_3d.global_position #TODO: Use a better one
 		var hit_direction = calculate_hit_direction()
 		var force = hit_direction * hit_force
 		paddle_instance.apply_force(force)
+
+		if enemy_target_ref:
+			paddle_instance.curve_towards_target(enemy_target_ref)
 		
 		
 
@@ -271,7 +277,7 @@ func can_pause_paddle():
 
 func can_resume_paddle_anim():
 	if not holding_swing:
-		arms_anim_player.speed_scale = 1.25
+		arms_anim_player.speed_scale = ANIMATION_SCALE_SPEED
 	
 
 func swing_paddle():
@@ -294,8 +300,6 @@ func handle_primary_input():
 		can_swing_timer.start()
 		can_swing = false
 		
-
-
 	
 func draw_lock_on_reticle():
 	if enemy_target_ref:
@@ -310,7 +314,6 @@ func _process(_delta):
 	
 	if Input.is_action_pressed("pause"):
 		add_child(pause_menu_scene.instantiate())
-		#get_tree().root.set_input_as_handled()
 		get_tree().paused = true
 		
 	if Input.is_action_just_pressed("slow time"):

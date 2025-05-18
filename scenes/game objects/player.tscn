@@ -2833,6 +2833,7 @@ shape = SubResource("CapsuleShape3D_wncu4")
 [node name="Components" type="Node" parent="."]
 
 [node name="HealthComponent" type="Node" parent="Components"]
+unique_name_in_owner = true
 script = ExtResource("4_3330k")
 max_health = 2.0
 metadata/_custom_type_script = "uid://6lmdyb8yon5s"
