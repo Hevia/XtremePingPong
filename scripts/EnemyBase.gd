@@ -18,14 +18,18 @@ var can_attack: bool = false
 func check_for_search_reset():
 	if not player_ref:
 		is_searching = true
-		player_ref = null
+	elif player_ref and not check_if_los(player_ref):
+		is_searching = true
 		
 # Check if the enemy has LOS on the player
-func check_if_los(player_pos: Vector3) -> bool:
-	los_ray_cast_3d.target_position = los_ray_cast_3d.to_local(player_pos)
-	
+func check_if_los(player: Player) -> bool:
+	var player_pos = player.global_transform.origin
+	var ray_origin = los_ray_cast_3d.global_transform.origin
+	los_ray_cast_3d.target_position = los_ray_cast_3d.to_local(player_pos) + Vector3(0, 1, 0) # aim at player torso
 	los_ray_cast_3d.force_raycast_update()
+
 	if los_ray_cast_3d.is_colliding():
+		var collider = los_ray_cast_3d.get_collider()
 		if los_ray_cast_3d.get_collider() is Player:
 			return true
 	return false

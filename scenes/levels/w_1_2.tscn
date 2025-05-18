@@ -1,13 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://wogcod6yirg4"]
+[gd_scene load_steps=13 format=3 uid="uid://wogcod6yirg4"]
 
 [ext_resource type="PackedScene" uid="uid://biebk77iwy1p5" path="res://scenes/environment.tscn" id="1_hn16j"]
 [ext_resource type="Material" uid="uid://b2tmxvpji4wwy" path="res://assets/materials/greybox.tres" id="2_rcjcq"]
+[ext_resource type="PackedScene" uid="uid://bll7ewpiaocvf" path="res://scenes/terrain/small_grass_platform.tscn" id="2_s6bl6"]
 [ext_resource type="PackedScene" uid="uid://bod1hcvwmskyn" path="res://scenes/game objects/level_objects/jump_pad.tscn" id="3_s6omy"]
 [ext_resource type="PackedScene" uid="uid://gkr8sq0f7u2l" path="res://scenes/game objects/player.tscn" id="4_gjo7e"]
 [ext_resource type="PackedScene" uid="uid://c6lx8m12vwbql" path="res://scenes/game objects/throwable_gate.tscn" id="4_rcjcq"]
 [ext_resource type="PackedScene" uid="uid://dcb0agy4esnmg" path="res://scenes/entity_layer.tscn" id="5_i2mva"]
+[ext_resource type="PackedScene" uid="uid://3y52ngi3ldx1" path="res://scenes/terrain/x_small_grass_platform.tscn" id="5_nckmq"]
+[ext_resource type="PackedScene" uid="uid://dexbd75gmjttf" path="res://scenes/enemies/fish_bowl_head.tscn" id="6_kfehr"]
+[ext_resource type="PackedScene" uid="uid://qr1ksy7vf7t6" path="res://scenes/components/detection_area_component_3d.tscn" id="7_1hrdh"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_s6bl6"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kjyxi"]
+radius = 19.3614
 
 [node name="W1-2" type="Node3D"]
 
@@ -16,40 +23,39 @@
 [node name="Level" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_s6bl6")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.245972, 0, -3.40501)
-use_collision = true
-size = Vector3(5.58716, 1, 12.3102)
-material = ExtResource("2_rcjcq")
+[node name="JumpLevel0" type="Node3D" parent="Level"]
 
-[node name="JumpPad" parent="Level" instance=ExtResource("3_s6omy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.228583, 0.6, -8.38554)
+[node name="SmallGrassPlatform" parent="Level/JumpLevel0" instance=ExtResource("2_s6bl6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.570642, -0.986404, 3.05269)
+
+[node name="JumpPad" parent="Level/JumpLevel0" instance=ExtResource("3_s6omy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.228583, 0.58652, -5.105)
 jump_pad_strength = 25.0
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.245972, 13.0475, -17.0484)
-use_collision = true
-size = Vector3(5.58716, 1, 4.17469)
-material = ExtResource("2_rcjcq")
+[node name="ThrowableGate" parent="Level/JumpLevel0" instance=ExtResource("4_rcjcq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.433698, 2.65037, -2.82599)
 
-[node name="JumpPad2" parent="Level" instance=ExtResource("3_s6omy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.228583, 13.6475, -17.2326)
+[node name="JumpLevel1" type="Node3D" parent="Level"]
+
+[node name="JumpPad2" parent="Level/JumpLevel1" instance=ExtResource("3_s6omy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.228047, 13.8792, -20.9287)
 jump_pad_strength = 25.0
 
-[node name="ThrowableGate" parent="Level" instance=ExtResource("4_rcjcq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.59274, -5.43118)
+[node name="XSmallGrassPlatform" parent="Level/JumpLevel1" instance=ExtResource("5_nckmq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.738283, 12.2504, -18.0327)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.243217, 13.0475, -21.3949)
-use_collision = true
-size = Vector3(5.58716, 1, 4.17469)
-material = ExtResource("2_rcjcq")
+[node name="XSmallGrassPlatform2" parent="Level/JumpLevel1" instance=ExtResource("5_nckmq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.16942, 12.2504, -18.2002)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.36539, 13.0475, -18.654)
-use_collision = true
-size = Vector3(5.58716, 1, 4.17469)
-material = ExtResource("2_rcjcq")
+[node name="FishBowlHead" parent="Level/JumpLevel1" node_paths=PackedStringArray("detection_area_component_3d") instance=ExtResource("6_kfehr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.30788, 15.207, -20.9581)
+detection_area_component_3d = NodePath("DetectionAreaComponent3D")
+
+[node name="DetectionAreaComponent3D" parent="Level/JumpLevel1/FishBowlHead" instance=ExtResource("7_1hrdh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.63639, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/JumpLevel1/FishBowlHead/DetectionAreaComponent3D"]
+shape = SubResource("SphereShape3D_kjyxi")
 
 [node name="JumpLevel2" type="Node3D" parent="Level"]
 

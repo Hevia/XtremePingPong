@@ -13,6 +13,7 @@ var projectile_scene = preload("res://scenes/game objects/ball.tscn")
 func _ready() -> void:
 	can_attack = true
 	detection_area_component_3d.area_entered.connect(on_detection_area_entered)
+	detection_area_component_3d.area_exited.connect(on_detection_area_exited)
 	attack_timer.wait_time = ATTACK_TIMING
 	attack_cooldown_timer.wait_time = COOLDOWN_TIMING
 	attack_timer.timeout.connect(on_attack_timer_timeout)
@@ -26,7 +27,7 @@ func update_search_ticks():
 		search_for_player()
 
 func shoot_at_player():
-	if can_attack and player_ref:
+	if can_attack and player_ref and check_if_los(player_ref):
 		var projectile_instance = projectile_scene.instantiate() as Ball
 		var entity_layer = get_tree().get_first_node_in_group("entity_layer")
 		if entity_layer:
@@ -34,7 +35,7 @@ func shoot_at_player():
 			attack_cooldown_timer.start()
 			entity_layer.add_child(projectile_instance)
 			projectile_instance.global_position = marker_3d.global_position
-			var predicted_player_position = player_ref.global_position #+ player_ref.velocity
+			var predicted_player_position = player_ref.global_position + Vector3(0,1,0) # aim for torso
 			var dir_vec = (predicted_player_position - projectile_instance.global_position).normalized()
 
 			# Rotate the ball to face the player
@@ -42,13 +43,6 @@ func shoot_at_player():
 			projectile_instance.rotation.y = yaw_rad
 			
 			projectile_instance.velocity = dir_vec * BASE_BALL_SHOOT_SPEED
-
-func update_path_ticks():
-	path_update_window += 1
-	
-	if path_update_window >= B_PATH_UPDATE_TICKS:
-		path_update_window = 0
-		shoot_at_player()
 
 func _physics_process(delta: float) -> void:
 		# Add the gravity.
@@ -65,7 +59,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func search_for_player():
-	if check_if_los(player_ref.global_position):
+	if check_if_los(player_ref):
 		is_searching = false
 
 func on_detection_area_entered(other_area: Area3D):
@@ -73,6 +67,11 @@ func on_detection_area_entered(other_area: Area3D):
 		player_ref = other_area.owner
 		search_for_player()
 		attack_timer.start()
+	
+func on_detection_area_exited(other_area: Area3D):
+	if other_area and other_area.owner and other_area.owner is Player:
+		player_ref = null
+		is_searching = true
 
 func on_attack_timer_timeout():
 	attack_timer.start()

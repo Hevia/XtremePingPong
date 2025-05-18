@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://3y52ngi3ldx1"]
+
+[ext_resource type="MeshLibrary" uid="uid://dc6w5g5f42h7o" path="res://resources/grass_mesh_library.tres" id="1_jt7v7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f3psi"]
+size = Vector3(5.9151, 1.3847, 6.07994)
+
+[node name="XSmallGrassPlatform" type="StaticBody3D"]
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_jt7v7")
+data = {
+"cells": PackedInt32Array(65535, 65535, 9, 1, 65535, 10, 0, 65535, 6, 65535, 65533, 12, 1, 65533, 11, 1, 65534, 5, 65535, 65534, 8, 0, 65533, 7, 0, 65534, 4)
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.848236, 0.889862, -3.02021)
+shape = SubResource("BoxShape3D_f3psi")

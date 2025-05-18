@@ -17,7 +17,7 @@ func update_path_ticks():
 
 
 func search_for_player():
-	if check_if_los(player_ref.global_position):
+	if check_if_los(player_ref):
 		is_searching = false
 		navigation_agent_3d.set_target_position(player_ref.global_position)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://gkr8sq0f7u2l"]
+[gd_scene load_steps=34 format=4 uid="uid://gkr8sq0f7u2l"]
 
 [ext_resource type="Script" uid="uid://bu7ysokbowts4" path="res://scenes/game objects/player.gd" id="1_c5mcm"]
 [ext_resource type="PackedScene" uid="uid://d35jn7xjt32mw" path="res://assets/mdlTableTennisPaddle.glb" id="2_5ea66"]
@@ -2334,6 +2334,9 @@ _data = {
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ilbb6"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1eir6"]
+size = Vector3(1.26563, 1, 1.23682)
+
 [sub_resource type="Animation" id="Animation_gustj"]
 length = 0.001
 tracks/0/type = "value"
@@ -2768,8 +2771,8 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FreelookPivot/Head/Hitboxes/PaddleArea3D"]
-transform = Transform3D(2.24241, 0, 0, 0, 1.42202, 0, 0, 0, 2.4578, 0, 1.37524, -1.26064)
-shape = SubResource("BoxShape3D_ilbb6")
+transform = Transform3D(2.24241, 0, 0, 0, 1.42202, 0, 0, 0, 2.4578, 0, 1.37524, -1.55166)
+shape = SubResource("BoxShape3D_1eir6")
 disabled = true
 
 [node name="AutoAimRaycast3D" type="RayCast3D" parent="FreelookPivot/Head"]

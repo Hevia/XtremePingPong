@@ -1,15 +1,11 @@
-class_name Ball extends CharacterBody3D  
+class_name Ball extends Throwable  
 
 @onready var colorswitcher_timer: Timer = %ColorswitcherTimer
 @onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
 @onready var ball_collision_shape_3d: CollisionShape3D = $BallCollisionShape3D
 @onready var hit_collision_shape_3d: CollisionShape3D = $Area3D/HitCollisionShape3D
-@onready var hitbox_component_3d: HitboxComponent3D = $HitboxComponent3D
-@onready var lock_on_timer: Timer = %LockOnTimer
 
-const BASE_SPEED = 60.0  
 var ricochets_remaining = 100  
-var mass = 10.0
 
 var switch_colors = false
 var current_color: Color = Color.WHITE
@@ -17,23 +13,11 @@ var next_color: Color = Color.WHITE
 
 var material_ref = null
 
-var is_grabbed = false
-var grabbed_parent: Node3D = null
-
-var target_ref: Node3D = null
-var is_locked_on = false
-
-var last_hit_by: CharacterBase = null
-
-
 func _ready() -> void:
+	super()
 	# Since the ball color might change a lot, we just have this ref to change often
 	material_ref = mesh_instance_3d.mesh.surface_get_material(0) as StandardMaterial3D
-	hitbox_component_3d.area_entered.connect(on_hitbox_area_entered)
-	lock_on_timer.timeout.connect(on_lock_on_timer_timeout)
-
-func stop_movement() -> void:
-	velocity = Vector3.ZERO
+	#lock_on_timer.timeout.connect(on_lock_on_timer_timeout)
 
 func set_color(target_color: Color) -> void:
 	next_color = target_color
@@ -42,9 +26,6 @@ func set_color(target_color: Color) -> void:
 	if material_ref:
 		material_ref.albedo_color = next_color
 		
-func set_team(new_team: Constants.Teams) -> void:
-	hitbox_component_3d.set_team(new_team)
-
 func apply_force(force: Vector3, momentum_retention = 0.7) -> void:
 	# Store the previous velocity magnitude (speed)
 	var prev_speed = velocity.length()
@@ -70,7 +51,7 @@ func set_grabbed_parent_ref(grabber: Node3D) -> void:
 	hit_collision_shape_3d.disabled = true
 
 func set_last_hit_by(hitter: Node3D) -> void:
-	last_hit_by = hitter
+	last_hit_or_thrown_by = hitter
 
 func released_from_grab():
 	is_grabbed = false
@@ -118,19 +99,3 @@ func _physics_process(delta):
 func align_to_velocity():
 	if velocity.length() > 0:
 		look_at(global_position + velocity.normalized(), Vector3.UP)
-
-
-func handle_ricochet(collision: KinematicCollision3D):  
-	#if ricochets_remaining <= 0:  
-		#queue_free()  
-		#return  
-	velocity = velocity.bounce(collision.get_normal())  
-
-
-func on_hitbox_area_entered(other_area: Area3D):
-	if other_area.owner is CharacterBody3D:
-		if last_hit_by and last_hit_by is Player:
-			(last_hit_by as Player).trigger_hitmarker()
-
-func on_lock_on_timer_timeout():
-	is_locked_on = false

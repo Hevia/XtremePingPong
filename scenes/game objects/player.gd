@@ -139,7 +139,7 @@ func is_auto_aim_targetting():
 		
 func on_paddle_area_entered(other_area: Area3D):
 	if other_area.owner is Ball:
-		var ball = other_area.owner as Ball
+		var ball: Throwable = other_area.owner as Ball
 		var hit_direction = calculate_hit_direction()
 		var force = hit_direction * hit_force
 		hitstop(0.05, 0.3)
@@ -147,7 +147,7 @@ func on_paddle_area_entered(other_area: Area3D):
 		trigger_small_paddle_hitmarker()
 		enemy_target_ref = is_auto_aim_targetting()
 		ball.apply_force(force)
-		ball.set_last_hit_by(self)
+		ball.set_last_hit_or_thrown_by(self)
 		ball.set_color(player_color)
 		ball.set_team(Constants.Teams.Player)
 		if enemy_target_ref:
@@ -256,7 +256,7 @@ func throw_paddle():
 	var entity_layer = get_tree().get_first_node_in_group("entity_layer")
 	if entity_layer:
 		entity_layer.add_child(paddle_instance)
-		paddle_instance.set_thrown_by(self)
+		paddle_instance.set_last_hit_or_thrown_by(self)
 		paddle_instance.global_position = grab_marker_3d.global_position #TODO: Use a better one
 		var hit_direction = calculate_hit_direction()
 		var force = hit_direction * hit_force

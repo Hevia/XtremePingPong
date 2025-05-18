@@ -17,8 +17,10 @@ material = SubResource("StandardMaterial3D_ekwaw")
 [sub_resource type="SphereShape3D" id="SphereShape3D_er8da"]
 radius = 0.62
 
-[node name="Ball" type="CharacterBody3D"]
+[node name="Ball" type="CharacterBody3D" node_paths=PackedStringArray("hitbox_component_3d")]
 script = ExtResource("1_275bg")
+BASE_SPEED = 62.0
+hitbox_component_3d = NodePath("HitboxComponent3D")
 
 [node name="BallCollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_grfoj")
@@ -45,7 +47,3 @@ isProjectile = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent3D"]
 shape = SubResource("SphereShape3D_er8da")
 debug_color = Color(0.920547, 5.92008e-05, 0.69448, 0.42)
-
-[node name="LockOnTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-one_shot = true

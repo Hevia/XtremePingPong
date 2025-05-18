@@ -107,9 +107,10 @@ points = PackedVector3Array(0.122683, 1.19936, 1.00023, 0.12941, 1.68413, 0.8397
 [sub_resource type="BoxShape3D" id="BoxShape3D_otx1b"]
 size = Vector3(1, 3.7, 2.5)
 
-[node name="PaddleThrowable" type="CharacterBody3D"]
+[node name="PaddleThrowable" type="CharacterBody3D" node_paths=PackedStringArray("hitbox_component_3d")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 script = ExtResource("1_fatc4")
+hitbox_component_3d = NodePath("HitboxComponent3D")
 
 [node name="Paddle" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_qu22l")
