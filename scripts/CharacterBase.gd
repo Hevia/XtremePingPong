@@ -51,13 +51,13 @@ func caclulate_movement_parameters() -> void:
 func reset_control() -> void:
 	lock_control = false
 	
-func add_timed_buff(buffdef: PackedScene, time: float):
+func add_timed_buff(buffdef: PackedScene, time: float) -> void:
 	if buffdef and time:
 		var buff_def_instance: BuffDef = buffdef.instantiate()
 		self.add_child(buff_def_instance)
 		buff_def_instance.character_owner = self
 		buff_def_instance.apply_buff()
-		var buff_timer = buff_def_instance.add_timer(time)
+		buff_def_instance.add_timer(time)
 	else:
 		pass # TODO: Log it maybe?
 
