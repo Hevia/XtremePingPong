@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b05027vtbxw7r"]
+
+[ext_resource type="Texture2D" uid="uid://jpxx7uh502kp" path="res://assets/textures/T_groundmark_color.png" id="1_gwclv"]
+
+[node name="GroundMarkDecal" type="Decal"]
+texture_albedo = ExtResource("1_gwclv")
+upper_fade = 0.0097056
+lower_fade = 0.011949
+cull_mask = 1048571

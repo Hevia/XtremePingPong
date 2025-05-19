@@ -1,0 +1,51 @@
+[gd_scene load_steps=12 format=3 uid="uid://dvdp5p4885sau"]
+
+[ext_resource type="Shader" uid="uid://dtcf5u2uuovlf" path="res://shaders/simple_hitspark.tres" id="1_5tpjg"]
+[ext_resource type="Texture2D" uid="uid://cm8dnxci8hbmy" path="res://assets/textures/T_flare81.png" id="2_j6aro"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jnlw8"]
+render_priority = 0
+shader = ExtResource("1_5tpjg")
+shader_parameter/HitTexture = ExtResource("2_j6aro")
+
+[sub_resource type="Curve" id="Curve_e3gop"]
+_data = [Vector2(0.026455, 0), 0.0, 0.0, 0, 0, Vector2(0.502645, 1), 0.0, 0.0, 0, 0, Vector2(0.962963, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_nyjoa"]
+curve = SubResource("Curve_e3gop")
+
+[sub_resource type="Gradient" id="Gradient_805sl"]
+colors = PackedColorArray(0.911439, 0.605115, 0.159468, 1, 1, 0.5, 0.2, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_a2wi5"]
+gradient = SubResource("Gradient_805sl")
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_ywqi4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nwg27"]
+curve = SubResource("Curve_ywqi4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_570p7"]
+angle_min = -180.0
+angle_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.8
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_nwg27")
+color_ramp = SubResource("GradientTexture1D_a2wi5")
+alpha_curve = SubResource("CurveTexture_nyjoa")
+
+[sub_resource type="QuadMesh" id="QuadMesh_qq5ej"]
+
+[node name="HitSpark" type="GPUParticles3D"]
+layers = 4
+material_override = SubResource("ShaderMaterial_jnlw8")
+amount = 1
+lifetime = 0.25
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_570p7")
+draw_pass_1 = SubResource("QuadMesh_qq5ej")

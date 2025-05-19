@@ -1,0 +1,47 @@
+[gd_scene load_steps=10 format=3 uid="uid://e2dlgaehadwh"]
+
+[ext_resource type="Shader" uid="uid://c2itrjv0hjop5" path="res://shaders/simple_vfx_shader.tres" id="1_lkgsy"]
+[ext_resource type="Texture2D" uid="uid://cns6kixx5nld1" path="res://assets/textures/T_circle42.PNG" id="2_trhqa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a3fjs"]
+render_priority = 0
+shader = ExtResource("1_lkgsy")
+shader_parameter/HitTexture = ExtResource("2_trhqa")
+
+[sub_resource type="Curve" id="Curve_0sdym"]
+_data = [Vector2(0.031746, 1), 0.0, 0.0, 0, 0, Vector2(0.78836, 1), 0.0, 0.0, 0, 0, Vector2(0.989418, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_qjkis"]
+curve = SubResource("Curve_0sdym")
+
+[sub_resource type="Curve" id="Curve_ksve4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.798942, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_k28rp"]
+curve = SubResource("Curve_ksve4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jp4tp"]
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 8.0
+initial_velocity_max = 12.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.3
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_k28rp")
+color = Color(2.5, 2, 0.5, 1)
+alpha_curve = SubResource("CurveTexture_qjkis")
+
+[sub_resource type="QuadMesh" id="QuadMesh_v5ehi"]
+size = Vector2(0.05, 0.3)
+
+[node name="Sparks" type="GPUParticles3D"]
+layers = 4
+material_override = SubResource("ShaderMaterial_a3fjs")
+lifetime = 0.25
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_jp4tp")
+draw_pass_1 = SubResource("QuadMesh_v5ehi")
