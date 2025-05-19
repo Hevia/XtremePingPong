@@ -13,3 +13,10 @@ const TeamColors = {
 	Teams.Enemies: Color.RED,
 	Teams.World: Color.WHEAT
 }
+
+const GeneralDeathTips = [
+	"Always order Pizza after 5:02pm on Thursdays",
+	"Have you tried hitting the ball lol?",
+	"Try Thunderstorm to die even more!",
+	"Maybe this difficulty is too hard for you?"
+]

@@ -19,7 +19,7 @@ func on_area_entered(other_area: Area3D):
 	var hitbox_component = other_area as HitboxComponent3D
 		
 	# No friendly fire!
-	if hitbox_component.team == self_team:
+	if hitbox_component.team == self_team or hitbox_component.team == Constants.Teams.World:
 		return
 	
 	health_component.damage(hitbox_component.damage)

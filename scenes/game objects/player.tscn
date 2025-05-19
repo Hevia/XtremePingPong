@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://gkr8sq0f7u2l"]
+[gd_scene load_steps=31 format=4 uid="uid://gkr8sq0f7u2l"]
 
 [ext_resource type="Script" uid="uid://bu7ysokbowts4" path="res://scenes/game objects/player.gd" id="1_c5mcm"]
 [ext_resource type="PackedScene" uid="uid://d35jn7xjt32mw" path="res://assets/mdlTableTennisPaddle.glb" id="2_5ea66"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dg7fjaqrpau3i" path="res://scenes/ui/default_reticle.tscn" id="3_1eir6"]
 [ext_resource type="PackedScene" uid="uid://btgnmxh5wgqxw" path="res://scenes/ui/speed_lines_overlay.tscn" id="3_qy3ex"]
 [ext_resource type="Script" uid="uid://6lmdyb8yon5s" path="res://scenes/components/health_component.gd" id="4_3330k"]
+[ext_resource type="PackedScene" uid="uid://cabmk6meut82v" path="res://scenes/ui/player_ui.tscn" id="4_emysk"]
 [ext_resource type="PackedScene" uid="uid://bt640cn1jf6m8" path="res://scenes/components/hurtbox_component_3d.tscn" id="5_314dk"]
 [ext_resource type="PackedScene" uid="uid://bod8wqdwnww13" path="res://scenes/ui/debug_panel.tscn" id="6_314dk"]
 
@@ -151,7 +152,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%PaddleArea3D/CollisionShape3D:disabled")
+tracks/1/path = NodePath("../../../../Hitboxes/PaddleArea3D/PaddleCollisionShape:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1747,7 +1748,7 @@ tracks/35/keys = PackedFloat32Array(0, 1, -0.622225, 0.335911, 0.622225, 0.33591
 tracks/36/type = "value"
 tracks/36/imported = false
 tracks/36/enabled = true
-tracks/36/path = NodePath("%PaddleArea3D/CollisionShape3D:disabled")
+tracks/36/path = NodePath("../../../../Hitboxes/PaddleArea3D/PaddleCollisionShape:disabled")
 tracks/36/interp = 1
 tracks/36/loop_wrap = true
 tracks/36/keys = {
@@ -1763,11 +1764,14 @@ tracks/37/path = NodePath("%FreelookPivot/..")
 tracks/37/interp = 1
 tracks/37/loop_wrap = true
 tracks/37/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 0.5364),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"can_pause_paddle"
+}, {
+"args": [],
+"method": &"reset_paddle_charge"
 }]
 }
 
@@ -2338,170 +2342,6 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_1eir6"]
 size = Vector3(1.26563, 1, 1.23682)
 
-[sub_resource type="Animation" id="Animation_gustj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("mdlTableTennisPaddle:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.178301, 1.6046, -0.481952)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("mdlTableTennisPaddle:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.173585, -1.57902, 0.00142006)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("mdlTableTennisPaddle:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("FreelookPivot/Head/Hitboxes/PaddleArea3D/CollisionShape3D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("FreelookPivot/Head/PaddleJumpRaycast:enabled")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("FreelookPivot/Head/Hitboxes/GrabArea3D/GrabCollisionShape3D:disabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_uu2bh"]
-resource_name = "grab"
-length = 0.4
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FreelookPivot/Head/Hitboxes/GrabArea3D/GrabCollisionShape3D:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
-}
-
-[sub_resource type="Animation" id="Animation_buyvv"]
-resource_name = "swing_paddle"
-length = 0.4
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("mdlTableTennisPaddle:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.07, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.178301, 1.6046, -0.481952), Vector3(0.0345168, 1.55502, -0.422462), Vector3(-0.396834, 1.40358, -0.266976), Vector3(0.178301, 1.6046, -0.481952)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("mdlTableTennisPaddle:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.07, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.173585, -1.57902, 0.00142006), Vector3(-0.0327422, -1.24293, 0.506782), Vector3(-0.0153184, -0.186116, 0.992407), Vector3(-0.173585, -1.57902, 0.00142006)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("mdlTableTennisPaddle:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("FreelookPivot/Head/Hitboxes/PaddleArea3D/CollisionShape3D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("FreelookPivot/Head/PaddleJumpRaycast:enabled")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_bmp6s"]
-_data = {
-&"RESET": SubResource("Animation_gustj"),
-&"grab": SubResource("Animation_uu2bh"),
-&"swing_paddle": SubResource("Animation_buyvv")
-}
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wncu4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3330k"]
@@ -2547,169 +2387,169 @@ bones/0/name = "DEF_paddle"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.449041, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(-1.06253, -1.52941, -3.56683)
-bones/0/rotation = Quaternion(0.255398, 0.294226, 0.67937, 0.62182)
+bones/0/position = Vector3(3.71718, -1.97267, -0.0327995)
+bones/0/rotation = Quaternion(-0.610584, -0.405086, 0.181097, 0.65597)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "DEF_upperarm.R"
 bones/1/parent = -1
 bones/1/rest = Transform3D(-1.19209e-07, 0.999296, -0.0375039, -1, -1.19209e-07, 7.63685e-08, 7.63685e-08, 0.0375039, 0.999296, 1.48825, 0, 0)
 bones/1/enabled = true
-bones/1/position = Vector3(0.975248, -1.09879, -1.45679)
-bones/1/rotation = Quaternion(-0.534933, 0.470608, -0.571569, 0.407043)
+bones/1/position = Vector3(0.763872, -0.290124, 0.327416)
+bones/1/rotation = Quaternion(0.291799, -0.0228346, -0.846791, 0.444159)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "DEF_lowerarm.R"
 bones/2/parent = 1
 bones/2/rest = Transform3D(1, -5.5189e-09, -2.01972e-10, 5.5189e-09, 0.997325, 0.0731001, -2.02001e-10, -0.0731001, 0.997325, 4.44089e-16, 1.72408, 3.72529e-09)
 bones/2/enabled = true
 bones/2/position = Vector3(4.44089e-16, 1.72408, 3.72529e-09)
-bones/2/rotation = Quaternion(-0.649988, 1.34881e-08, 3.72153e-07, 0.759944)
+bones/2/rotation = Quaternion(-0.43783, 3.36373e-08, 1.72464e-07, 0.899058)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "DEF_hand.R"
 bones/3/parent = 2
 bones/3/rest = Transform3D(1, 2.69113e-09, -4.799e-11, -2.69113e-09, 0.999364, -0.0356451, -4.7966e-11, 0.0356451, 0.999364, 1.99716e-15, 1.81399, 1.49958e-08)
 bones/3/enabled = true
 bones/3/position = Vector3(1.99716e-15, 1.81399, 1.49958e-08)
-bones/3/rotation = Quaternion(0.145005, -0.127436, -0.0646622, 0.979057)
+bones/3/rotation = Quaternion(0.344247, -0.0668766, -0.0990553, 0.931241)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "RIG_hand.R"
 bones/4/parent = -1
 bones/4/rest = Transform3D(0, 1, 0, -1, 0, 7.54979e-08, 7.54979e-08, 0, 1, 5.02396, 0, -1.34359e-07)
 bones/4/enabled = true
-bones/4/position = Vector3(-0.883465, -1.36765, -3.38137)
-bones/4/rotation = Quaternion(-0.726139, 0.656722, -0.143547, 0.144337)
+bones/4/position = Vector3(3.5989, -1.69322, -0.00921947)
+bones/4/rotation = Quaternion(0.158384, 0.0320925, -0.895589, 0.414494)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "DEF_upperarm.L"
 bones/5/parent = -1
 bones/5/rest = Transform3D(-1.19209e-07, -0.999296, 0.0375039, 1, -1.19209e-07, 7.63685e-08, -7.63685e-08, 0.0375039, 0.999296, -1.48825, 0, 0)
 bones/5/enabled = true
-bones/5/position = Vector3(-2.3734, -0.508316, -0.236441)
-bones/5/rotation = Quaternion(0.197045, 0.13534, 0.847621, 0.473703)
+bones/5/position = Vector3(-2.17731, -0.957817, -1.0327)
+bones/5/rotation = Quaternion(-0.347847, -0.372093, 0.724638, 0.464165)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "DEF_lowerarm.L"
 bones/6/parent = 5
 bones/6/rest = Transform3D(1, 5.5189e-09, 2.01972e-10, -5.5189e-09, 0.997325, 0.0731001, 2.02001e-10, -0.0731001, 0.997325, -4.44089e-16, 1.72408, 3.72529e-09)
 bones/6/enabled = true
 bones/6/position = Vector3(-4.44089e-16, 1.72408, 3.72529e-09)
-bones/6/rotation = Quaternion(-0.624278, -7.39772e-09, -2.22678e-07, 0.781202)
+bones/6/rotation = Quaternion(-0.679613, -1.80601e-08, -3.4319e-07, 0.733571)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/name = "DEF_hand.L"
 bones/7/parent = 6
 bones/7/rest = Transform3D(1, -2.69113e-09, 4.799e-11, 2.69113e-09, 0.999364, -0.0356451, 4.7966e-11, 0.0356451, 0.999364, -1.99716e-15, 1.81399, 1.49958e-08)
 bones/7/enabled = true
 bones/7/position = Vector3(-1.99716e-15, 1.81399, 1.49958e-08)
-bones/7/rotation = Quaternion(-0.0790922, 0.118652, -0.0162718, 0.989647)
+bones/7/rotation = Quaternion(-0.0459572, -0.105788, -0.0872943, 0.989483)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/name = "RIG_hand.L"
 bones/8/parent = -1
 bones/8/rest = Transform3D(0, -1, 0, 1, 0, 7.54979e-08, -7.54979e-08, 0, 1, -5.02396, 0, -1.34359e-07)
 bones/8/enabled = true
-bones/8/position = Vector3(-4.78369, -1.67694, -0.919575)
-bones/8/rotation = Quaternion(-0.26102, -0.421897, 0.680585, 0.539143)
+bones/8/position = Vector3(-1.41159, -1.1107, -3.50836)
+bones/8/rotation = Quaternion(-0.473105, -0.831013, 0.291863, 0.0201329)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/name = "INT_paddle"
 bones/9/parent = -1
 bones/9/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.449041, 0)
 bones/9/enabled = true
-bones/9/position = Vector3(-1.06253, -1.52941, -3.56683)
-bones/9/rotation = Quaternion(0.255398, 0.294226, 0.67937, 0.62182)
+bones/9/position = Vector3(3.71718, -1.97267, -0.0327995)
+bones/9/rotation = Quaternion(-0.610584, -0.405086, 0.181097, 0.65597)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "RIG_paddle"
 bones/10/parent = -1
 bones/10/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.449041, 0)
 bones/10/enabled = true
-bones/10/position = Vector3(-1.06253, -1.52941, -3.56683)
-bones/10/rotation = Quaternion(0.255398, 0.294226, 0.67937, 0.62182)
+bones/10/position = Vector3(3.71718, -1.97267, -0.0327995)
+bones/10/rotation = Quaternion(-0.610584, -0.405086, 0.181097, 0.65597)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/name = "RIG_paddlehold"
 bones/11/parent = 10
 bones/11/rest = Transform3D(-1, 0, -1.50996e-07, 1.50996e-07, 0, -1, 0, -1, 0, 0.299026, 0, 0.270129)
 bones/11/enabled = true
 bones/11/position = Vector3(0.140251, -2.10273e-09, 0.270129)
-bones/11/rotation = Quaternion(6.33674e-08, 0.82255, -0.568693, -4.23896e-08)
+bones/11/rotation = Quaternion(6.09583e-08, 0.707107, -0.707107, -4.05435e-08)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "RIG_elbow.R"
 bones/12/parent = -1
 bones/12/rest = Transform3D(-1, 0, 0, 0, 0, 1, 0, 1, 0, 3.21112, 0, 1.55846)
 bones/12/enabled = true
-bones/12/position = Vector3(2.37276, -1.60008, -2.99343)
+bones/12/position = Vector3(1.68053, -2.21428, 2.59402)
 bones/12/rotation = Quaternion(0, 0.707107, 0.707107, 0)
 bones/12/scale = Vector3(1, 1, 1)
 bones/13/name = "RIG_elbow.L"
 bones/13/parent = -1
 bones/13/rest = Transform3D(-1, 0, 0, 0, 0, 1, 0, 1, 0, -3.21112, 0, 1.55846)
 bones/13/enabled = true
-bones/13/position = Vector3(-5.59759, -2.59037, 1.00819)
+bones/13/position = Vector3(-5.02606, -2.37571, -3.48389)
 bones/13/rotation = Quaternion(0, 0.707107, 0.707107, 0)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/name = "INT_shoulder.R"
 bones/14/parent = -1
 bones/14/rest = Transform3D(0, 0.836048, 0.548656, -1.49012e-07, -0.548657, 0.836048, 1, -5.96047e-08, 1.19209e-07, 0.64791, 0.551475, 7.40955e-08)
 bones/14/enabled = true
-bones/14/position = Vector3(0.33738, -0.67771, -0.804078)
-bones/14/rotation = Quaternion(0.809894, 0.256344, 0.231387, -0.474151)
+bones/14/position = Vector3(-0.192983, 0.00754827, 0.249181)
+bones/14/rotation = Quaternion(0.54675, 0.437047, 0.59088, -0.401142)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/name = "INT_upperarm.R"
 bones/15/parent = 14
 bones/15/rest = Transform3D(3.57628e-07, 0.0375039, 0.999296, 0.548656, 0.83546, -0.0313553, -0.836048, 0.548271, -0.0205765, -1.42109e-14, 1.00514, 5.96046e-08)
 bones/15/enabled = true
 bones/15/position = Vector3(-1.42109e-14, 1.00514, 5.96046e-08)
-bones/15/rotation = Quaternion(-0.17941, 0.666601, 0.341434, 0.63787)
+bones/15/rotation = Quaternion(0.00330269, 0.82036, -0.217253, 0.528961)
 bones/15/scale = Vector3(1, 1, 1)
 bones/16/name = "INT_lowerarm.R"
 bones/16/parent = 15
 bones/16/rest = Transform3D(1, -3.68029e-08, 1.8922e-08, 3.53212e-08, 0.997325, 0.0731, -2.15616e-08, -0.0731, 0.997325, -1.33227e-15, 1.72408, -1.11759e-08)
 bones/16/enabled = true
 bones/16/position = Vector3(-1.33227e-15, 1.72408, -1.11759e-08)
-bones/16/rotation = Quaternion(-0.649988, 1.26959e-08, 3.7555e-07, 0.759944)
+bones/16/rotation = Quaternion(-0.43783, 3.386e-08, 1.68221e-07, 0.899058)
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/name = "INT_hand.R"
 bones/17/parent = 16
 bones/17/rest = Transform3D(1, 2.69113e-09, -4.79861e-11, -2.69113e-09, 0.999364, -0.0356451, -4.79699e-11, 0.0356451, 0.999364, -3.72153e-15, 1.81399, 1.50148e-08)
 bones/17/enabled = true
 bones/17/position = Vector3(-3.72153e-15, 1.81399, 1.50148e-08)
-bones/17/rotation = Quaternion(0.145005, -0.127436, -0.0646622, 0.979057)
+bones/17/rotation = Quaternion(0.344247, -0.0668767, -0.0990553, 0.931241)
 bones/17/scale = Vector3(1, 1, 1)
 bones/18/name = "INT_shoulder.L"
 bones/18/parent = -1
 bones/18/rest = Transform3D(0, -0.836048, -0.548656, 1.49012e-07, -0.548657, 0.836048, -1, -5.96047e-08, 1.19209e-07, -0.64791, 0.551475, 7.40955e-08)
 bones/18/enabled = true
-bones/18/position = Vector3(-1.44279, -0.205305, -0.00741016)
-bones/18/rotation = Quaternion(-0.627671, 0.357804, 0.506721, 0.47036)
+bones/18/position = Vector3(-1.33697, -0.406342, -1.0327)
+bones/18/rotation = Quaternion(-0.622225, 0.335911, 0.622225, 0.335911)
 bones/18/scale = Vector3(1, 1, 1)
 bones/19/name = "INT_upperarm.L"
 bones/19/parent = 18
 bones/19/rest = Transform3D(3.57628e-07, -0.0375039, -0.999296, -0.548656, 0.83546, -0.0313553, 0.836048, 0.548271, -0.0205765, 1.42109e-14, 1.00514, 5.96046e-08)
 bones/19/enabled = true
 bones/19/position = Vector3(1.42109e-14, 1.00514, 5.96046e-08)
-bones/19/rotation = Quaternion(0.155309, -0.737706, 0.314114, 0.577062)
+bones/19/rotation = Quaternion(-0.30297, -0.515357, -0.393772, 0.698255)
 bones/19/scale = Vector3(1, 1, 1)
 bones/20/name = "INT_lowerarm.L"
 bones/20/parent = 19
 bones/20/rest = Transform3D(1, 3.68029e-08, -1.8922e-08, -3.53212e-08, 0.997325, 0.0731, 2.15616e-08, -0.0731, 0.997325, 1.33227e-15, 1.72408, -1.11759e-08)
 bones/20/enabled = true
 bones/20/position = Vector3(1.33227e-15, 1.72408, -1.11759e-08)
-bones/20/rotation = Quaternion(-0.624278, -4.02655e-09, -2.26069e-07, 0.781202)
+bones/20/rotation = Quaternion(-0.679613, -2.96938e-08, -3.38737e-07, 0.733571)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/name = "INT_hand.L"
 bones/21/parent = 20
 bones/21/rest = Transform3D(1, -2.69113e-09, 4.79861e-11, 2.69113e-09, 0.999364, -0.0356451, 4.79699e-11, 0.0356451, 0.999364, 3.72153e-15, 1.81399, 1.50148e-08)
 bones/21/enabled = true
 bones/21/position = Vector3(3.72153e-15, 1.81399, 1.50148e-08)
-bones/21/rotation = Quaternion(-0.0790922, 0.118652, -0.0162718, 0.989647)
+bones/21/rotation = Quaternion(-0.0459572, -0.105788, -0.0872943, 0.989483)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/name = "RIG_shoulder.R"
 bones/22/parent = -1
 bones/22/rest = Transform3D(0, 0.836048, 0.548656, -1.49012e-07, -0.548657, 0.836048, 1, -5.96047e-08, 1.19209e-07, 0.64791, 0.551475, 7.40955e-08)
 bones/22/enabled = true
-bones/22/position = Vector3(0.33738, -0.67771, -0.804078)
-bones/22/rotation = Quaternion(0.809894, 0.256344, 0.231387, -0.474151)
+bones/22/position = Vector3(-0.192983, 0.00754827, 0.249181)
+bones/22/rotation = Quaternion(0.54675, 0.437047, 0.59088, -0.401142)
 bones/22/scale = Vector3(1, 1, 1)
 bones/23/name = "RIG_shoulder.L"
 bones/23/parent = -1
 bones/23/rest = Transform3D(0, -0.836048, -0.548656, 1.49012e-07, -0.548657, 0.836048, -1, -5.96047e-08, 1.19209e-07, -0.64791, 0.551475, 7.40955e-08)
 bones/23/enabled = true
-bones/23/position = Vector3(-1.44279, -0.205305, -0.00741016)
-bones/23/rotation = Quaternion(-0.627671, 0.357804, 0.506721, 0.47036)
+bones/23/position = Vector3(-1.33697, -0.406342, -1.0327)
+bones/23/rotation = Quaternion(-0.622225, 0.335911, 0.622225, 0.335911)
 bones/23/scale = Vector3(1, 1, 1)
 
 [node name="Cylinder" type="MeshInstance3D" parent="FreelookPivot/Head/HeadBobPivot/Camera3D/WeaponRig/arms/Armature/Skeleton3D"]
@@ -2744,6 +2584,9 @@ visible = false
 
 [node name="DefaultReticle" parent="FreelookPivot/Head/HeadBobPivot/Camera3D" instance=ExtResource("3_1eir6")]
 
+[node name="PlayerUI" parent="FreelookPivot/Head/HeadBobPivot/Camera3D" instance=ExtResource("4_emysk")]
+unique_name_in_owner = true
+
 [node name="PaddleJumpRaycast" type="RayCast3D" parent="FreelookPivot/Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.266055, 0)
 enabled = false
@@ -2763,6 +2606,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8, 0)
 
 [node name="GrabCollisionShape3D" type="CollisionShape3D" parent="FreelookPivot/Head/Hitboxes/GrabArea3D"]
+unique_name_in_owner = true
 transform = Transform3D(2.24241, 0, 0, 0, 1.42202, 0, 0, 0, 2.4578, 0, 1.37524, -1.26064)
 shape = SubResource("BoxShape3D_ilbb6")
 disabled = true
@@ -2771,7 +2615,8 @@ disabled = true
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FreelookPivot/Head/Hitboxes/PaddleArea3D"]
+[node name="PaddleCollisionShape" type="CollisionShape3D" parent="FreelookPivot/Head/Hitboxes/PaddleArea3D"]
+unique_name_in_owner = true
 transform = Transform3D(2.24241, 0, 0, 0, 1.42202, 0, 0, 0, 2.4578, 0, 1.37524, -1.55166)
 shape = SubResource("BoxShape3D_1eir6")
 disabled = true
@@ -2789,11 +2634,6 @@ target_position = Vector3(0, 2, 0)
 [node name="mdlTableTennisPaddle" parent="." instance=ExtResource("2_5ea66")]
 transform = Transform3D(-0.00797834, 0.17272, -0.984939, 0.00139872, 0.984971, 0.172715, 0.999967, 3.23169e-07, -0.00810002, 0.178301, 1.6046, -0.481952)
 visible = false
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_bmp6s")
-}
 
 [node name="SpeedLinesOverlay" parent="." instance=ExtResource("3_qy3ex")]
 
@@ -2822,6 +2662,11 @@ wait_time = 0.5
 one_shot = true
 autostart = true
 
+[node name="PaddleCooldownTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+
 [node name="DetectableAreaComponent3D" type="Area3D" parent="."]
 collision_layer = 256
 collision_mask = 0
@@ -2835,7 +2680,7 @@ shape = SubResource("CapsuleShape3D_wncu4")
 [node name="HealthComponent" type="Node" parent="Components"]
 unique_name_in_owner = true
 script = ExtResource("4_3330k")
-max_health = 2.0
+max_health = 3.0
 metadata/_custom_type_script = "uid://6lmdyb8yon5s"
 
 [node name="HurtboxComponent3D" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_314dk")]

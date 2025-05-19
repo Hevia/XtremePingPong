@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dux3olsrhkkkf"]
+[gd_scene load_steps=2 format=3 uid="uid://cre0ah1m4end8"]
 
-[ext_resource type="Script" uid="uid://cch1t52jqfcpd" path="res://scenes/menus/pause_screen.gd" id="1_i2fkk"]
+[ext_resource type="Script" uid="uid://3q2jueuwmf2m" path="res://scenes/ui/death_screen.gd" id="1_j0ehl"]
 
-[node name="PauseScreen" type="CanvasLayer"]
-script = ExtResource("1_i2fkk")
+[node name="DeathScreen" type="CanvasLayer"]
+script = ExtResource("1_j0ehl")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -38,31 +38,28 @@ mouse_filter = 2
 layout_mode = 2
 mouse_filter = 2
 
-[node name="ResumeButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-process_mode = 2
+[node name="TipHeader" type="RichTextLabel" parent="MarginContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "Resume"
+bbcode_enabled = true
+text = "[center][wave]Tennis Tips:[/wave][/center]"
+fit_content = true
+
+[node name="DeathTip" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Lorem ipsum long text to test this out!!!!"
 
 [node name="RestartButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Restart"
 
-[node name="DemoButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-process_mode = 2
-layout_mode = 2
-text = "Play Demo"
-
 [node name="OptionsButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
-process_mode = 2
 layout_mode = 2
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
-process_mode = 2
 layout_mode = 2
 text = "Quit"

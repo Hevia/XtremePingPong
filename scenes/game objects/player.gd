@@ -13,6 +13,10 @@ var current_slide_gas = 0.0
 var current_dash_stock = 2
 var queue_dash_cooldown = false # TODO: Need to use this later
 
+# Paddle Variab;es
+var current_paddle_stock = 3
+var B_MAX_PADDLE_STOCK = 3
+
 # Jump Buffer
 var jump_buffer_active = false
 
@@ -28,6 +32,8 @@ var can_swing = true
 var can_throw_paddle = false
 var is_charging = false
 var current_charge = 0
+var CHARGE_RATE_TICK = 1
+var MAX_CHARGE = 100
 var holding_swing = false
 
 # Head bobbing vars
@@ -60,7 +66,6 @@ var slow_time_toggle = false
 @onready var crouching_collision_shape: CollisionShape3D = %CrouchingCollisionShape
 @onready var crouching_ray_cast_check: RayCast3D = %CrouchingRayCastCheck
 @onready var head_bob_pivot: Node3D = %HeadBobPivot
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var paddle_jump_raycast: RayCast3D = $FreelookPivot/Head/PaddleJumpRaycast
 @onready var grab_area_3d: Area3D = %GrabArea3D
 @onready var grab_marker_3d: Marker3D = $FreelookPivot/Head/GrabNode3D/GrabMarker3D
@@ -75,6 +80,10 @@ var slow_time_toggle = false
 @onready var auto_aim_raycast_3d: RayCast3D = %AutoAimRaycast3D
 @onready var lock_on_indicator: Node2D = %LockOnIndicator
 @onready var health_component: HealthComponent = %HealthComponent
+@onready var player_ui: PlayerUI = %PlayerUI
+@onready var paddle_cooldown_timer: Timer = %PaddleCooldownTimer
+@onready var paddle_collision_shape: CollisionShape3D = %PaddleCollisionShape
+@onready var grab_collision_shape_3d: CollisionShape3D = %GrabCollisionShape3D
 
 @export var player_color: Color = Color.BLUE
 
@@ -106,6 +115,7 @@ func _ready():
 	coyote_timer.timeout.connect(on_coyote_timer_timeout)
 	dash_cooldown_timer.timeout.connect(on_dash_timer_timeout)
 	can_swing_timer.timeout.connect(on_can_swing_timer_timeout)
+	paddle_cooldown_timer.timeout.connect(on_paddle_cooldown_timer_timeout)
 	
 	arms_anim_player.speed_scale = ANIMATION_SCALE_SPEED
 
@@ -138,12 +148,24 @@ func is_auto_aim_targetting():
 			return collider.owner
 	else:
 		return null
-		
+
+func reset_paddle_charge() -> void:
+	current_charge = 0
+
+func calc_bonus_charge_force() -> float:
+	var charge_force: float = 0.0
+	
+	if current_charge > 0:
+		charge_force = current_charge / 10
+	
+	reset_paddle_charge()
+	return charge_force
+
 func on_paddle_area_entered(other_area: Area3D):
 	if other_area.owner is Ball:
 		var ball: Throwable = other_area.owner as Ball
 		var hit_direction = calculate_hit_direction()
-		var force = hit_direction * hit_force
+		var force = hit_direction * (hit_force + calc_bonus_charge_force())
 		hitstop(0.05, 0.3)
 		shake_screen()
 		trigger_small_paddle_hitmarker()
@@ -175,6 +197,12 @@ func on_coyote_timer_timeout() -> void:
 
 func on_dash_timer_timeout() -> void:
 	current_dash_stock += 1
+
+func on_paddle_cooldown_timer_timeout() -> void:
+	current_paddle_stock += 1
+	
+	if current_paddle_stock > B_MAX_PADDLE_STOCK:
+		current_paddle_stock = B_MAX_PADDLE_STOCK
 
 func get_marker_pos() -> Vector3:
 	return grab_marker_3d.global_position
@@ -217,17 +245,21 @@ func _input(event):
 
 func throw_object():
 	grab_ready = false
-	if grabbed_object_ref != null and grabbed_object_ref is Ball:
+	if grabbed_object_ref != null and grabbed_object_ref is Throwable:
+		var grabbed_object: Throwable = grabbed_object_ref
 		enemy_target_ref = is_auto_aim_targetting()
 		var force = calculate_hit_direction() * throw_force
-		grabbed_object_ref.released_from_grab()
-		grabbed_object_ref.apply_force(force)
-		grabbed_object_ref.set_last_hit_by(self)
-		grabbed_object_ref.set_color(player_color)
-		grabbed_object_ref.set_team(Constants.Teams.Player)
+		grabbed_object.released_from_grab()
+		grabbed_object.apply_force(force)
+		grabbed_object.set_last_hit_or_thrown_by(self)
+		grabbed_object.set_color(player_color)
+		grabbed_object.set_team(Constants.Teams.Player)
 		if enemy_target_ref:
-			grabbed_object_ref.curve_towards_target(enemy_target_ref)
+			grabbed_object.curve_towards_target(enemy_target_ref)
+		
+		# Reset the grabbed object ref
 		grabbed_object_ref = null
+	
 	grab_cooldown_timer.start()
 		
 func can_dash() -> bool:
@@ -253,7 +285,10 @@ func jump() -> void:
 	sliding = false
 	coyote_time_active = false
 	
-func throw_paddle():
+func throw_paddle() -> void:
+	if current_paddle_stock <= 0:
+		return
+	
 	var paddle_instance = paddle_throwable_scene.instantiate() as PaddleThrowable
 	var entity_layer = get_tree().get_first_node_in_group("entity_layer")
 	if entity_layer:
@@ -268,21 +303,42 @@ func throw_paddle():
 		if enemy_target_ref:
 			paddle_instance.curve_towards_target(enemy_target_ref)
 		
+		current_paddle_stock -= 1
 		
+		if paddle_cooldown_timer.is_stopped():
+			paddle_cooldown_timer.start()
+		
+# TODO: Use signals so we can lerp the UI nicely in the UI script
+func update_ui_values() -> void:
+	player_ui.set_change_label(current_charge)
+	player_ui.set_health_label(health_component.current_health, health_component.max_health)
+	player_ui.set_dash_label(current_dash_stock, B_MAX_DASH)
+	player_ui.set_paddles_label(current_paddle_stock, B_MAX_PADDLE_STOCK)
+
+func update_cooldowns() -> void:
+	if current_paddle_stock < B_MAX_PADDLE_STOCK and paddle_cooldown_timer.is_stopped():
+		paddle_cooldown_timer.start()
+ 
 
 # Called by anim player to pause the paddle animation if we're charging
-func can_pause_paddle():
+func can_pause_paddle() -> void:
 	if holding_swing:
 		arms_anim_player.speed_scale = 0
-
-func can_resume_paddle_anim():
+		
+func update_charge() -> void:
+	if holding_swing:
+		current_charge += CHARGE_RATE_TICK
+		
+	if current_charge > MAX_CHARGE:
+		current_charge = MAX_CHARGE
+		
+func can_resume_paddle_anim() -> void:
 	if not holding_swing:
 		arms_anim_player.speed_scale = ANIMATION_SCALE_SPEED
 	
-
 func swing_paddle():
 	if arms_anim_player.is_playing():
-		arms_anim_player.stop()
+		clean_up_anims()
 	
 	can_resume_paddle_anim()
 	arms_anim_player.play("swing_paddle")
@@ -308,6 +364,11 @@ func draw_lock_on_reticle():
 		#var viewport_rect = get_viewport()
 	else:
 		lock_on_indicator.visible = false
+		
+func clean_up_anims() -> void:
+	arms_anim_player.stop()
+	paddle_collision_shape.disabled = true
+	grab_collision_shape_3d.disabled = true
 
 func _process(_delta):
 	draw_lock_on_reticle()
@@ -329,22 +390,24 @@ func _process(_delta):
 	# TODO: Use our own timer
 	if Input.is_action_just_pressed("throw_paddle") and can_swing:
 		if arms_anim_player.is_playing():
-			arms_anim_player.stop()
+			clean_up_anims()
 		
 		arms_anim_player.play("throw_paddle")
 		can_swing_timer.start()
 		can_swing = false
 		throw_paddle()
 	
-	if Input.is_action_pressed("secondary") and not animation_player.is_playing():
-		if grabbed_object_ref == null and grab_ready:
-			#animation_player.play("grab")
+	if Input.is_action_pressed("secondary") and grab_ready:
+		if arms_anim_player.is_playing():
+			clean_up_anims()
+			
+		if grabbed_object_ref == null:
 			arms_anim_player.play("grab_2")  # grab_2 has the Marker 3D placements
 		elif grabbed_object_ref != null:
 			arms_anim_player.play("throw")
 		
+		
 func _physics_process(delta: float) -> void:
-
 	var input_dir: Vector2 = Vector2.ZERO
 		
 	if not lock_control:
@@ -521,4 +584,7 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, current_speed)
 	
 	last_velocity = velocity
+	update_charge()
+	update_cooldowns()
+	update_ui_values()
 	move_and_slide()

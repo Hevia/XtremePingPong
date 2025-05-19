@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Shaker="*res://addons/shaker/src/Shaker.gd"
+GameState="*res://scenes/autoloads/game_state.gd"
 
 [editor_plugins]
 

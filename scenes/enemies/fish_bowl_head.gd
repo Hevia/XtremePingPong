@@ -1,7 +1,6 @@
 class_name FishBowlHead extends EnemyBase
 
 var projectile_scene = preload("res://scenes/game objects/ball.tscn")
-@onready var shape_cast_3d: ShapeCast3D = $ShapeCast3D
 @onready var attack_timer: Timer = %AttackTimer
 @onready var attack_cooldown_timer: Timer = %AttackCooldownTimer
 @onready var marker_3d: Marker3D = %Marker3D

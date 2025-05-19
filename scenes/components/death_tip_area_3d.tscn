@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://demig3xxjexr7"]
+
+[ext_resource type="Script" uid="uid://dxq8fd0gov65a" path="res://scenes/components/death_tip_area_3d.gd" id="1_lpyim"]
+
+[node name="DeathTipArea3D" type="Area3D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_lpyim")

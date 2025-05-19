@@ -203,15 +203,19 @@ ANIMATION_SCALE_SPEED = 1.35
 
 [node name="Ball4" parent="." instance=ExtResource("4_8j0ie")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98301, 3.77579, -6.07333)
+start_team = 3
 
 [node name="Ball" parent="." instance=ExtResource("4_8j0ie")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+start_team = 3
 
 [node name="Ball2" parent="." instance=ExtResource("4_8j0ie")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0705, 1.34139, 1.1761)
+start_team = 3
 
 [node name="Ball3" parent="." instance=ExtResource("4_8j0ie")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0547, 1.34139, 1.1761)
+start_team = 3
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_qfnet")
