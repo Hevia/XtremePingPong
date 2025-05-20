@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cqsy6j8ohx1je"]
+[gd_scene load_steps=15 format=3 uid="uid://cqsy6j8ohx1je"]
 
 [ext_resource type="Shader" uid="uid://dtcf5u2uuovlf" path="res://shaders/simple_hitspark.tres" id="1_lhsus"]
 [ext_resource type="Texture2D" uid="uid://cm8dnxci8hbmy" path="res://assets/textures/T_flare81.png" id="2_xygnw"]
@@ -25,9 +25,6 @@ point_count = 3
 [sub_resource type="CurveTexture" id="CurveTexture_nyjoa"]
 curve = SubResource("Curve_e3gop")
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_a2wi5"]
-use_hdr = true
-
 [sub_resource type="Curve" id="Curve_ywqi4"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -39,11 +36,10 @@ curve = SubResource("Curve_ywqi4")
 angle_min = -452.8
 angle_max = 440.1
 gravity = Vector3(0, 0, 0)
-scale_min = 4.0
-scale_max = 7.0
+scale_min = 6.0
+scale_max = 8.0
 scale_curve = SubResource("CurveTexture_nwg27")
-color = Color(0, 0.619608, 0.45098, 1)
-color_ramp = SubResource("GradientTexture1D_a2wi5")
+color = Color(0.158347, 0.425704, 0.342556, 1)
 alpha_curve = SubResource("CurveTexture_nyjoa")
 
 [sub_resource type="QuadMesh" id="QuadMesh_34wt1"]
@@ -62,6 +58,7 @@ draw_pass_1 = SubResource("QuadMesh_qq5ej")
 script = ExtResource("4_s3ht1")
 
 [node name="CircleIndicatorSpark" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
 layers = 4
 material_override = SubResource("ShaderMaterial_s3ht1")
 emitting = false
