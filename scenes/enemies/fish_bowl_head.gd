@@ -1,48 +1,65 @@
 class_name FishBowlHead extends EnemyBase
 
+var enemy_alert_vfx_scene = preload("res://scenes/vfx/enemy_attack_spark.tscn")
 var projectile_scene = preload("res://scenes/game objects/ball.tscn")
-@onready var attack_timer: Timer = %AttackTimer
 @onready var attack_cooldown_timer: Timer = %AttackCooldownTimer
-@onready var marker_3d: Marker3D = %Marker3D
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
+@onready var attack_spawn_marker_3d: Marker3D = %AttackSpawnMarker3D
+@onready var search_update_timer: Timer = %SearchUpdateTimer
+@onready var search_cooldown_timer: Timer = %SearchCooldownTimer
+@onready var alert_spawn_marker_3d: Marker3D = %AlertSpawnMarker3D
 
 @export var BASE_BALL_SHOOT_SPEED = 30
 @export var ATTACK_TIMING = 0.3
 @export var COOLDOWN_TIMING = 0.6
 
 func _ready() -> void:
-	can_attack = true
+	can_attack = false
+	search_update_timer.wait_time = ENEMY_SEARCH_TIME
+	search_cooldown_timer.wait_time = ENEMY_SEARCH_COOLDOWN
 	detection_area_component_3d.area_entered.connect(on_detection_area_entered)
 	detection_area_component_3d.area_exited.connect(on_detection_area_exited)
-	attack_timer.wait_time = ATTACK_TIMING
 	attack_cooldown_timer.wait_time = COOLDOWN_TIMING
-	attack_timer.timeout.connect(on_attack_timer_timeout)
 	attack_cooldown_timer.timeout.connect(on_attack_cooldown_timer_timeout)
+	search_update_timer.timeout.connect(on_search_timer_timeout)
+	search_cooldown_timer.timeout.connect(on_search_cooldown_timer_timeout)
 
 func update_search_ticks():
-	search_tick_window += 1
-	
-	if player_ref and search_tick_window >= ENEMY_SEARCH_TICKS:
-		search_tick_window = 0
+	if player_ref:
 		search_for_player()
 
-func shoot_at_player():
-	if can_attack and player_ref and check_if_los(player_ref):
-		var projectile_instance = projectile_scene.instantiate() as Ball
+func spawn_alert_vfx():
+	if enemy_alert_vfx_scene:
+		var vfx_instance: GPUParticles3D = enemy_alert_vfx_scene.instantiate()
 		var entity_layer = get_tree().get_first_node_in_group("entity_layer")
 		if entity_layer:
-			can_attack = false
-			attack_cooldown_timer.start()
-			entity_layer.add_child(projectile_instance)
-			projectile_instance.global_position = marker_3d.global_position
-			var predicted_player_position = player_ref.global_position + Vector3(0,1,0) # aim for torso
-			var dir_vec = (predicted_player_position - projectile_instance.global_position).normalized()
+			entity_layer.add_child(vfx_instance)
+			vfx_instance.global_position = alert_spawn_marker_3d.global_position
+	
 
-			# Rotate the ball to face the player
-			var yaw_rad = atan2(dir_vec.x, dir_vec.z)
-			projectile_instance.rotation.y = yaw_rad
-			
-			projectile_instance.velocity = dir_vec * BASE_BALL_SHOOT_SPEED
+func shoot_projectile():
+	var entity_layer = get_tree().get_first_node_in_group("entity_layer")
+	if entity_layer:
+		var projectile_instance = projectile_scene.instantiate() as Throwable
+		can_attack = false
+		attack_cooldown_timer.start()
+		entity_layer.add_child(projectile_instance)
+		projectile_instance.global_position = attack_spawn_marker_3d.global_position
+		var predicted_player_position = player_ref.global_position + Vector3(0,1,0) # aim for torso
+		var dir_vec = (predicted_player_position - projectile_instance.global_position).normalized()
+		
+		# Rotate the ball to face the player
+		var yaw_rad = atan2(dir_vec.x, dir_vec.z)
+		projectile_instance.rotation.y = yaw_rad
+		
+		projectile_instance.velocity = dir_vec * BASE_BALL_SHOOT_SPEED
+		
+		projectile_instance.set_team(Constants.Teams.Enemies)
+		projectile_instance.set_color(Constants.TeamColors[Constants.Teams.Enemies])
+		
+func try_shoot_at_player():
+	if can_attack and player_ref and check_if_los(player_ref):
+		animation_player.play("Attack")
 
 func _physics_process(delta: float) -> void:
 		# Add the gravity.
@@ -52,8 +69,10 @@ func _physics_process(delta: float) -> void:
 	if is_searching:
 		update_search_ticks()
 	
-	if player_ref:
+	if player_ref and player_already_spotted:
 		look_at(player_ref.global_position)
+		# we try to shoot at the player if our attack isnt on cooldown
+		try_shoot_at_player()
 	
 	check_for_search_reset()
 	move_and_slide()
@@ -61,21 +80,30 @@ func _physics_process(delta: float) -> void:
 func search_for_player():
 	if check_if_los(player_ref):
 		is_searching = false
+		if not player_already_spotted:
+			animation_player.play("Suprise")
+			player_already_spotted = true
+
+func ready_attack():
+	can_attack = true
 
 func on_detection_area_entered(other_area: Area3D):
-	if is_searching and other_area and other_area.owner and other_area.owner is Player:
+	if other_area and other_area.owner and other_area.owner is Player:
 		player_ref = other_area.owner
 		search_for_player()
-		attack_timer.start()
 	
 func on_detection_area_exited(other_area: Area3D):
 	if other_area and other_area.owner and other_area.owner is Player:
 		player_ref = null
 		is_searching = true
 
-func on_attack_timer_timeout():
-	attack_timer.start()
-	shoot_at_player()
-	
 func on_attack_cooldown_timer_timeout():
 	can_attack = true
+
+func on_search_cooldown_timer_timeout():
+	is_searching = true
+	search_update_timer.start()
+
+func on_search_timer_timeout() -> void:
+	search_cooldown_timer.start()
+	is_searching = false

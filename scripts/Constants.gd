@@ -8,9 +8,9 @@ enum Teams {
 }
 
 const TeamColors = {
-	Teams.None: Color.ORANGE,
+	Teams.None: Color.SKY_BLUE,
 	Teams.Player: Color.BLUE,
-	Teams.Enemies: Color.RED,
+	Teams.Enemies: Color.ORANGE,
 	Teams.World: Color.WHEAT
 }
 

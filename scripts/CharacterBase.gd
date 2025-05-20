@@ -21,7 +21,6 @@ const B_MAX_CHARGE = 100
 const B_CHARGE_RATE = 25
 @export var ANIMATION_SCALE_SPEED = 1.0
 
-
 # Jump Movement Variables
 const B_JUMP_PEAK_TIME = 0.5
 const B_JUMP_FALL_TIME = 0.5

@@ -129,7 +129,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.575374, 26.0672, -22.1038)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.575374, 28.0163, -28.3189)
 
 [node name="SmallGrassPlatform4" parent="Level/JumpLevel4" instance=ExtResource("2_s6bl6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.645934, 24.1038, 18.6989)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.645934, 24.1038, 16.4515)
 
 [node name="JumpLevel5" type="Node3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 54.854, -182.961)

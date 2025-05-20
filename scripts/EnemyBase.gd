@@ -4,6 +4,8 @@ class_name EnemyBase extends CharacterBase
 @export var B_SPEED = 15.0
 @export var B_PATH_UPDATE_TICKS = 60
 @export var ENEMY_SEARCH_TICKS = 60
+@export var ENEMY_SEARCH_TIME = 4.0
+@export var ENEMY_SEARCH_COOLDOWN = 1.0
 @export var detection_area_component_3d: DetectionAreaComponent3D
 @export var los_ray_cast_3d: RayCast3D
 
@@ -14,6 +16,7 @@ var search_tick_window = 0
 var is_searching: bool = true
 var player_ref: Player
 var can_attack: bool = false
+var player_already_spotted = false
 
 func check_for_search_reset():
 	if not player_ref:

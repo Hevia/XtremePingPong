@@ -1,0 +1,74 @@
+[gd_scene load_steps=16 format=3 uid="uid://cqsy6j8ohx1je"]
+
+[ext_resource type="Shader" uid="uid://dtcf5u2uuovlf" path="res://shaders/simple_hitspark.tres" id="1_lhsus"]
+[ext_resource type="Texture2D" uid="uid://cm8dnxci8hbmy" path="res://assets/textures/T_flare81.png" id="2_xygnw"]
+[ext_resource type="Material" uid="uid://b3y8ba4pg8gub" path="res://resources/vfx/enemy_attack_spark.tres" id="3_xlx2j"]
+[ext_resource type="Texture2D" uid="uid://dvcns3np3t8lt" path="res://assets/textures/T_flare12.png" id="4_4ty6v"]
+[ext_resource type="Script" uid="uid://df14kvyl3s0ny" path="res://scenes/vfx/enemy_attack_spark.gd" id="4_s3ht1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jnlw8"]
+render_priority = 0
+shader = ExtResource("1_lhsus")
+shader_parameter/HitTexture = ExtResource("2_xygnw")
+
+[sub_resource type="QuadMesh" id="QuadMesh_qq5ej"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s3ht1"]
+render_priority = 0
+shader = ExtResource("1_lhsus")
+shader_parameter/HitTexture = ExtResource("4_4ty6v")
+
+[sub_resource type="Curve" id="Curve_e3gop"]
+_data = [Vector2(0.026455, 0), 0.0, 0.0, 0, 0, Vector2(0.502645, 1), 0.0, 0.0, 0, 0, Vector2(0.962963, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_nyjoa"]
+curve = SubResource("Curve_e3gop")
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_a2wi5"]
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_ywqi4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nwg27"]
+curve = SubResource("Curve_ywqi4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rdc3n"]
+angle_min = -452.8
+angle_max = 440.1
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 7.0
+scale_curve = SubResource("CurveTexture_nwg27")
+color = Color(0, 0.619608, 0.45098, 1)
+color_ramp = SubResource("GradientTexture1D_a2wi5")
+alpha_curve = SubResource("CurveTexture_nyjoa")
+
+[sub_resource type="QuadMesh" id="QuadMesh_34wt1"]
+
+[node name="EnemyAttackSpark" type="GPUParticles3D"]
+layers = 4
+material_override = SubResource("ShaderMaterial_jnlw8")
+emitting = false
+amount = 1
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = ExtResource("3_xlx2j")
+draw_pass_1 = SubResource("QuadMesh_qq5ej")
+script = ExtResource("4_s3ht1")
+
+[node name="CircleIndicatorSpark" type="GPUParticles3D" parent="."]
+layers = 4
+material_override = SubResource("ShaderMaterial_s3ht1")
+emitting = false
+amount = 1
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_rdc3n")
+draw_pass_1 = SubResource("QuadMesh_34wt1")
