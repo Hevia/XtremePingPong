@@ -4,7 +4,12 @@ class_name PlayerUI extends CanvasLayer
 @onready var paddle_count_label: Label = %PaddleCountLabel
 @onready var dash_count_label: Label = %DashCountLabel
 @onready var charge_percent_label: Label = %ChargePercentLabel
+@export var player: Player
+@onready var vignette: UIVignette = %Vignette
 
+
+func play_damage_vignette() -> void:
+	vignette.play_damage_vignette()
 
 func set_health_label(new_health_value: float, max_health_value: float) -> void:
 	health_label.text = "Health: " + str(new_health_value) + "/" + str(max_health_value)

@@ -48,7 +48,6 @@ albedo_texture = ExtResource("2_ehp0o")
 
 [node name="Buddy" type="CharacterBody3D"]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
-visible = false
 script = ExtResource("1_eo52y")
 
 [node name="Doggy" type="Node3D" parent="."]
@@ -61,3 +60,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_is5k1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ksggi")
+
+[node name="TutorialLabel3D" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00306, 2.43348, 0)
+billboard = 1
+text = "lorem ipsum example text for you to read I hope its not too long but we need this like this for now blah blah"
+outline_size = 16
+autowrap_mode = 2

@@ -1,9 +1,10 @@
-[gd_scene load_steps=31 format=4 uid="uid://gkr8sq0f7u2l"]
+[gd_scene load_steps=32 format=4 uid="uid://gkr8sq0f7u2l"]
 
 [ext_resource type="Script" uid="uid://bu7ysokbowts4" path="res://scenes/game objects/player.gd" id="1_c5mcm"]
 [ext_resource type="PackedScene" uid="uid://d35jn7xjt32mw" path="res://assets/mdlTableTennisPaddle.glb" id="2_5ea66"]
 [ext_resource type="PackedScene" uid="uid://crcjrt2hc1nbd" path="res://scenes/ui/lock_on_indicator.tscn" id="2_jerf6"]
 [ext_resource type="PackedScene" uid="uid://dg7fjaqrpau3i" path="res://scenes/ui/default_reticle.tscn" id="3_1eir6"]
+[ext_resource type="Script" uid="uid://buxm2wgifgmjn" path="res://scenes/player/weapon_rig.gd" id="3_jnjp8"]
 [ext_resource type="PackedScene" uid="uid://btgnmxh5wgqxw" path="res://scenes/ui/speed_lines_overlay.tscn" id="3_qy3ex"]
 [ext_resource type="Script" uid="uid://6lmdyb8yon5s" path="res://scenes/components/health_component.gd" id="4_3330k"]
 [ext_resource type="PackedScene" uid="uid://cabmk6meut82v" path="res://scenes/ui/player_ui.tscn" id="4_emysk"]
@@ -2349,6 +2350,44 @@ size = Vector3(1.26563, 1, 1.23682)
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_c5mcm")
 
+[node name="Timers" type="Node" parent="."]
+
+[node name="CoyoteTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
+
+[node name="JumpBufferTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
+
+[node name="GrabCooldownTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="DashCooldownTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="CanSwingTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="PaddleCooldownTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+
+[node name="Components" type="Node" parent="."]
+
+[node name="HealthComponent" type="Node" parent="Components"]
+unique_name_in_owner = true
+script = ExtResource("4_3330k")
+max_health = 3.0
+metadata/_custom_type_script = "uid://6lmdyb8yon5s"
+
 [node name="StandingCollisionShape" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -2376,6 +2415,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00234e-08, 3.1665e-07, -3.5
 
 [node name="WeaponRig" type="Node3D" parent="FreelookPivot/Head/HeadBobPivot/Camera3D"]
 unique_name_in_owner = true
+script = ExtResource("3_jnjp8")
+sway_left = Vector3(0, 0.1, 0)
+sway_right = Vector3(0, -0.1, 0)
 
 [node name="arms" type="Node3D" parent="FreelookPivot/Head/HeadBobPivot/Camera3D/WeaponRig"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.0713314, -0.0703491, 0.0249907)
@@ -2584,8 +2626,9 @@ visible = false
 
 [node name="DefaultReticle" parent="FreelookPivot/Head/HeadBobPivot/Camera3D" instance=ExtResource("3_1eir6")]
 
-[node name="PlayerUI" parent="FreelookPivot/Head/HeadBobPivot/Camera3D" instance=ExtResource("4_emysk")]
+[node name="PlayerUI" parent="FreelookPivot/Head/HeadBobPivot/Camera3D" node_paths=PackedStringArray("player") instance=ExtResource("4_emysk")]
 unique_name_in_owner = true
+player = NodePath("../../../../..")
 
 [node name="PaddleJumpRaycast" type="RayCast3D" parent="FreelookPivot/Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.266055, 0)
@@ -2637,36 +2680,6 @@ visible = false
 
 [node name="SpeedLinesOverlay" parent="." instance=ExtResource("3_qy3ex")]
 
-[node name="Timers" type="Node" parent="."]
-
-[node name="CoyoteTimer" type="Timer" parent="Timers"]
-unique_name_in_owner = true
-wait_time = 0.2
-one_shot = true
-
-[node name="JumpBufferTimer" type="Timer" parent="Timers"]
-unique_name_in_owner = true
-wait_time = 0.2
-one_shot = true
-
-[node name="GrabCooldownTimer" type="Timer" parent="Timers"]
-unique_name_in_owner = true
-one_shot = true
-
-[node name="DashCooldownTimer" type="Timer" parent="Timers"]
-unique_name_in_owner = true
-one_shot = true
-
-[node name="CanSwingTimer" type="Timer" parent="Timers"]
-wait_time = 0.5
-one_shot = true
-autostart = true
-
-[node name="PaddleCooldownTimer" type="Timer" parent="Timers"]
-unique_name_in_owner = true
-wait_time = 2.0
-one_shot = true
-
 [node name="DetectableAreaComponent3D" type="Area3D" parent="."]
 collision_layer = 256
 collision_mask = 0
@@ -2674,14 +2687,6 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectableAreaComponent3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_wncu4")
-
-[node name="Components" type="Node" parent="."]
-
-[node name="HealthComponent" type="Node" parent="Components"]
-unique_name_in_owner = true
-script = ExtResource("4_3330k")
-max_health = 3.0
-metadata/_custom_type_script = "uid://6lmdyb8yon5s"
 
 [node name="HurtboxComponent3D" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_314dk")]
 health_component = NodePath("../Components/HealthComponent")

@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmadrerobybqv"]
+[gd_scene load_steps=11 format=3 uid="uid://dmadrerobybqv"]
 
 [ext_resource type="Script" uid="uid://bgaw6gvvx5lb8" path="res://scenes/game objects/ball.gd" id="1_275bg"]
 [ext_resource type="PackedScene" uid="uid://74od70l2slni" path="res://scenes/components/hitbox_component_3d.tscn" id="2_er8da"]
+[ext_resource type="PackedScene" uid="uid://crvkgueatr3xs" path="res://scenes/components/projectile_hurtbox_area_3d.tscn" id="3_h4qw6"]
+[ext_resource type="PackedScene" uid="uid://dp1wpl8tbfyuh" path="res://scenes/components/health_component.tscn" id="4_b5gdj"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_grfoj"]
 
@@ -12,16 +14,19 @@ resource_local_to_scene = true
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_ekwaw")
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_nw0gf"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_h4qw6"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_er8da"]
 radius = 0.62
 
-[node name="Ball" type="CharacterBody3D" node_paths=PackedStringArray("hitbox_component_3d")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_b5gdj"]
+
+[node name="Ball" type="CharacterBody3D" node_paths=PackedStringArray("hitbox_component_3d", "projectile_hurtbox")]
 script = ExtResource("1_275bg")
 BASE_SPEED = 62.0
 hitbox_component_3d = NodePath("HitboxComponent3D")
 start_team = 3
+projectile_hurtbox = NodePath("ProjectileHurtboxArea3D")
 
 [node name="BallCollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_grfoj")
@@ -34,7 +39,7 @@ mesh = SubResource("SphereMesh_qv4px")
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="HitCollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("SphereShape3D_nw0gf")
+shape = SubResource("SphereShape3D_h4qw6")
 
 [node name="ColorswitcherTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -48,3 +53,14 @@ isProjectile = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent3D"]
 shape = SubResource("SphereShape3D_er8da")
 debug_color = Color(0.920547, 5.92008e-05, 0.69448, 0.42)
+
+[node name="ProjectileHurtboxArea3D" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_h4qw6")]
+unique_name_in_owner = true
+health_component = NodePath("../HealthComponent")
+
+[node name="HitCollisionShape3D2" type="CollisionShape3D" parent="ProjectileHurtboxArea3D"]
+shape = SubResource("SphereShape3D_b5gdj")
+debug_color = Color(0.612, 0.536, 0.13, 1)
+
+[node name="HealthComponent" parent="." instance=ExtResource("4_b5gdj")]
+max_health = 1.0

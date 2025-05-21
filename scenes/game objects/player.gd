@@ -120,6 +120,9 @@ func _ready():
 	paddle_cooldown_timer.timeout.connect(on_paddle_cooldown_timer_timeout)
 	
 	arms_anim_player.speed_scale = ANIMATION_SCALE_SPEED
+	
+	health_component.health_decreased.connect(on_player_health_decreased)
+
 
 func reset_time() -> void:
 	if slow_time_toggle:
@@ -281,6 +284,9 @@ func dash() -> void:
 
 func on_can_swing_timer_timeout():
 	can_swing = true
+
+func on_player_health_decreased():
+	player_ui.play_damage_vignette()
 
 func jump() -> void:
 	velocity.y = curr_jump_velocity

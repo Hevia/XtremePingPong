@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://boq8dgorruqhs"]
+[gd_scene load_steps=13 format=3 uid="uid://boq8dgorruqhs"]
 
 [ext_resource type="PackedScene" uid="uid://biebk77iwy1p5" path="res://scenes/environment.tscn" id="1_0u1o1"]
+[ext_resource type="Script" uid="uid://bkj8suvgdui8q" path="res://scripts/sp_level.gd" id="1_5ocye"]
 [ext_resource type="Material" uid="uid://b2tmxvpji4wwy" path="res://assets/materials/greybox.tres" id="2_eikmf"]
 [ext_resource type="PackedScene" uid="uid://c6lx8m12vwbql" path="res://scenes/game objects/throwable_gate.tscn" id="3_8lm47"]
 [ext_resource type="PackedScene" uid="uid://1svmbegxbhcd" path="res://scenes/game objects/level_objects/object_cannon.tscn" id="4_6501t"]
@@ -17,7 +18,9 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Arr
 [sub_resource type="SphereShape3D" id="SphereShape3D_6mv0q"]
 radius = 34.8737
 
-[node name="W1-3" type="Node3D"]
+[node name="W1-3" type="Node3D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_5ocye")
+player = NodePath("Player")
 
 [node name="Environment" parent="." instance=ExtResource("1_0u1o1")]
 

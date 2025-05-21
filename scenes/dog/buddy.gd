@@ -5,8 +5,12 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 @export var tutorial_detection_area3d: Area3D = null
+@export_multiline var tutorial_message: String = "lorem ipsum example text for you to read I hope its not too long but we need this like this for now blah blah"
+@onready var tutorial_label_3d: Label3D = %TutorialLabel3D
 
 func _ready() -> void:
+	self.visible = false
+	tutorial_label_3d.text = tutorial_message
 	if tutorial_detection_area3d:
 		tutorial_detection_area3d.area_entered.connect(on_tut_area_entered)
 		tutorial_detection_area3d.area_exited.connect(on_tut_area_exited)

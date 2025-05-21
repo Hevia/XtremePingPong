@@ -28,6 +28,7 @@ func set_color(target_color: Color) -> void:
 		
 
 func released_from_grab():
+	super()
 	is_grabbed = false
 	grabbed_parent = null
 	ball_collision_shape_3d.disabled = false

@@ -5,6 +5,7 @@ class_name Throwable extends CharacterBody3D
 @export var mass: float = 10.0
 @export var hitbox_component_3d: HitboxComponent3D
 @export var start_team: Constants.Teams = Constants.Teams.None
+@export var projectile_hurtbox: ProjectileHurtboxArea3D
 
 # State Variables
 ## Grab State
@@ -37,6 +38,9 @@ func find_force_to_target(target: Node3D, desired_speed = BASE_SPEED):
 		return Vector3.ZERO
 
 func apply_force(force: Vector3, momentum_retention = 0.7) -> void:
+	if projectile_hurtbox:
+		projectile_hurtbox.enabled = true
+		
 	# Store the previous velocity magnitude (speed)
 	var prev_speed = velocity.length()
 	
@@ -70,11 +74,19 @@ func stop_movement() -> void:
 
 func set_team(new_team: Constants.Teams) -> void:
 	hitbox_component_3d.set_team(new_team)
+
+func released_from_grab() -> void:
+	if projectile_hurtbox:
+		projectile_hurtbox.enabled = true
 	
 func set_grabbed_parent_ref(grabber: Node3D) -> void:
+	if projectile_hurtbox:
+		projectile_hurtbox.enabled = false
+		
 	is_grabbed = true
 	grabbed_parent = grabber
 	grabber.grabbed_object_ref = self
+	
 
 func set_color(target_color: Color) -> void:
 	# Not every projectile needs its color set
