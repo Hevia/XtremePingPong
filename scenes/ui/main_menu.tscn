@@ -1,4 +1,10 @@
-[gd_scene format=3 uid="uid://b72sc8a7v1e2k"]
+[gd_scene load_steps=6 format=3 uid="uid://b72sc8a7v1e2k"]
+
+[ext_resource type="PackedScene" uid="uid://byleeou0wi21u" path="res://scenes/ui/difficulty_button.tscn" id="1_x2yvf"]
+[ext_resource type="Resource" uid="uid://b1a5j7fwoj7i2" path="res://resources/difficulties/sunshine.tres" id="2_uhagc"]
+[ext_resource type="Resource" uid="uid://bj4d18n3mffy3" path="res://resources/difficulties/overcast.tres" id="3_btxxm"]
+[ext_resource type="Resource" uid="uid://bacapfs6cdjtc" path="res://resources/difficulties/thunderstorm.tres" id="4_wb0q5"]
+[ext_resource type="Resource" uid="uid://shvtnilyga6q" path="res://resources/difficulties/typhoon.tres" id="5_q85j6"]
 
 [node name="MainMenu" type="CanvasLayer"]
 
@@ -25,21 +31,25 @@ layout_mode = 2
 layout_mode = 2
 text = "Select Difficulty:"
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="DifficultyButton" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_x2yvf")]
 layout_mode = 2
 text = "Sunshine"
+difficulty = ExtResource("2_uhagc")
 
-[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="DifficultyButton2" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_x2yvf")]
 layout_mode = 2
 text = "Overcast"
+difficulty = ExtResource("3_btxxm")
 
-[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="DifficultyButton3" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_x2yvf")]
 layout_mode = 2
 text = "Thunderstorm"
+difficulty = ExtResource("4_wb0q5")
 
-[node name="Button4" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="DifficultyButton4" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_x2yvf")]
 layout_mode = 2
 text = "Typhoon"
+difficulty = ExtResource("5_q85j6")
 
 [node name="SandboxButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

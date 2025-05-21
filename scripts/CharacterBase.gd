@@ -5,7 +5,6 @@ var B_WALKING_SPEED = 5.0
 var B_WALKING_BONUS = 5.0
 var B_SPRINTING_SPEED = 8.0
 var B_CROUCHING_SPEED = 3.0
-const B_MOUSE_SENSITIVITY = 0.4
 const HEAD_Y_CLAMP_DOWN = deg_to_rad(-89)
 const HEAD_Y_CLAMP_UP = deg_to_rad(90)
 const CROUCHING_DEPTH = -0.5 # How much the head is dipping based on the camera

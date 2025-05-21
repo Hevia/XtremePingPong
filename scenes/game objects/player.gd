@@ -7,6 +7,8 @@ var dash_timer = 0.0
 var dash_vec = Vector2.ZERO
 var last_velocity =  Vector3.ZERO
 var current_slide_gas = 0.0
+const B_MOUSE_SENSITIVITY = 0.4
+
 
 
 # Dash variables

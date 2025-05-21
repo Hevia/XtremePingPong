@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://c6dk1dscdvni7"]
+[gd_scene load_steps=2 format=3 uid="uid://c6dk1dscdvni7"]
+
+[ext_resource type="Script" uid="uid://dvbaemvtjm08t" path="res://scenes/ui/options_menu.gd" id="1_ta2k2"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_ta2k2")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -23,26 +26,19 @@ layout_mode = 2
 size_flags_vertical = 1
 text = "Mouse Sensitivity"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="MouseSen" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HSlider" type="HSlider" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HSlider" type="HSlider" parent="MarginContainer/MarginContainer/VBoxContainer/MouseSen"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 value = 50.0
 
-[node name="TextEdit" type="TextEdit" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MouseSen"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.1
-theme_override_font_sizes/font_size = 19
-text = "100000
-"
-placeholder_text = "100
-"
-autowrap_mode = 2
+text = "100"
 
 [node name="Button" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
