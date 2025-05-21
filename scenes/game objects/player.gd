@@ -14,8 +14,8 @@ var current_dash_stock = 2
 var queue_dash_cooldown = false # TODO: Need to use this later
 
 # Paddle Variab;es
-var current_paddle_stock = 3
-var B_MAX_PADDLE_STOCK = 3
+@export var current_paddle_stock = 3
+@export var B_MAX_PADDLE_STOCK = 3
 
 # Jump Buffer
 var jump_buffer_active = false
@@ -524,7 +524,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		head_bob_pivot.position.y = lerp(head_bob_pivot.position.y, 0.0, delta*lerp_speed)
 		head_bob_pivot.position.x = lerp(head_bob_pivot.position.x, 0.0, delta*lerp_speed)
-		
+	
+	# TODO: This is a jank fix to solve the headbobbing not working for the weapon rig
+	# Or is this a perma fix? IDK!!!
+	weapon_rig.transform.origin = Vector3(head_bob_pivot.position.x, head_bob_pivot.position.y , 0)
 		
 	# Add the gravity.
 	if not is_on_floor():

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Difficulty" load_steps=2 format=3 uid="uid://bacapfs6cdjtc"]
+
+[ext_resource type="Script" uid="uid://dm4eokg0pv881" path="res://scripts/difficulty.gd" id="1_8ev7r"]
+
+[resource]
+script = ExtResource("1_8ev7r")
+name = "Thunderstorm"
+attack_speed_multiplier = 1.5
+enemy_damage_multipler = 1.0
+enemy_health_multipler = 1.0
+slow_mode_disabled = false
+starting_player_health = 1
+metadata/_custom_type_script = "uid://dm4eokg0pv881"

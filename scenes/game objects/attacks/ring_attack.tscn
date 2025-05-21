@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8aep1uufkg3s"]
+
+[ext_resource type="Script" uid="uid://bitsj74xjsolt" path="res://scenes/game objects/attacks/ring_attack.gd" id="1_unvbs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_csh0n"]
+albedo_color = Color(0.851669, 0, 0.164556, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_csh0n"]
+resource_local_to_scene = true
+margin = 0.0
+height = 0.3
+radius = 0.4
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_unvbs"]
+resource_local_to_scene = true
+margin = 0.0
+height = 0.5
+radius = 0.2
+
+[node name="RingAttack" type="Node3D"]
+script = ExtResource("1_unvbs")
+attack_length = 1.5
+
+[node name="RingMesh" type="CSGTorus3D" parent="."]
+unique_name_in_owner = true
+inner_radius = 0.2
+outer_radius = 0.4
+material = SubResource("StandardMaterial3D_csh0n")
+
+[node name="DamageArea3D" type="Area3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="DamageCollisionShape3D" type="CollisionShape3D" parent="DamageArea3D"]
+unique_name_in_owner = true
+shape = SubResource("CylinderShape3D_csh0n")
+debug_color = Color(0.991432, 0, 0.265635, 1)
+
+[node name="ImmuneArea3D" type="Area3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="ImmuneCollisionShape3D" type="CollisionShape3D" parent="ImmuneArea3D"]
+unique_name_in_owner = true
+shape = SubResource("CylinderShape3D_unvbs")
+debug_color = Color(0, 0.635, 0.426, 1)
+
+[node name="AttackTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true

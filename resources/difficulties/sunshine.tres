@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Difficulty" load_steps=3 format=3 uid="uid://b1a5j7fwoj7i2"]
+
+[ext_resource type="Script" uid="uid://dm4eokg0pv881" path="res://scripts/difficulty.gd" id="1_3rgct"]
+[ext_resource type="PackedScene" uid="uid://biebk77iwy1p5" path="res://scenes/environment.tscn" id="2_52wqd"]
+
+[resource]
+script = ExtResource("1_3rgct")
+name = "Sunshine"
+skybox_prefab = ExtResource("2_52wqd")
+attack_speed_multiplier = 1.0
+enemy_damage_multipler = 1.0
+enemy_health_multipler = 1.0
+slow_mode_disabled = 0.0
+starting_player_health = 3
+metadata/_custom_type_script = "uid://dm4eokg0pv881"

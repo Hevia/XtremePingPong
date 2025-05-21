@@ -6,6 +6,7 @@ signal health_changed
 signal health_decreased
 
 @export var max_health: float = 10
+@export var persist_after_death: bool = false
 var current_health
 
 
@@ -33,4 +34,7 @@ func get_health_percent():
 func check_death():
 	if current_health <= 0.0:
 		died.emit()
-		owner.queue_free()
+		
+		# If we dont persist the object after death lets just queue free it
+		if not persist_after_death:
+			owner.queue_free()

@@ -3,6 +3,7 @@ class_name ObjectCannon extends Node3D
 
 @onready var shoot_timer: Timer = %ShootTimer
 @onready var shoot_marker_3d: Marker3D = %ShootMarker3D
+@export var team: Constants.Teams = Constants.Teams.Enemies
 
 @export var can_shoot = true
 @export var projectile_shoot_speed = 25
@@ -26,7 +27,11 @@ func _physics_process(delta: float) -> void:
 			projectile_instance.global_transform = shoot_marker_3d.global_transform
 			var dir_vec = shoot_marker_3d.global_transform.basis.z.normalized()
 			projectile_instance.velocity = dir_vec * projectile_shoot_speed
-			projectile_instance.start_timer(projectile_expire_time)
+			if projectile_instance is Throwable:
+				(projectile_instance as Throwable).set_team(team)
+				(projectile_instance as Throwable).set_color(Constants.TeamColors[team])
+			else:
+				projectile_instance.start_timer(projectile_expire_time)
 		
 	
 func on_shoot_timer_timeout():

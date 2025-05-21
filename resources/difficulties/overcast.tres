@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Difficulty" load_steps=3 format=3 uid="uid://bj4d18n3mffy3"]
+
+[ext_resource type="Script" uid="uid://dm4eokg0pv881" path="res://scripts/difficulty.gd" id="1_xax0q"]
+[ext_resource type="PackedScene" uid="uid://biebk77iwy1p5" path="res://scenes/environment.tscn" id="2_kgk2a"]
+
+[resource]
+script = ExtResource("1_xax0q")
+name = "Overcast"
+skybox_prefab = ExtResource("2_kgk2a")
+attack_speed_multiplier = 1.25
+enemy_damage_multipler = 1.0
+enemy_health_multipler = 1.0
+slow_mode_disabled = false
+starting_player_health = 2
+metadata/_custom_type_script = "uid://dm4eokg0pv881"

@@ -40,12 +40,19 @@ func spawn_alert_vfx():
 func shoot_projectile():
 	var entity_layer = get_tree().get_first_node_in_group("entity_layer")
 	if entity_layer:
+		# TODO: Used to fix a rare bug if the player exits the area3d mid-animation
+		var backup_ref
+		if player_ref:
+			backup_ref = player_ref
+		else:
+			return
+			
 		var projectile_instance = projectile_scene.instantiate() as Throwable
 		can_attack = false
 		attack_cooldown_timer.start()
 		entity_layer.add_child(projectile_instance)
 		projectile_instance.global_position = attack_spawn_marker_3d.global_position
-		var predicted_player_position = player_ref.global_position + Vector3(0,1,0) # aim for torso
+		var predicted_player_position = backup_ref.global_position + Vector3(0,1,0) # aim for torso
 		var dir_vec = (predicted_player_position - projectile_instance.global_position).normalized()
 		
 		# Rotate the ball to face the player
@@ -85,6 +92,7 @@ func search_for_player():
 			player_already_spotted = true
 
 func ready_attack():
+	# Triggered in surprise anim
 	can_attack = true
 
 func on_detection_area_entered(other_area: Area3D):

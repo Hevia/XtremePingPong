@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://wogcod6yirg4"]
+[gd_scene load_steps=24 format=3 uid="uid://wogcod6yirg4"]
 
 [ext_resource type="PackedScene" uid="uid://biebk77iwy1p5" path="res://scenes/environment.tscn" id="1_hn16j"]
 [ext_resource type="Script" uid="uid://bkj8suvgdui8q" path="res://scripts/sp_level.gd" id="1_kfehr"]
@@ -11,13 +11,31 @@
 [ext_resource type="PackedScene" uid="uid://dexbd75gmjttf" path="res://scenes/enemies/fish_bowl_head.tscn" id="6_kfehr"]
 [ext_resource type="PackedScene" uid="uid://qr1ksy7vf7t6" path="res://scenes/components/detection_area_component_3d.tscn" id="7_1hrdh"]
 [ext_resource type="PackedScene" uid="uid://cefxljdlu2rw" path="res://scenes/game objects/level_objects/boost_gate.tscn" id="8_nckmq"]
+[ext_resource type="PackedScene" uid="uid://onrhweqk11fc" path="res://scenes/enemies/pod_head.tscn" id="9_anqga"]
 [ext_resource type="PackedScene" uid="uid://dmadrerobybqv" path="res://scenes/game objects/ball.tscn" id="10_1hrdh"]
-[ext_resource type="PackedScene" uid="uid://cipck1f310w8t" path="res://scenes/terrain/xl_grassy_plain.tscn" id="10_kfehr"]
+[ext_resource type="PackedScene" uid="uid://1svmbegxbhcd" path="res://scenes/game objects/level_objects/object_cannon.tscn" id="12_s66a8"]
+[ext_resource type="PackedScene" uid="uid://bphii4n3scmky" path="res://scenes/game objects/level_objects/goal.tscn" id="13_anqga"]
+[ext_resource type="PackedScene" uid="uid://2s2qtkxhaasb" path="res://scenes/game objects/spikes.tscn" id="13_ifdvt"]
+[ext_resource type="PackedScene" uid="uid://boq8dgorruqhs" path="res://scenes/levels/w_1_3.tscn" id="14_s66a8"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_s6bl6"]
+vertices = PackedVector3Array(1.32335, 54.8896, -212.661, 0.323355, 54.8896, -212.411, 0.323355, 54.8896, -211.161, 2.82335, 54.8896, -211.161, 2.82335, 54.8896, -216.411, -2.42665, 54.8896, -216.411, -0.176645, 54.8896, -214.661, 1.07335, 54.8896, -214.411, -2.42665, 54.8896, -213.411, -0.926645, 54.8896, -213.411, -0.426645, 54.8896, -212.411, -2.42665, 54.8896, -211.161, 2.82335, 52.8896, -205.661, 3.07335, 52.8896, -207.411, 2.82335, 52.8896, -210.161, -2.42665, 52.8896, -210.161, -2.42665, 52.8896, -205.661, 3.82335, 50.8896, -204.911, 3.07335, 50.8896, -204.661, 8.32335, 50.8896, -204.411, 8.57335, 50.8896, -206.161, 8.32335, 50.8896, -209.661, 4.07335, 50.8896, -209.661, -12.9266, 50.8896, -200.411, -12.9266, 50.8896, -199.161, -11.9266, 50.8896, -198.411, -11.9266, 50.8896, -202.161, -15.1766, 50.8896, -200.911, -13.4266, 50.8896, -200.911, -16.9266, 50.8896, -202.161, -16.9266, 50.8896, -199.161, -15.4266, 50.8896, -199.161, 8.32335, 50.8896, -196.911, 8.57335, 50.8896, -198.661, 8.32335, 50.8896, -202.161, 3.07335, 50.8896, -202.161, 3.07335, 50.8896, -196.911, -13.4266, 50.8896, -198.661, -15.1766, 50.8896, -198.661, -16.9266, 50.8896, -196.911, -11.9266, 50.8896, -196.911, -1.67665, 50.6396, -195.161, -1.67665, 50.6396, -189.661, 3.57335, 50.6396, -189.661, 3.57335, 50.6396, -195.161, -2.92665, 50.6396, -183.411, -2.67665, 50.6396, -185.161, -2.92665, 50.6396, -188.661, -8.17665, 50.6396, -188.661, -8.17665, 50.6396, -183.411, 6.32335, 51.3896, -183.411, 6.57335, 51.3896, -184.661, 5.57335, 51.3896, -185.411, 4.32335, 51.3896, -183.411, 5.57335, 51.3896, -186.411, 4.32335, 51.3896, -188.661, 6.82335, 51.3896, -187.411, 6.57335, 51.3896, -188.661, 7.82335, 51.3896, -184.661, 9.57335, 51.3896, -183.411, 8.82335, 51.3896, -185.411, 9.57335, 51.3896, -188.661, 8.57335, 51.3896, -187.411, -2.42665, 50.8896, -182.161, -2.42665, 50.8896, -175.161, 2.82335, 50.8896, -175.161, 2.82335, 50.8896, -182.161, 0.0733547, 51.6396, -168.911, 0.0733547, 51.6396, -170.411, -0.926645, 51.6396, -170.911, -2.17665, 51.6396, -168.911, -0.926645, 51.6396, -171.911, -2.17665, 51.6396, -174.161, 0.323355, 51.6396, -172.911, 0.0733547, 51.6396, -174.161, 1.57335, 51.6396, -170.411, 3.07335, 51.6396, -168.911, 2.32335, 51.6396, -170.911, 3.07335, 51.6396, -174.161, 2.07335, 51.6396, -172.911, -2.42665, 50.8896, -165.661, -2.42665, 50.8896, -156.161, 2.82335, 50.8896, -156.161, 2.82335, 50.8896, -165.661, -2.42665, 50.8896, -154.661, -2.42665, 50.8896, -145.161, 2.82335, 50.8896, -145.161, 2.82335, 50.8896, -154.661, -2.42665, 70.6396, -119.161, -2.42665, 70.6396, -109.661, 2.82335, 70.6396, -109.661, 2.82335, 70.6396, -119.161, -2.42665, 71.1396, -100.661, -2.42665, 71.1396, -99.4107, -0.676645, 71.1396, -99.1607, 2.82335, 71.1396, -100.661, -0.676645, 71.1396, -97.4107, -2.42665, 71.1396, -81.1607, 2.82335, 71.1396, -81.1607, -2.42665, 71.1396, -97.1607, -3.92665, 71.3896, -91.4107, -3.67665, 71.3896, -93.1607, -3.92665, 71.3896, -96.9107, -8.92665, 71.3896, -96.9107, -8.92665, 71.3896, -91.4107, -2.42665, 54.1396, -72.9107, -0.926645, 54.1396, -72.9107, -0.176645, 54.1396, -73.6607, -2.42665, 54.1396, -75.9107, 1.57335, 54.1396, -73.6607, 2.57335, 54.1396, -74.4107, 2.57335, 54.1396, -75.9107, 2.07335, 54.1396, -73.4107, -1.17665, 54.1396, -71.9107, 2.07335, 54.1396, -72.6607, 2.57335, 54.1396, -70.4107, -2.42665, 54.1396, -70.4107, -0.426645, 54.1396, -71.1607, 1.07335, 54.1396, -71.1607, 2.82335, 54.1396, -61.9107, 2.32335, 54.1396, -62.1607, 1.07335, 54.1396, -60.9107, 2.57335, 54.1396, -60.1607, -2.42665, 54.1396, -60.1607, -0.176645, 54.1396, -60.9107, -1.42665, 54.1396, -61.6607, -1.67665, 54.1396, -63.6607, -0.426645, 54.1396, -64.9107, -0.676645, 54.1396, -65.4107, -2.42665, 54.1396, -65.4107, 2.32335, 54.1396, -63.9107, 2.57335, 54.1396, -65.4107, 1.82335, 54.1396, -64.6607, 0.823355, 54.6396, -63.9107, -0.176645, 54.6396, -63.9107, -0.676645, 54.6396, -63.1607, -0.426645, 54.6396, -62.1607, 0.573355, 54.6396, -61.9107, 1.32335, 54.6396, -62.4107, -2.67665, 28.1396, -49.4107, -2.67665, 28.1396, -47.4107, -1.67665, 28.1396, -47.6607, -0.676645, 28.1396, -49.1607, 5.57335, 28.1396, -47.1607, 6.07335, 28.1396, -47.6607, 7.57335, 28.1396, -49.4107, 1.57335, 28.1396, -48.9107, 2.07335, 28.1396, -48.4107, 1.32335, 28.1396, -45.4107, 2.82335, 28.1396, -43.6607, 3.07335, 28.1396, -44.1607, 2.07335, 28.1396, -45.9107, 7.32335, 28.1396, -47.6607, 5.82335, 28.1396, -44.1607, 5.82335, 28.1396, -45.6607, 7.82335, 28.1396, -47.4107, 8.82335, 28.1396, -49.4107, 7.82335, 28.1396, -45.6607, 8.82335, 28.1396, -44.1607, 1.07335, 28.8896, -47.9107, -0.176645, 28.8896, -48.1607, -0.676645, 28.8896, -47.6607, -0.176645, 28.8896, -46.1607, 1.07335, 28.8896, -46.4107, -1.67665, 28.1396, -46.1607, -2.67665, 28.1396, -39.9107, -0.676645, 28.1396, -45.1607, 2.57335, 28.1396, -39.9107, -2.42665, 14.1396, -28.4107, -1.67665, 14.1396, -26.6607, -0.676645, 14.1396, -27.6607, 2.57335, 14.1396, -28.4107, 1.32335, 14.1396, -27.6607, -2.42665, 14.1396, -23.1607, -1.67665, 14.1396, -24.6607, 2.07335, 14.1396, -26.9107, 2.82335, 14.1396, -24.1607, 2.07335, 14.1396, -24.4107, -0.926645, 14.1396, -23.9107, 2.57335, 14.1396, -23.1607, 0.823355, 14.1396, -23.6607, -0.426645, 14.6396, -24.9107, 0.323355, 14.6396, -24.6607, 1.07335, 14.6396, -25.1607, 0.823355, 14.6396, -26.6607, -0.676645, 14.6396, -26.1607, -8.92665, 14.1396, -21.4107, -7.42665, 14.1396, -21.4107, -6.92665, 14.1396, -22.1607, -8.92665, 14.1396, -23.9107, -5.67665, 14.1396, -22.1607, -5.17665, 14.1396, -21.4107, -3.67665, 14.1396, -21.4107, -3.67665, 14.1396, -23.9107, -5.42665, 14.1396, -19.9107, -3.67665, 14.1396, -18.6607, -7.17665, 14.1396, -19.9107, -8.92665, 14.1396, -18.6607, 2.07335, 0.889568, -3.91072, 1.57335, 0.889568, -3.66072, 2.57335, 0.889568, -3.41072, -1.67665, 0.889568, -6.16072, -1.17665, 0.889568, -6.66072, -2.42665, 0.889568, -6.66072, -1.92665, 0.889568, -3.16072, -1.17665, 0.889568, -3.41072, -1.67665, 0.889568, -4.16072, 2.82335, 0.889568, -6.66072, 1.82335, 0.889568, -6.66072, -0.676645, 0.889568, -1.91072, -1.92665, 0.889568, -2.41072, -2.42665, 0.889568, 2.58928, 2.82335, 0.889568, 2.58928, 3.07335, 0.889568, 0.839279, 2.82335, 0.889568, -2.41072, 0.823355, 1.38957, -5.91072, 0.0733547, 1.38957, -6.16072, -0.676645, 1.38957, -5.66072, -0.176645, 1.38957, -4.16072, 1.07335, 1.38957, -4.41072)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(9, 8, 6), PackedInt32Array(6, 8, 5), PackedInt32Array(0, 7, 3), PackedInt32Array(3, 7, 4), PackedInt32Array(10, 1, 2), PackedInt32Array(8, 9, 10), PackedInt32Array(2, 11, 10), PackedInt32Array(10, 11, 8), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 16), PackedInt32Array(14, 16, 15), PackedInt32Array(19, 18, 17), PackedInt32Array(20, 19, 21), PackedInt32Array(21, 19, 22), PackedInt32Array(22, 19, 17), PackedInt32Array(24, 23, 25), PackedInt32Array(25, 23, 26), PackedInt32Array(28, 27, 26), PackedInt32Array(26, 27, 29), PackedInt32Array(26, 23, 28), PackedInt32Array(31, 30, 27), PackedInt32Array(27, 30, 29), PackedInt32Array(33, 32, 34), PackedInt32Array(34, 32, 36), PackedInt32Array(34, 36, 35), PackedInt32Array(37, 24, 25), PackedInt32Array(31, 38, 30), PackedInt32Array(30, 38, 39), PackedInt32Array(25, 40, 37), PackedInt32Array(37, 40, 38), PackedInt32Array(38, 40, 39), PackedInt32Array(44, 43, 41), PackedInt32Array(41, 43, 42), PackedInt32Array(46, 45, 47), PackedInt32Array(47, 45, 49), PackedInt32Array(47, 49, 48), PackedInt32Array(51, 50, 52), PackedInt32Array(52, 50, 53), PackedInt32Array(52, 53, 54), PackedInt32Array(54, 53, 55), PackedInt32Array(56, 54, 57), PackedInt32Array(57, 54, 55), PackedInt32Array(50, 51, 58), PackedInt32Array(60, 59, 58), PackedInt32Array(58, 59, 50), PackedInt32Array(62, 61, 60), PackedInt32Array(60, 61, 59), PackedInt32Array(56, 57, 62), PackedInt32Array(62, 57, 61), PackedInt32Array(66, 65, 63), PackedInt32Array(63, 65, 64), PackedInt32Array(68, 67, 69), PackedInt32Array(69, 67, 70), PackedInt32Array(69, 70, 71), PackedInt32Array(71, 70, 72), PackedInt32Array(73, 71, 74), PackedInt32Array(74, 71, 72), PackedInt32Array(68, 75, 67), PackedInt32Array(67, 75, 76), PackedInt32Array(79, 78, 77), PackedInt32Array(77, 78, 76), PackedInt32Array(75, 77, 76), PackedInt32Array(73, 74, 79), PackedInt32Array(79, 74, 78), PackedInt32Array(83, 82, 80), PackedInt32Array(80, 82, 81), PackedInt32Array(87, 86, 84), PackedInt32Array(84, 86, 85), PackedInt32Array(91, 90, 88), PackedInt32Array(88, 90, 89), PackedInt32Array(93, 92, 94), PackedInt32Array(94, 92, 95), PackedInt32Array(97, 96, 98), PackedInt32Array(98, 96, 95), PackedInt32Array(96, 94, 95), PackedInt32Array(97, 99, 96), PackedInt32Array(101, 100, 102), PackedInt32Array(102, 100, 104), PackedInt32Array(102, 104, 103), PackedInt32Array(106, 105, 107), PackedInt32Array(107, 105, 108), PackedInt32Array(110, 109, 111), PackedInt32Array(111, 109, 107), PackedInt32Array(111, 107, 108), PackedInt32Array(110, 112, 109), PackedInt32Array(105, 106, 113), PackedInt32Array(112, 110, 114), PackedInt32Array(114, 110, 115), PackedInt32Array(117, 116, 113), PackedInt32Array(113, 116, 105), PackedInt32Array(118, 115, 117), PackedInt32Array(117, 115, 116), PackedInt32Array(118, 114, 115), PackedInt32Array(119, 122, 120), PackedInt32Array(120, 122, 121), PackedInt32Array(125, 124, 123), PackedInt32Array(127, 126, 128), PackedInt32Array(128, 126, 129), PackedInt32Array(125, 123, 126), PackedInt32Array(126, 123, 129), PackedInt32Array(121, 122, 124), PackedInt32Array(124, 122, 123), PackedInt32Array(120, 130, 119), PackedInt32Array(119, 130, 131), PackedInt32Array(127, 128, 132), PackedInt32Array(132, 128, 131), PackedInt32Array(131, 130, 132), PackedInt32Array(134, 133, 135), PackedInt32Array(135, 133, 136), PackedInt32Array(136, 133, 137), PackedInt32Array(137, 133, 138), PackedInt32Array(140, 139, 141), PackedInt32Array(141, 139, 142), PackedInt32Array(144, 143, 145), PackedInt32Array(145, 143, 147), PackedInt32Array(145, 147, 146), PackedInt32Array(150, 149, 151), PackedInt32Array(151, 149, 148), PackedInt32Array(142, 139, 146), PackedInt32Array(146, 139, 145), PackedInt32Array(145, 152, 144), PackedInt32Array(154, 153, 143), PackedInt32Array(143, 153, 150), PackedInt32Array(143, 150, 151), PackedInt32Array(143, 151, 147), PackedInt32Array(152, 145, 155), PackedInt32Array(155, 145, 156), PackedInt32Array(157, 155, 158), PackedInt32Array(158, 155, 156), PackedInt32Array(154, 157, 153), PackedInt32Array(153, 157, 158), PackedInt32Array(160, 159, 161), PackedInt32Array(161, 159, 163), PackedInt32Array(161, 163, 162), PackedInt32Array(141, 164, 140), PackedInt32Array(140, 164, 165), PackedInt32Array(148, 149, 166), PackedInt32Array(166, 149, 167), PackedInt32Array(166, 167, 165), PackedInt32Array(164, 166, 165), PackedInt32Array(170, 169, 168), PackedInt32Array(172, 170, 171), PackedInt32Array(171, 170, 168), PackedInt32Array(174, 173, 169), PackedInt32Array(169, 173, 168), PackedInt32Array(175, 172, 171), PackedInt32Array(177, 175, 176), PackedInt32Array(176, 175, 171), PackedInt32Array(174, 178, 173), PackedInt32Array(176, 179, 177), PackedInt32Array(177, 179, 180), PackedInt32Array(178, 180, 173), PackedInt32Array(173, 180, 179), PackedInt32Array(182, 181, 183), PackedInt32Array(183, 181, 185), PackedInt32Array(183, 185, 184), PackedInt32Array(187, 186, 188), PackedInt32Array(188, 186, 189), PackedInt32Array(191, 190, 192), PackedInt32Array(192, 190, 193), PackedInt32Array(188, 189, 190), PackedInt32Array(190, 189, 193), PackedInt32Array(191, 192, 194), PackedInt32Array(194, 192, 195), PackedInt32Array(194, 195, 196), PackedInt32Array(196, 195, 197), PackedInt32Array(187, 196, 186), PackedInt32Array(186, 196, 197), PackedInt32Array(200, 199, 198), PackedInt32Array(203, 202, 201), PackedInt32Array(206, 205, 204), PackedInt32Array(201, 206, 203), PackedInt32Array(203, 206, 204), PackedInt32Array(208, 207, 198), PackedInt32Array(198, 207, 200), PackedInt32Array(210, 209, 211), PackedInt32Array(211, 209, 213), PackedInt32Array(211, 213, 212), PackedInt32Array(209, 214, 213), PackedInt32Array(214, 200, 207), PackedInt32Array(214, 207, 213), PackedInt32Array(204, 210, 203), PackedInt32Array(203, 210, 211), PackedInt32Array(216, 215, 217), PackedInt32Array(217, 215, 218), PackedInt32Array(218, 215, 219)]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_kjyxi"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_pmdvn"]
 radius = 19.3614
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_t71ks"]
+radius = 31.7978
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kacan"]
+radius = 63.2582
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_y34um"]
+radius = 27.4046
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6a7rf"]
+radius = 38.9331
 
 [node name="W1-2" type="Node3D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_kfehr")
@@ -60,41 +78,57 @@ detection_area_component_3d = NodePath("DetectionAreaComponent3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.63639, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/JumpLevel1/FishBowlHead/DetectionAreaComponent3D"]
-shape = SubResource("SphereShape3D_kjyxi")
+shape = SubResource("SphereShape3D_pmdvn")
 
 [node name="JumpLevel2" type="Node3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.5133)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.61469, -8.66002)
 
 [node name="JumpPad2" parent="Level/JumpLevel2" instance=ExtResource("3_s6omy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.228583, 31.4992, -33.9055)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.228583, 31.4992, -38.5029)
 jump_pad_strength = 30.0
 
-[node name="XSmallGrassPlatform" parent="Level/JumpLevel2" instance=ExtResource("5_nckmq")]
+[node name="SmallGrassPlatform" parent="Level/JumpLevel2" instance=ExtResource("2_s6bl6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.832194, 29.8908, -30.9354)
 
 [node name="XSmallGrassPlatform2" parent="Level/JumpLevel2" instance=ExtResource("5_nckmq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.36296, 29.8908, -35.1711)
 
-[node name="XSmallGrassPlatform3" parent="Level/JumpLevel2" instance=ExtResource("5_nckmq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.36847, 29.8908, -35.1711)
+[node name="FishBowlHead2" parent="Level/JumpLevel2" node_paths=PackedStringArray("detection_area_component_3d") instance=ExtResource("6_kfehr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8182, 32.55, -37.8103)
+detection_area_component_3d = NodePath("DetectionAreaComponent3D")
+
+[node name="DetectionAreaComponent3D" parent="Level/JumpLevel2/FishBowlHead2" instance=ExtResource("7_1hrdh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.63639, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/JumpLevel2/FishBowlHead2/DetectionAreaComponent3D"]
+shape = SubResource("SphereShape3D_t71ks")
 
 [node name="JumpLevel3" type="Node3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.8718, -33.9061)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.3156, -31.7486)
 
 [node name="JumpPad2" parent="Level/JumpLevel3" instance=ExtResource("3_s6omy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.374781, 31.4992, -32.579)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.374781, 31.4992, -31.2357)
 jump_pad_strength = 35.0
 
-[node name="ThrowableGate" parent="Level/JumpLevel3" instance=ExtResource("4_rcjcq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.226743, 35.7291, -24.7231)
-
 [node name="XSmallGrassPlatform" parent="Level/JumpLevel3" instance=ExtResource("5_nckmq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.755625, 29.8627, -35.6346)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.755625, 29.8627, -38.3649)
 
 [node name="XSmallGrassPlatform2" parent="Level/JumpLevel3" instance=ExtResource("5_nckmq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.755625, 29.8627, -29.38)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.755625, 29.8627, -28.0367)
+
+[node name="PodHead" parent="Level/JumpLevel3" node_paths=PackedStringArray("detection_area_component_3d") instance=ExtResource("9_anqga")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.284263, 31.9147, -40.5169)
+COOLDOWN_TIMING = 0.3
+detection_area_component_3d = NodePath("DetectionAreaComponent3D")
+
+[node name="DetectionAreaComponent3D" parent="Level/JumpLevel3/PodHead" instance=ExtResource("7_1hrdh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.63639, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/JumpLevel3/PodHead/DetectionAreaComponent3D"]
+shape = SubResource("SphereShape3D_kacan")
 
 [node name="BoostGateTutorial" type="Node3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.30941, 5.53502)
 
 [node name="BoostGate" parent="Level/BoostGateTutorial" instance=ExtResource("8_nckmq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.479188, 77.8653, -128.454)
@@ -106,12 +140,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.645934, 72.4984, -96.2959)
 [node name="SmallGrassPlatform2" parent="Level/BoostGateTutorial" instance=ExtResource("2_s6bl6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.645934, 72.0273, -114.819)
 
-[node name="JumpLevel4" type="Node3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.8718, -166.933)
+[node name="ObjectCannon" parent="Level/BoostGateTutorial" instance=ExtResource("12_s66a8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.91814, 74.1682, -103.817)
+team = 3
+projectile_shoot_speed = 15
+cannon_projectile = ExtResource("10_1hrdh")
 
-[node name="JumpPad2" parent="Level/JumpLevel4" instance=ExtResource("3_s6omy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.228583, 29.6642, -30.8948)
-jump_pad_strength = 35.0
+[node name="ThrowableGate2" parent="Level/BoostGateTutorial" instance=ExtResource("4_rcjcq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.186394, 77.1606, -107.914)
+
+[node name="XSmallGrassPlatform" parent="Level/BoostGateTutorial" instance=ExtResource("5_nckmq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.28723, 72.692, -96.6917)
+
+[node name="SmallGrassPlatform3" parent="Level/BoostGateTutorial" instance=ExtResource("2_s6bl6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.645934, 72.4984, -86.2876)
+
+[node name="JumpLevel4" type="Node3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.8718, -161.372)
+
+[node name="Goal" parent="Level/JumpLevel4" instance=ExtResource("13_anqga")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.228583, 31.0189, -52.0546)
+next_scene = ExtResource("14_s66a8")
 
 [node name="SmallGrassPlatform2" parent="Level/JumpLevel4" instance=ExtResource("2_s6bl6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.645934, 24.1038, -11.028)
@@ -120,22 +169,62 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.645934, 24.1038, -11.028)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.645934, 24.1038, 5.47983)
 
 [node name="XSmallGrassPlatform" parent="Level/JumpLevel4" instance=ExtResource("5_nckmq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.93814, 24.096, -14.9981)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.04922, 24.6561, -21.6701)
 
 [node name="XSmallGrassPlatform2" parent="Level/JumpLevel4" instance=ExtResource("5_nckmq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.575374, 26.0672, -22.1038)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.575374, 26.0672, -43.9752)
 
 [node name="XSmallGrassPlatform3" parent="Level/JumpLevel4" instance=ExtResource("5_nckmq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.575374, 28.0163, -28.3189)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.575374, 28.0163, -49.4787)
 
 [node name="SmallGrassPlatform4" parent="Level/JumpLevel4" instance=ExtResource("2_s6bl6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.645934, 24.1038, 16.4515)
 
-[node name="JumpLevel5" type="Node3D" parent="Level"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 54.854, -182.961)
+[node name="PodHead" parent="Level/JumpLevel4" node_paths=PackedStringArray("detection_area_component_3d") instance=ExtResource("9_anqga")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.16847, 26.4763, -24.4985)
+detection_area_component_3d = NodePath("DetectionAreaComponent3D")
 
-[node name="XLGrassyPlain" parent="Level/JumpLevel5" instance=ExtResource("10_kfehr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.8889, 26.8346, -25.8956)
+[node name="DetectionAreaComponent3D" parent="Level/JumpLevel4/PodHead" instance=ExtResource("7_1hrdh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.63639, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/JumpLevel4/PodHead/DetectionAreaComponent3D"]
+shape = SubResource("SphereShape3D_y34um")
+
+[node name="XSmallGrassPlatform4" parent="Level/JumpLevel4" instance=ExtResource("5_nckmq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.399099, 24.8158, -7.21465)
+
+[node name="PodHead2" parent="Level/JumpLevel4" node_paths=PackedStringArray("detection_area_component_3d") instance=ExtResource("9_anqga")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.720147, 26.6359, -10.043)
+detection_area_component_3d = NodePath("DetectionAreaComponent3D")
+
+[node name="DetectionAreaComponent3D" parent="Level/JumpLevel4/PodHead2" instance=ExtResource("7_1hrdh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.63639, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/JumpLevel4/PodHead2/DetectionAreaComponent3D"]
+shape = SubResource("SphereShape3D_6a7rf")
+
+[node name="XSmallGrassPlatform5" parent="Level/JumpLevel4" instance=ExtResource("5_nckmq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.32779, 23.9213, -21.6237)
+
+[node name="XSmallGrassPlatform6" parent="Level/JumpLevel4" instance=ExtResource("5_nckmq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0725503, 23.9213, -27.9837)
+
+[node name="XSmallGrassPlatform7" parent="Level/JumpLevel4" instance=ExtResource("5_nckmq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90872, 24.1013, -35.1674)
+
+[node name="XSmallGrassPlatform8" parent="Level/JumpLevel4" instance=ExtResource("5_nckmq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.90872, 24.1013, -42.6133)
+
+[node name="ObjectCannon" parent="Level/JumpLevel4" instance=ExtResource("12_s66a8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2672, 25.8054, -38.4243)
+can_shoot = false
+projectile_shoot_speed = 30
+projectile_expire_time = 4.0
+projectile_shoot_cadence = 1.25
+cannon_projectile = ExtResource("13_ifdvt")
+
+[node name="XSmallGrassPlatform9" parent="Level/JumpLevel4" instance=ExtResource("5_nckmq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.3173, 24.1013, -35.2151)
 
 [node name="Player" parent="." instance=ExtResource("4_gjo7e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.40424)

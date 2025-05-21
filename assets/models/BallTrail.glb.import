@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://2am8o8xhet04"
-path="res://.godot/imported/podhead.glb-df7b52b942319c7ae3cef798a1dfe4be.scn"
+uid="uid://dyer0dhaq2gk3"
+path="res://.godot/imported/BallTrail.glb-5fcedd5ffea56c2735280f6bbeffb3e4.scn"
 
 [deps]
 
-source_file="res://assets/models/podhead.glb"
-dest_files=["res://.godot/imported/podhead.glb-df7b52b942319c7ae3cef798a1dfe4be.scn"]
+source_file="res://assets/models/BallTrail.glb"
+dest_files=["res://.godot/imported/BallTrail.glb-5fcedd5ffea56c2735280f6bbeffb3e4.scn"]
 
 [params]
 
