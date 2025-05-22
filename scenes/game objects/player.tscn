@@ -2347,7 +2347,7 @@ size = Vector3(1.26563, 1, 1.23682)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3330k"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_c5mcm")
 
 [node name="Timers" type="Node" parent="."]

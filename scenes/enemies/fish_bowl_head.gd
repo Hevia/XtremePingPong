@@ -9,12 +9,11 @@ var projectile_scene = preload("res://scenes/game objects/ball.tscn")
 @onready var search_cooldown_timer: Timer = %SearchCooldownTimer
 @onready var alert_spawn_marker_3d: Marker3D = %AlertSpawnMarker3D
 
-@export var BASE_BALL_SHOOT_SPEED = 30
-@export var ATTACK_TIMING = 0.3
-@export var COOLDOWN_TIMING = 0.6
+@export var BASE_BALL_SHOOT_SPEED = 60
+
 
 func _ready() -> void:
-	can_attack = false
+	super()
 	search_update_timer.wait_time = ENEMY_SEARCH_TIME
 	search_cooldown_timer.wait_time = ENEMY_SEARCH_COOLDOWN
 	detection_area_component_3d.area_entered.connect(on_detection_area_entered)
@@ -23,6 +22,13 @@ func _ready() -> void:
 	attack_cooldown_timer.timeout.connect(on_attack_cooldown_timer_timeout)
 	search_update_timer.timeout.connect(on_search_timer_timeout)
 	search_cooldown_timer.timeout.connect(on_search_cooldown_timer_timeout)
+
+func update_stats(difficulty: Difficulty):
+	super(difficulty)
+	var new_projectile_speed = BASE_BALL_SHOOT_SPEED + (BASE_BALL_SHOOT_SPEED * difficulty.projectile_speed_modifier)
+	BASE_BALL_SHOOT_SPEED = clamp(new_projectile_speed ,BASE_BALL_SHOOT_SPEED, 1000)
+	attack_cooldown_timer.wait_time = COOLDOWN_TIMING
+	
 
 func update_search_ticks():
 	if player_ref:

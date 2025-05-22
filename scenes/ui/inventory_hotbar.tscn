@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5oslhyvbw0yi"]
+
+[ext_resource type="Script" uid="uid://cs2mrpimqktgq" path="res://scenes/ui/inventory_hotbar.gd" id="1_2l6e1"]
+[ext_resource type="Texture2D" uid="uid://dk0oivmjqvt2c" path="res://assets/textures/dev/Icons - icones/book-01.png" id="2_4xme0"]
+
+[node name="InventoryHotbar" type="CanvasLayer"]
+script = ExtResource("1_2l6e1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_4xme0")

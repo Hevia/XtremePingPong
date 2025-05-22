@@ -1,0 +1,1 @@
+class_name InventoryHotbar extends CanvasLayer

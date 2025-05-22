@@ -7,9 +7,11 @@
 script = ExtResource("1_b52u1")
 name = "Typhoon"
 skybox_prefab = ExtResource("2_rrtqk")
-attack_speed_multiplier = 2.0
+attack_speed_multiplier = 4.0
 enemy_damage_multipler = 1.0
 enemy_health_multipler = 1.0
+projectile_speed_modifier = 0.5
 slow_mode_disabled = true
 starting_player_health = 1
+enemies_on_ready = true
 metadata/_custom_type_script = "uid://dm4eokg0pv881"

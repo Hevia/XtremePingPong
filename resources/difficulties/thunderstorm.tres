@@ -1,13 +1,17 @@
-[gd_resource type="Resource" script_class="Difficulty" load_steps=2 format=3 uid="uid://bacapfs6cdjtc"]
+[gd_resource type="Resource" script_class="Difficulty" load_steps=3 format=3 uid="uid://bacapfs6cdjtc"]
 
 [ext_resource type="Script" uid="uid://dm4eokg0pv881" path="res://scripts/difficulty.gd" id="1_8ev7r"]
+[ext_resource type="PackedScene" uid="uid://biebk77iwy1p5" path="res://scenes/environment.tscn" id="2_x7481"]
 
 [resource]
 script = ExtResource("1_8ev7r")
 name = "Thunderstorm"
-attack_speed_multiplier = 1.5
+skybox_prefab = ExtResource("2_x7481")
+attack_speed_multiplier = 2.0
 enemy_damage_multipler = 1.0
 enemy_health_multipler = 1.0
+projectile_speed_modifier = 0.25
 slow_mode_disabled = false
 starting_player_health = 1
+enemies_on_ready = true
 metadata/_custom_type_script = "uid://dm4eokg0pv881"

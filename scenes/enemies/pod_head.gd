@@ -11,12 +11,11 @@ var ring_attack_scene = preload("res://scenes/game objects/attacks/ring_attack.t
 @onready var search_update_timer: Timer = %SearchUpdateTimer
 @onready var alert_spawn_marker_3d: Marker3D = %AlertSpawnMarker3D
 
-@export var ATTACK_TIMING = 0.3
-@export var COOLDOWN_TIMING = 0.6
+
 @export var RING_ATTACK_LENGTH = 1.5
 
 func _ready() -> void:
-	can_attack = false
+	super()
 	search_update_timer.wait_time = ENEMY_SEARCH_TIME
 	search_cooldown_timer.wait_time = ENEMY_SEARCH_COOLDOWN
 	detection_area_component_3d.area_entered.connect(on_detection_area_entered)
@@ -25,7 +24,10 @@ func _ready() -> void:
 	attack_cooldown_timer.timeout.connect(on_attack_cooldown_timer_timeout)
 	search_update_timer.timeout.connect(on_search_timer_timeout)
 	search_cooldown_timer.timeout.connect(on_search_cooldown_timer_timeout)
-
+	
+func update_stats(difficulty: Difficulty):
+	super(difficulty)
+	
 func update_search_ticks():
 	if player_ref:
 		search_for_player()
@@ -50,8 +52,6 @@ func spawn_ring_attack():
 		ring_attack_instance.attack_length = RING_ATTACK_LENGTH
 		
 func try_shoot_at_player():
-	print("can_attack: " + str(can_attack))
-	print(check_if_los(player_ref))
 	if can_attack and player_ref and check_if_los(player_ref):
 		animation_player.play("Attack")
 

@@ -2,12 +2,17 @@ class_name EnemyBase extends CharacterBase
 
 @export var JUMP_VELOCITY = 4.5
 @export var B_SPEED = 15.0
+
+#TODO: Remove these
 @export var B_PATH_UPDATE_TICKS = 60
 @export var ENEMY_SEARCH_TICKS = 60
 @export var ENEMY_SEARCH_TIME = 4.0
 @export var ENEMY_SEARCH_COOLDOWN = 1.0
 @export var detection_area_component_3d: DetectionAreaComponent3D
 @export var los_ray_cast_3d: RayCast3D
+
+@export var ATTACK_TIMING = 0.3
+@export var COOLDOWN_TIMING = 0.6
 
 # Lower this to update the "thinking" more often
 @export var path_update_window = 0
@@ -17,6 +22,17 @@ var is_searching: bool = true
 var player_ref: Player
 var can_attack: bool = false
 var player_already_spotted = false
+
+func _ready() -> void:
+	update_stats(GameState.current_difficulty)
+
+func update_stats(difficulty: Difficulty):
+	# TODO: Nah dont like this 0.6 + (0.6 - (0.6*1.25))
+	var new_cooldown = COOLDOWN_TIMING + (COOLDOWN_TIMING - (COOLDOWN_TIMING * difficulty.attack_speed_multiplier))
+	COOLDOWN_TIMING = clamp(new_cooldown ,0.00001, COOLDOWN_TIMING)
+	
+	can_attack = difficulty.enemies_on_ready
+	player_already_spotted = difficulty.enemies_on_ready
 
 func check_for_search_reset():
 	if not player_ref:
@@ -36,12 +52,3 @@ func check_if_los(player: Player) -> bool:
 		if los_ray_cast_3d.get_collider() is Player:
 			return true
 	return false
-	
-	#var space_state = get_world_3d().direct_space_state
-	#var raycast = PhysicsRayQueryParameters3D.create(self.global_position, player_pos, 1)
-	#var collision = space_state.intersect_ray(raycast)
-	#
-	#if collision and collision.collider is Player:
-		#return true
-#
-	#return false

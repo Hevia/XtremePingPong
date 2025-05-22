@@ -7,8 +7,6 @@ var dash_timer = 0.0
 var dash_vec = Vector2.ZERO
 var last_velocity =  Vector3.ZERO
 var current_slide_gas = 0.0
-const B_MOUSE_SENSITIVITY = 0.4
-
 
 
 # Dash variables
@@ -106,6 +104,10 @@ var enemy_target_ref: CharacterBody3D = null
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	caclulate_movement_parameters()
+	
+	health_component.max_health = GameState.current_difficulty.starting_player_health
+	health_component.current_health = health_component.max_health
+	
 	
 	# Signals
 	paddle_area_3d.area_entered.connect(on_paddle_area_entered)
@@ -235,7 +237,7 @@ func handle_paddle_jump():
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		var mouse_x_mov = -deg_to_rad(event.relative.x * B_MOUSE_SENSITIVITY)
+		var mouse_x_mov = -deg_to_rad(event.relative.x * GameState.mouse_sensitivity)
 
 		if freelooking:
 			freelook_pivot.rotate_y(mouse_x_mov)
@@ -244,7 +246,7 @@ func _input(event):
 			# the y axis is the x axis in 3d, but its the x axis for the mouse
 			# we need to convert to degrees first
 			rotate_y(mouse_x_mov)
-		var mouse_y_mov = -deg_to_rad(event.relative.y * B_MOUSE_SENSITIVITY)
+		var mouse_y_mov = -deg_to_rad(event.relative.y * GameState.mouse_sensitivity)
 		head.rotate_x(mouse_y_mov)
 		head.rotation.x = clamp(head.rotation.x, HEAD_Y_CLAMP_DOWN, HEAD_Y_CLAMP_UP)
 

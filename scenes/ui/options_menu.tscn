@@ -30,16 +30,31 @@ text = "Mouse Sensitivity"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HSlider" type="HSlider" parent="MarginContainer/MarginContainer/VBoxContainer/MouseSen"]
+[node name="MouseSenSlider" type="HSlider" parent="MarginContainer/MarginContainer/VBoxContainer/MouseSen"]
+unique_name_in_owner = true
+process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+min_value = 1.0
 value = 50.0
+tick_count = 10
 
-[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MouseSen"]
+[node name="MouseSenLabel" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/MouseSen"]
+unique_name_in_owner = true
+process_mode = 3
 layout_mode = 2
 text = "100"
 
-[node name="Button" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="SandboxButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+process_mode = 3
 layout_mode = 2
-text = "Back"
+text = "Sandbox
+"
+
+[node name="DemoButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+process_mode = 3
+layout_mode = 2
+text = "Back to Demo"

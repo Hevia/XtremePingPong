@@ -37,4 +37,4 @@ func on_demo_pressed():
 	get_tree().change_scene_to_file("res://scenes/levels/w_1_1.tscn")
 
 func on_options_pressed():
-	pass
+	get_tree().change_scene_to_file("res://scenes/ui/options_menu.tscn")

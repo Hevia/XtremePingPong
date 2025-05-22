@@ -46,6 +46,7 @@ func caclulate_movement_parameters() -> void:
 	
 	# Constant modifer to make walking less slow/miserable
 	B_WALKING_SPEED = B_WALKING_BONUS + (B_JUMP_DISTANCE/(B_JUMP_PEAK_TIME+B_JUMP_FALL_TIME))
+	B_SPRINTING_SPEED = B_WALKING_SPEED + B_WALKING_BONUS
 	B_CROUCHING_SPEED = B_WALKING_SPEED
 
 
