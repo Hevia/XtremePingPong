@@ -42,10 +42,9 @@ radius = 31.5346
 [sub_resource type="SphereShape3D" id="SphereShape3D_e8v5i"]
 radius = 30.518
 
-[node name="W1-1" type="Node3D" node_paths=PackedStringArray("player", "end_loading_node")]
+[node name="W1-1" type="Node3D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_j8ys7")
 player = NodePath("Player")
-end_loading_node = NodePath("EndLoadingNode")
 
 [node name="Environment" parent="." instance=ExtResource("1_q2v23")]
 

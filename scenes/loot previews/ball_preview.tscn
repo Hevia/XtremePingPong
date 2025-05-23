@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3sal52ycouae"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ekwaw"]
+resource_local_to_scene = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_fluyn"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ekwaw")
+
+[node name="BallPreview" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_fluyn")

@@ -26,6 +26,7 @@ var coyote_time_active = true
 # Grabbing variables
 var grabbed_object_ref: Node3D = null
 var grab_ready = true
+var grabbed_objects = {}
 
 # Primary + throwing + charging
 var can_swing = true
@@ -159,6 +160,18 @@ func is_auto_aim_targetting():
 func reset_paddle_charge() -> void:
 	current_charge = 0
 
+func grant_item_to_player(item: PackedScene) -> void:
+	if item and grabbed_object_ref == null:
+		var entity_layer = get_tree().get_first_node_in_group("entity_layer")
+		if entity_layer:
+			var item_instance = item.instantiate() as Throwable
+			item_instance.stop_movement()
+			item_instance.set_team(Constants.Teams.Player)
+			entity_layer.add_child(item_instance)
+			item_instance.global_position =w grab_marker_3d.global_position
+			grabbed_object_ref = item_instance
+			item_instance.set_grabbed_parent_ref(self)
+
 func calc_bonus_charge_force() -> float:
 	var charge_force: float = 0.0
 	
@@ -185,7 +198,7 @@ func on_paddle_area_entered(other_area: Area3D):
 			ball.curve_towards_target(enemy_target_ref)
 
 func on_grab_area_entered(other_area: Area3D):
-	if grab_ready and other_area.owner is Ball and grabbed_object_ref == null:
+	if grab_ready and other_area.owner is Throwable and grabbed_object_ref == null:
 		var ball = other_area.owner as Ball
 		ball.stop_movement()
 		ball.global_position = grab_marker_3d.global_position

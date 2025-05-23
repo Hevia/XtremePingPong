@@ -1,0 +1,65 @@
+[gd_scene load_steps=12 format=3 uid="uid://qhpu55wtu8p1"]
+
+[ext_resource type="Script" uid="uid://dmjyly5isvr4t" path="res://scenes/enemies/bomb_hazard.gd" id="1_v0y01"]
+[ext_resource type="PackedScene" uid="uid://dp1wpl8tbfyuh" path="res://scenes/components/health_component.tscn" id="2_8ckce"]
+[ext_resource type="PackedScene" uid="uid://bt640cn1jf6m8" path="res://scenes/components/hurtbox_component_3d.tscn" id="3_tbejx"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_g0esf"]
+radius = 1.0
+height = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8bn4c"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.870398, 0, 0.0121582, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4cewp"]
+top_radius = 0.25
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v0y01"]
+albedo_color = Color(0.856425, 0.647493, 3.85046e-07, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8ckce"]
+top_radius = 0.05
+bottom_radius = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbejx"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.84966, 0.489947, 0.309662, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ojy5o"]
+radius = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jqkk8"]
+radius = 1.5
+
+[node name="BombHazard" type="CharacterBody3D"]
+script = ExtResource("1_v0y01")
+
+[node name="Model" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model"]
+mesh = SubResource("SphereMesh_g0esf")
+surface_material_override/0 = SubResource("StandardMaterial3D_8bn4c")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.547812, 0)
+mesh = SubResource("CylinderMesh_4cewp")
+surface_material_override/0 = SubResource("StandardMaterial3D_v0y01")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 0.965885, 0.258971, 0, -0.258971, 0.965885, 0, 0.526702, 0.136151)
+mesh = SubResource("CylinderMesh_8ckce")
+surface_material_override/0 = SubResource("StandardMaterial3D_tbejx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ojy5o")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_8ckce")]
+max_health = 1.0
+
+[node name="HurtboxComponent3D" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_tbejx")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="HurtboxComponent3D"]
+shape = SubResource("SphereShape3D_jqkk8")

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Loot" load_steps=4 format=3 uid="uid://bv0ixfqpqear8"]
+
+[ext_resource type="Script" uid="uid://bdmx3au1y3w68" path="res://scripts/loot.gd" id="1_15oth"]
+[ext_resource type="PackedScene" uid="uid://nc8wnordxarj" path="res://scenes/loot previews/fish_bowl_preview.tscn" id="1_qhgmr"]
+[ext_resource type="PackedScene" uid="uid://dxmvalukiiwtb" path="res://scenes/game objects/throwables/fish_bowl_throwable.tscn" id="2_60wal"]
+
+[resource]
+script = ExtResource("1_15oth")
+name = "Fish Bowl"
+pickup_model = ExtResource("1_qhgmr")
+pickup_scene = ExtResource("2_60wal")
+metadata/_custom_type_script = "uid://bdmx3au1y3w68"

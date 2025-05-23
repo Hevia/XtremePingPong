@@ -15,6 +15,10 @@ run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://m3a87ee1naq1"
+
 [autoload]
 
 GameState="*res://scenes/autoloads/game_state.gd"

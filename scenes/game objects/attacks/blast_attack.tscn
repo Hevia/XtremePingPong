@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhohyddvp270a"]
+
+[ext_resource type="PackedScene" uid="uid://74od70l2slni" path="res://scenes/components/hitbox_component_3d.tscn" id="1_h6tq0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_oabeu"]
+radius = 0.001
+
+[node name="BlastAttack" type="Node3D"]
+
+[node name="HitboxComponent3D" parent="." instance=ExtResource("1_h6tq0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent3D"]
+shape = SubResource("SphereShape3D_oabeu")
+
+[node name="EffectsContainer" type="Node3D" parent="."]

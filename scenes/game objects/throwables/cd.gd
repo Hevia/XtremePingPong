@@ -1,4 +1,4 @@
-class_name Ball extends Throwable
+class_name CDProjectile extends Throwable
 
 @onready var colorswitcher_timer: Timer = %ColorswitcherTimer
 @onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D

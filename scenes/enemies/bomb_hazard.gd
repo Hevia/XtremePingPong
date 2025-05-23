@@ -1,0 +1,1 @@
+class_name BombHazard extends CharacterBody3D

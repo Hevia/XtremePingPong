@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxmvalukiiwtb"]
+
+[ext_resource type="Script" uid="uid://cq47n1lsjjcfm" path="res://scenes/game objects/throwables/fish_bowl_throwable.gd" id="1_dsmy4"]
+
+[node name="FishBowlThrowable" type="CharacterBody3D"]
+script = ExtResource("1_dsmy4")
