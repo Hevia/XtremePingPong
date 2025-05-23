@@ -7,6 +7,12 @@ var death_menu_scene = preload("res://scenes/ui/death_screen.tscn")
 func _ready() -> void:
 	player.health_component.died.connect(on_player_death)
 	
+func is_objective_complete() -> bool:
+	if GameState.enemies <= 0:
+		return true
+	else:
+		return false
+	
 func update_difficulty_settings() -> void:
 	if GameState.current_difficulty is Difficulty:
 		var enemies: Array[EnemyBase] = get_tree().get_nodes_in_group("enemies") as Array[EnemyBase]

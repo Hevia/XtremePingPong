@@ -6,9 +6,15 @@ signal difficulty_changed
 var death_tip_msg: String = ""
 var current_difficulty: Difficulty = preload("res://resources/difficulties/sunshine.tres")
 var mouse_sensitivity: float = 0.4
+var enemies: int = 0
+var max_enemies: int  = 0
 
 func _ready() -> void:
 	pass
+
+func reset_enemy_counts() -> void:
+	enemies = 0
+	max_enemies = 0
 
 func mouse_sen_changed(value: float) -> void:
 	mouse_sensitivity = value / 100 # TODO: This sucks

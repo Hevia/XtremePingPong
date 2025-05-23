@@ -7,6 +7,7 @@ signal health_decreased
 
 @export var max_health: float = 10
 @export var persist_after_death: bool = false
+@export var is_enemy: bool = false # TODO: I dont love this approach tbh
 var current_health
 
 
@@ -34,6 +35,9 @@ func get_health_percent():
 func check_death():
 	if current_health <= 0.0:
 		died.emit()
+		
+		if is_enemy:
+			GameState.enemies -= 1
 		
 		# If we dont persist the object after death lets just queue free it
 		if not persist_after_death:

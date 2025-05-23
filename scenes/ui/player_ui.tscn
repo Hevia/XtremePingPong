@@ -33,10 +33,9 @@ text = "Health: 3/3"
 horizontal_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
-visible = false
 layout_mode = 2
 
-[node name="PaddleCountLabel" type="Label" parent="VBoxContainer/MarginContainer2"]
+[node name="EnemiesCountLabel" type="Label" parent="VBoxContainer/MarginContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
@@ -47,16 +46,14 @@ theme_override_constants/shadow_offset_x = 4
 theme_override_constants/shadow_offset_y = 4
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 24
-text = "Paddles: 3/3 "
+text = "Enemies: 3/3 "
 horizontal_alignment = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
-visible = false
 layout_mode = 2
 
-[node name="DashCountLabel" type="Label" parent="VBoxContainer/MarginContainer3"]
+[node name="DiffLabel" type="Label" parent="VBoxContainer/MarginContainer3"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_colors/font_color = Color(0.548198, 0.695398, 1, 1)
@@ -66,7 +63,7 @@ theme_override_constants/shadow_offset_x = 4
 theme_override_constants/shadow_offset_y = 4
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 24
-text = "Dashes: 3/3 "
+text = "Difficulty: Sunshine"
 horizontal_alignment = 1
 
 [node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer"]

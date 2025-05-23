@@ -335,8 +335,7 @@ func throw_paddle() -> void:
 func update_ui_values() -> void:
 	player_ui.set_change_label(current_charge)
 	player_ui.set_health_label(health_component.current_health, health_component.max_health)
-	player_ui.set_dash_label(current_dash_stock, B_MAX_DASH)
-	player_ui.set_paddles_label(current_paddle_stock, B_MAX_PADDLE_STOCK)
+	player_ui.set_enemies_count_label(GameState.enemies, GameState.max_enemies)
 
 func update_cooldowns() -> void:
 	if current_paddle_stock < B_MAX_PADDLE_STOCK and paddle_cooldown_timer.is_stopped():

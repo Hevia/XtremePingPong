@@ -25,6 +25,10 @@ var player_already_spotted = false
 
 func _ready() -> void:
 	update_stats(GameState.current_difficulty)
+	
+	# TODO: I dislike this approach a lot lol
+	GameState.enemies += 1
+	GameState.max_enemies += 1
 
 func update_stats(difficulty: Difficulty):
 	# TODO: Nah dont like this 0.6 + (0.6 - (0.6*1.25))
