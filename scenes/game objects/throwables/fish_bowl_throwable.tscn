@@ -1,6 +1,47 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxmvalukiiwtb"]
+[gd_scene load_steps=9 format=3 uid="uid://dxmvalukiiwtb"]
 
 [ext_resource type="Script" uid="uid://cq47n1lsjjcfm" path="res://scenes/game objects/throwables/fish_bowl_throwable.gd" id="1_dsmy4"]
+[ext_resource type="PackedScene" uid="uid://crvkgueatr3xs" path="res://scenes/components/projectile_hurtbox_area_3d.tscn" id="2_nxbq1"]
+[ext_resource type="PackedScene" uid="uid://74od70l2slni" path="res://scenes/components/hitbox_component_3d.tscn" id="3_emh7h"]
+[ext_resource type="PackedScene" uid="uid://nc8wnordxarj" path="res://scenes/loot previews/fish_bowl_preview.tscn" id="4_emh7h"]
+[ext_resource type="Script" uid="uid://6lmdyb8yon5s" path="res://scenes/components/health_component.gd" id="5_vxpxw"]
 
-[node name="FishBowlThrowable" type="CharacterBody3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_vxpxw"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3pk03"]
+radius = 0.7
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kdjyp"]
+radius = 0.7
+
+[node name="FishBowlThrowable" type="CharacterBody3D" node_paths=PackedStringArray("hitbox_component_3d", "projectile_hurtbox")]
 script = ExtResource("1_dsmy4")
+BASE_SPEED = 65.0
+mass = 15.0
+hitbox_component_3d = NodePath("HitboxComponent3D")
+start_team = 3
+projectile_hurtbox = NodePath("ProjectileHurtboxArea3D")
+LOCK_ON_LENGTH = 4.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("SphereShape3D_vxpxw")
+
+[node name="ProjectileHurtboxArea3D" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_nxbq1")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProjectileHurtboxArea3D"]
+shape = SubResource("SphereShape3D_3pk03")
+
+[node name="HitboxComponent3D" parent="." instance=ExtResource("3_emh7h")]
+
+[node name="HitCollisionShape3D" type="CollisionShape3D" parent="HitboxComponent3D"]
+unique_name_in_owner = true
+shape = SubResource("SphereShape3D_kdjyp")
+
+[node name="FishBowlPreview" parent="." instance=ExtResource("4_emh7h")]
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("5_vxpxw")
+max_health = 1.0
+metadata/_custom_type_script = "uid://6lmdyb8yon5s"

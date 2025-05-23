@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="Loot" load_steps=4 format=3 uid="uid://ctn43h8hpy8c5"]
+[gd_resource type="Resource" script_class="Loot" load_steps=5 format=3 uid="uid://ctn43h8hpy8c5"]
 
 [ext_resource type="PackedScene" uid="uid://b3sal52ycouae" path="res://scenes/loot previews/ball_preview.tscn" id="1_fxrgh"]
 [ext_resource type="Script" uid="uid://bdmx3au1y3w68" path="res://scripts/loot.gd" id="1_i8vyk"]
+[ext_resource type="Texture2D" uid="uid://c6s67nnjxiqdy" path="res://assets/BallIcon.png" id="1_weibu"]
 [ext_resource type="PackedScene" uid="uid://dmadrerobybqv" path="res://scenes/game objects/ball.tscn" id="2_weibu"]
 
 [resource]
 script = ExtResource("1_i8vyk")
 name = "Ball"
+icon = ExtResource("1_weibu")
 pickup_model = ExtResource("1_fxrgh")
 pickup_scene = ExtResource("2_weibu")
 metadata/_custom_type_script = "uid://bdmx3au1y3w68"

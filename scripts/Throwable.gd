@@ -1,7 +1,7 @@
 class_name Throwable extends CharacterBody3D
 
 # Export Stats
-@export var BASE_SPEED: float = 60.0
+@export var BASE_SPEED: float = 70.0
 @export var mass: float = 10.0
 @export var hitbox_component_3d: HitboxComponent3D
 @export var start_team: Constants.Teams = Constants.Teams.None
@@ -106,4 +106,22 @@ func on_hitbox_area_entered(other_area: Area3D):
 	if other_area.owner is CharacterBody3D and not other_area.owner is Player:
 		if last_hit_or_thrown_by and last_hit_or_thrown_by is Player:
 			(last_hit_or_thrown_by as Player).trigger_hitmarker()
-			
+
+# Default physics process unless overridden
+func _physics_process(delta):
+	if is_grabbed:
+		if grabbed_parent:
+			global_position = grabbed_parent.get_marker_pos()
+		else:
+			released_from_grab()
+	else:
+		# If we're locked on to target, ignore gravity and lets focus on going to the target
+		if is_locked_on and target_ref:
+			var force = find_force_to_target(target_ref)
+			apply_force(force)
+		elif not is_on_floor():
+			velocity += get_gravity() * delta
+		
+		var collision = move_and_collide(velocity * delta)  
+		if collision:  
+			handle_ricochet(collision)  

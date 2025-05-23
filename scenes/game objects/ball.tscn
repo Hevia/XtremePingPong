@@ -25,10 +25,10 @@ radius = 0.62
 script = ExtResource("1_275bg")
 BASE_SPEED = 62.0
 mass = null
-hitbox_component_3d = NodePath("HitboxComponent3D")
 start_team = 3
-projectile_hurtbox = NodePath("ProjectileHurtboxArea3D")
 LOCK_ON_LENGTH = null
+hitbox_component_3d = NodePath("HitboxComponent3D")
+projectile_hurtbox = NodePath("ProjectileHurtboxArea3D")
 
 [node name="BallCollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_grfoj")

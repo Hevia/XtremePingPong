@@ -168,7 +168,7 @@ func grant_item_to_player(item: PackedScene) -> void:
 			item_instance.stop_movement()
 			item_instance.set_team(Constants.Teams.Player)
 			entity_layer.add_child(item_instance)
-			item_instance.global_position =w grab_marker_3d.global_position
+			item_instance.global_position = grab_marker_3d.global_position
 			grabbed_object_ref = item_instance
 			item_instance.set_grabbed_parent_ref(self)
 

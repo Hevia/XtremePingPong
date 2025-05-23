@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Loot" load_steps=4 format=3 uid="uid://dr1dxy24n1u27"]
+[gd_resource type="Resource" script_class="Loot" load_steps=5 format=3 uid="uid://dr1dxy24n1u27"]
 
+[ext_resource type="Texture2D" uid="uid://f0ft8vuoc3ty" path="res://assets/CDIcon.png" id="1_7d1fm"]
 [ext_resource type="Script" uid="uid://bdmx3au1y3w68" path="res://scripts/loot.gd" id="1_atxl7"]
 [ext_resource type="PackedScene" uid="uid://dwlfcip2k7wo3" path="res://scenes/loot previews/cd_model.tscn" id="1_bj3mq"]
 [ext_resource type="PackedScene" uid="uid://1e0ksafbuvdi" path="res://scenes/game objects/throwables/cd.tscn" id="2_7d1fm"]
@@ -7,6 +8,7 @@
 [resource]
 script = ExtResource("1_atxl7")
 name = "CD"
+icon = ExtResource("1_7d1fm")
 pickup_model = ExtResource("1_bj3mq")
 pickup_scene = ExtResource("2_7d1fm")
 metadata/_custom_type_script = "uid://bdmx3au1y3w68"
