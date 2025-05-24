@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cre0ah1m4end8"]
+[gd_scene load_steps=3 format=3 uid="uid://cre0ah1m4end8"]
 
 [ext_resource type="Script" uid="uid://3q2jueuwmf2m" path="res://scenes/ui/death_screen.gd" id="1_j0ehl"]
+[ext_resource type="PackedScene" uid="uid://cgiexc1aw85eg" path="res://scenes/audio/demo_stage_music_player.tscn" id="2_njuei"]
 
-[node name="DeathScreen" type="CanvasLayer"]
+[node name="DeathScreen" type="CanvasLayer" node_paths=PackedStringArray("music_player")]
 script = ExtResource("1_j0ehl")
+music_player = NodePath("DemoStageMusicPlayer")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -63,3 +65,5 @@ text = "Options"
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit"
+
+[node name="DemoStageMusicPlayer" parent="." instance=ExtResource("2_njuei")]

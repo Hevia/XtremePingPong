@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://8wg853hco2qx"
+path="res://.godot/imported/Oops All Tennis - Stage 1  Demo.ogg-e16da92373c087bae48cb64c318835fc.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/Oops All Tennis - Stage 1  Demo.ogg"
+dest_files=["res://.godot/imported/Oops All Tennis - Stage 1  Demo.ogg-e16da92373c087bae48cb64c318835fc.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

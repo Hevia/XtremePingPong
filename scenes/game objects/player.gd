@@ -307,29 +307,6 @@ func jump() -> void:
 	velocity.y = curr_jump_velocity
 	sliding = false
 	coyote_time_active = false
-	
-func throw_paddle() -> void:
-	if current_paddle_stock <= 0:
-		return
-	
-	var paddle_instance = paddle_throwable_scene.instantiate() as PaddleThrowable
-	var entity_layer = get_tree().get_first_node_in_group("entity_layer")
-	if entity_layer:
-		entity_layer.add_child(paddle_instance)
-		paddle_instance.set_team(Constants.Teams.Player)
-		paddle_instance.set_last_hit_or_thrown_by(self)
-		paddle_instance.global_position = grab_marker_3d.global_position #TODO: Use a better one
-		var hit_direction = calculate_hit_direction()
-		var force = hit_direction * hit_force
-		paddle_instance.apply_force(force)
-
-		if enemy_target_ref:
-			paddle_instance.curve_towards_target(enemy_target_ref)
-		
-		current_paddle_stock -= 1
-		
-		if paddle_cooldown_timer.is_stopped():
-			paddle_cooldown_timer.start()
 		
 # TODO: Use signals so we can lerp the UI nicely in the UI script
 func update_ui_values() -> void:
@@ -408,16 +385,6 @@ func _process(_delta):
 		
 	handle_primary_input()
 
-	
-	# TODO: Use our own timer
-	if Input.is_action_just_pressed("throw_paddle") and can_swing:
-		if arms_anim_player.is_playing():
-			clean_up_anims()
-		
-		arms_anim_player.play("throw_paddle")
-		can_swing_timer.start()
-		can_swing = false
-		throw_paddle()
 	
 	if Input.is_action_pressed("secondary") and grab_ready:
 		if arms_anim_player.is_playing():

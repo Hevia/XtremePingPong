@@ -1,11 +1,20 @@
 class_name SinglePlayerLevel extends Node3D
 
 @export var player: Player
+@export var music_player: DemoMusicPlayer
 
 var death_menu_scene = preload("res://scenes/ui/death_screen.tscn")
 
 func _ready() -> void:
+	GameState.reset_enemy_counts()
 	player.health_component.died.connect(on_player_death)
+	self.call_deferred("count_enemies")
+	
+	
+func count_enemies() -> void:
+	var enemies_list = get_tree().get_nodes_in_group("enemies")
+	GameState.enemies = enemies_list.size()
+	GameState.max_enemies = enemies_list.size()
 	
 func is_objective_complete() -> bool:
 	if GameState.enemies <= 0:
@@ -25,5 +34,6 @@ func update_difficulty_settings() -> void:
 
 func on_player_death() -> void:
 	GameState.reset_enemy_counts()
+	GameState.music_progress = music_player.get_playback_position()
 	add_child(death_menu_scene.instantiate())
 	#get_tree().paused = true # TODO: Might cause issues lol

@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://cgiexc1aw85eg"]
+[gd_scene load_steps=3 format=3 uid="uid://cgiexc1aw85eg"]
+
+[ext_resource type="AudioStream" uid="uid://8wg853hco2qx" path="res://assets/audio/Oops All Tennis - Stage 1  Demo.ogg" id="1_bwkjh"]
+[ext_resource type="Script" uid="uid://cucfthdrjlqbm" path="res://scenes/audio/demo_stage_music_player.gd" id="2_6l3np"]
 
 [node name="DemoStageMusicPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_bwkjh")
+script = ExtResource("2_6l3np")

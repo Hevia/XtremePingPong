@@ -6,6 +6,8 @@ class_name Throwable extends CharacterBody3D
 @export var hitbox_component_3d: HitboxComponent3D
 @export var start_team: Constants.Teams = Constants.Teams.None
 @export var projectile_hurtbox: ProjectileHurtboxArea3D
+@export var lock_on_area_3d: Area3D
+@export var protection_area_3d: Area3D
 
 # State Variables
 ## Grab State
@@ -20,6 +22,11 @@ var is_locked_on: bool = false
 
 ## Used for tracking who threw/hit
 var last_hit_or_thrown_by: CharacterBase = null
+var original_owner: CharacterBase = null
+
+var protection_area_enabled: bool = false
+
+var collision = null
 
 func _ready() -> void:
 	self.add_child(lock_on_timer)
@@ -28,10 +35,14 @@ func _ready() -> void:
 	lock_on_timer.timeout.connect(on_lock_on_timer_timeout)
 	hitbox_component_3d.set_team(start_team)
 	hitbox_component_3d.area_entered.connect(on_hitbox_area_entered)
+	lock_on_area_3d.area_entered.connect(on_lock_on_area_entered)
+	
+	if protection_area_3d:
+		protection_area_3d.area_entered.connect(on_protection_area_entered)
 
 func find_force_to_target(target: Node3D, desired_speed = BASE_SPEED):
 	if target:
-		var direction_to_target = (target.global_position - global_position).normalized()
+		var direction_to_target = (target.global_position - global_position).normalized() # TODO: This creates a funny arc + Vector3(0, 0.5, 0)
 		var force = direction_to_target * BASE_SPEED
 		return force
 	else:
@@ -57,13 +68,16 @@ func apply_force(force: Vector3, momentum_retention = 0.7) -> void:
 	# Ensure the ball is aligned with its new velocity
 	align_to_velocity()
 
-func curve_towards_target(next_target: Node3D) -> void:
-	if not is_grabbed and next_target and next_target is Node3D:
-		target_ref = next_target
+func lock_on_and_apply_force() -> void:
 		is_locked_on = true
 		var force = find_force_to_target(target_ref)
 		lock_on_timer.start()
 		apply_force(force)
+
+func curve_towards_target(next_target: Node3D) -> void:
+	if not is_grabbed and next_target and next_target is Node3D:
+		target_ref = next_target
+		lock_on_and_apply_force()
 
 func align_to_velocity():
 	if velocity.length() > 0:
@@ -94,6 +108,7 @@ func set_color(target_color: Color) -> void:
 
 func set_last_hit_or_thrown_by(new_owner: CharacterBase) -> void:
 	last_hit_or_thrown_by = new_owner
+	protection_area_enabled = true
 
 func handle_ricochet(collision: KinematicCollision3D):  
 	velocity = velocity.bounce(collision.get_normal())
@@ -106,6 +121,17 @@ func on_hitbox_area_entered(other_area: Area3D):
 	if other_area.owner is CharacterBody3D and not other_area.owner is Player:
 		if last_hit_or_thrown_by and last_hit_or_thrown_by is Player:
 			(last_hit_or_thrown_by as Player).trigger_hitmarker()
+
+func on_lock_on_area_entered(other_area: Area3D):
+	if other_area.owner is EnemyBase and not target_ref:
+		target_ref = other_area.owner
+		lock_on_and_apply_force()
+
+func on_protection_area_entered(other_area: Area3D):
+	if protection_area_enabled and other_area.owner is Throwable and last_hit_or_thrown_by is Player:
+		print("why are we hitting this..?")
+		other_area.owner.call_deferred("queue_free")
+
 
 # Default physics process unless overridden
 func _physics_process(delta):
@@ -122,6 +148,6 @@ func _physics_process(delta):
 		elif not is_on_floor():
 			velocity += get_gravity() * delta
 		
-		var collision = move_and_collide(velocity * delta)  
+		collision = move_and_collide(velocity * delta)  
 		if collision:  
 			handle_ricochet(collision)  

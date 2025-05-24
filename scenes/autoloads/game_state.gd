@@ -8,6 +8,7 @@ var current_difficulty: Difficulty = preload("res://resources/difficulties/sunsh
 var mouse_sensitivity: float = 0.4
 var enemies: int = 0
 var max_enemies: int  = 0
+var music_progress: float = 0.0
 
 func _ready() -> void:
 	pass

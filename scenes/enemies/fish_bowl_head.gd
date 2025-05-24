@@ -10,8 +10,6 @@ var projectile_scene = preload("res://scenes/game objects/ball.tscn")
 @onready var alert_spawn_marker_3d: Marker3D = %AlertSpawnMarker3D
 
 @export var BASE_BALL_SHOOT_SPEED = 70
-@export var idk: String
-
 
 func _ready() -> void:
 	super()

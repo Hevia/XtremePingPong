@@ -25,21 +25,25 @@ func set_grabbed_parent_ref(grabber: Node3D) -> void:
 	hit_collision_shape_3d.disabled = true
 	
 func trigger_explosion() -> void:
+	print("trigger_explosion entered")
 	var entity_layer = get_tree().get_first_node_in_group("entity_layer")
 	if entity_layer:
 		var blast_attack_instance: BlastAttack = blast_attack_scene.instantiate()
 		entity_layer.add_child(blast_attack_instance)
+		blast_attack_instance.set_team(Constants.Teams.Player)
+		blast_attack_instance.global_position = self.global_position
 		blast_attack_instance.set_damage(hitbox_component_3d.damage)
 		blast_attack_instance.set_radius(self.attack_radius)
+		call_deferred("queue_free")
 	
 func _physics_process(delta: float) -> void:
 	super(delta)
 	
-	if is_on_floor():
+	if collision:
 		trigger_explosion()
 		
 func on_hurtbox_entered(other_area: Area3D) -> void:	
-	if other_area is HurtboxComponent:
+	if other_area is HurtboxComponent and other_area.owner is EnemyBase:
 		trigger_explosion()
 		
 func on_hitbox_area_entered(other_area: Area3D) -> void:

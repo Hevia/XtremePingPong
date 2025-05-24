@@ -10,7 +10,6 @@ var ring_attack_scene = preload("res://scenes/game objects/attacks/ring_attack.t
 @onready var search_cooldown_timer: Timer = %SearchCooldownTimer
 @onready var search_update_timer: Timer = %SearchUpdateTimer
 @onready var alert_spawn_marker_3d: Marker3D = %AlertSpawnMarker3D
-@export var idk: String
 
 @export var RING_ATTACK_LENGTH = 1.5
 

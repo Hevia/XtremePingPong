@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxmvalukiiwtb"]
+[gd_scene load_steps=10 format=3 uid="uid://dxmvalukiiwtb"]
 
 [ext_resource type="Script" uid="uid://cq47n1lsjjcfm" path="res://scenes/game objects/throwables/fish_bowl_throwable.gd" id="1_dsmy4"]
 [ext_resource type="PackedScene" uid="uid://crvkgueatr3xs" path="res://scenes/components/projectile_hurtbox_area_3d.tscn" id="2_nxbq1"]
@@ -14,13 +14,18 @@ radius = 0.7
 [sub_resource type="SphereShape3D" id="SphereShape3D_kdjyp"]
 radius = 0.7
 
-[node name="FishBowlThrowable" type="CharacterBody3D" node_paths=PackedStringArray("hitbox_component_3d", "projectile_hurtbox")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_7enut"]
+radius = 1.435
+
+[node name="FishBowlThrowable" type="CharacterBody3D" node_paths=PackedStringArray("hitbox_component_3d", "projectile_hurtbox", "lock_on_area_3d")]
 script = ExtResource("1_dsmy4")
+attack_radius = 2.0
 BASE_SPEED = 65.0
-mass = 15.0
+mass = 12.0
 hitbox_component_3d = NodePath("HitboxComponent3D")
 start_team = 3
 projectile_hurtbox = NodePath("ProjectileHurtboxArea3D")
+lock_on_area_3d = NodePath("LockOnArea3D")
 LOCK_ON_LENGTH = 4.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -45,3 +50,11 @@ shape = SubResource("SphereShape3D_kdjyp")
 script = ExtResource("5_vxpxw")
 max_health = 2.0
 metadata/_custom_type_script = "uid://6lmdyb8yon5s"
+
+[node name="LockOnArea3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LockOnArea3D"]
+shape = SubResource("SphereShape3D_7enut")
+debug_color = Color(0.466667, 0.529412, 0.164706, 1)

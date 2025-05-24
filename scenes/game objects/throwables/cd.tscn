@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://1e0ksafbuvdi"]
+[gd_scene load_steps=10 format=3 uid="uid://1e0ksafbuvdi"]
 
 [ext_resource type="PackedScene" uid="uid://dwlfcip2k7wo3" path="res://scenes/loot previews/cd_model.tscn" id="1_1gg1f"]
 [ext_resource type="Script" uid="uid://bjah8ky1bqke3" path="res://scenes/game objects/throwables/cd.gd" id="1_6samm"]
@@ -17,13 +17,17 @@ radius = 0.55
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_6dfbt"]
 height = 0.1
 
-[node name="CD" type="CharacterBody3D" node_paths=PackedStringArray("hitbox_component_3d", "projectile_hurtbox")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_7jul3"]
+radius = 1.435
+
+[node name="CD" type="CharacterBody3D" node_paths=PackedStringArray("hitbox_component_3d", "projectile_hurtbox", "lock_on_area_3d")]
 script = ExtResource("1_6samm")
 BASE_SPEED = 80.0
 mass = 2.0
 hitbox_component_3d = NodePath("HitboxComponent3D")
 start_team = 3
 projectile_hurtbox = NodePath("ProjectileHurtboxArea3D")
+lock_on_area_3d = NodePath("LockOnArea3D")
 
 [node name="CDModel" parent="." instance=ExtResource("1_1gg1f")]
 
@@ -50,3 +54,11 @@ shape = SubResource("CylinderShape3D_6dfbt")
 
 [node name="HealthComponent" parent="." instance=ExtResource("5_7jul3")]
 max_health = 3.0
+
+[node name="LockOnArea3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LockOnArea3D"]
+shape = SubResource("SphereShape3D_7jul3")
+debug_color = Color(0.466667, 0.529412, 0.164706, 1)

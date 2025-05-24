@@ -4,11 +4,11 @@
 [ext_resource type="Script" uid="uid://bt4hvul4h4xox" path="res://scenes/game objects/attacks/blast_attack.gd" id="1_oabeu"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oabeu"]
-radius = 1.0
+radius = 0.1
 
 [sub_resource type="SphereMesh" id="SphereMesh_oabeu"]
-radius = 1.0
-height = 2.0
+radius = 0.1
+height = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gow7n"]
 albedo_color = Color(0.691779, 0.452112, 3.85046e-07, 1)
