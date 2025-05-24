@@ -6,10 +6,10 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func apply_buff() -> void:
-	character_owner.B_WALKING_SPEED += 10 
+	character_owner.BASE_SPEED_BOOST += 10
 
 func remove_buff() -> void:
-	character_owner.B_WALKING_SPEED -= 10 
+	character_owner.BASE_SPEED_BOOST -= 10
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

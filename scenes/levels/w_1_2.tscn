@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dmadrerobybqv" path="res://scenes/game objects/ball.tscn" id="10_1hrdh"]
 [ext_resource type="Resource" uid="uid://bv0ixfqpqear8" path="res://resources/loot/FishBowl.tres" id="10_t71ks"]
 [ext_resource type="PackedScene" uid="uid://bphii4n3scmky" path="res://scenes/game objects/level_objects/goal.tscn" id="13_anqga"]
-[ext_resource type="PackedScene" uid="uid://boq8dgorruqhs" path="res://scenes/levels/w_1_3.tscn" id="14_s66a8"]
+[ext_resource type="PackedScene" uid="uid://br1j5hyvrh1wj" path="res://scenes/levels/w_1_3r.tscn" id="15_8xh3c"]
 [ext_resource type="PackedScene" uid="uid://cgiexc1aw85eg" path="res://scenes/audio/demo_stage_music_player.tscn" id="20_5rw8c"]
 [ext_resource type="PackedScene" uid="uid://74od70l2slni" path="res://scenes/components/hitbox_component_3d.tscn" id="20_8xh3c"]
 
@@ -160,7 +160,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.8718, -161.372)
 
 [node name="Goal" parent="Level/JumpLevel4" node_paths=PackedStringArray("level") instance=ExtResource("13_anqga")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.228583, 31.0189, -52.0546)
-next_scene = ExtResource("14_s66a8")
+next_scene = ExtResource("15_8xh3c")
 level = NodePath("../../..")
 
 [node name="SmallGrassPlatform2" parent="Level/JumpLevel4" instance=ExtResource("2_s6bl6")]

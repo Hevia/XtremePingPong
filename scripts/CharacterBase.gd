@@ -5,11 +5,12 @@ var B_WALKING_SPEED = 5.0
 var B_WALKING_BONUS = 5.0
 var B_SPRINTING_SPEED = 8.0
 var B_CROUCHING_SPEED = 3.0
+var BASE_SPEED_BOOST: float = 0.0
 const HEAD_Y_CLAMP_DOWN = deg_to_rad(-89)
 const HEAD_Y_CLAMP_UP = deg_to_rad(90)
 const CROUCHING_DEPTH = -0.5 # How much the head is dipping based on the camera
 const SLIDE_LENGTH_MAX = 1.0
-const B_SLIDE_SPEED = 10.0
+var B_SLIDE_SPEED = 10.0
 const B_DASH_SPEED = 12.0
 const DASH_LENGTH_MAX = 1.0
 const SLOW_TIME_TOGGLE_SPEED = 0.1
@@ -47,6 +48,7 @@ func caclulate_movement_parameters() -> void:
 	# Constant modifer to make walking less slow/miserable
 	B_WALKING_SPEED = B_WALKING_BONUS + (B_JUMP_DISTANCE/(B_JUMP_PEAK_TIME+B_JUMP_FALL_TIME))
 	B_SPRINTING_SPEED = B_WALKING_SPEED + B_WALKING_BONUS
+	B_SLIDE_SPEED = B_SPRINTING_SPEED + 2.0
 	B_CROUCHING_SPEED = B_WALKING_SPEED
 
 

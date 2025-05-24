@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Oops All Tennis"
-run/main_scene="res://scenes/world.tscn"
+run/main_scene="uid://b72sc8a7v1e2k"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -24,9 +24,14 @@ buses/default_bus_layout="uid://m3a87ee1naq1"
 GameState="*res://scenes/autoloads/game_state.gd"
 SaveManager="*res://scenes/autoloads/save_manager.gd"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/IVX_VertexColorImportSwapper/plugin.cfg")
+enabled=PackedStringArray()
 
 [file_customization]
 

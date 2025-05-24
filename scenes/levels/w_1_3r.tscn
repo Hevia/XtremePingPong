@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://br1j5hyvrh1wj"]
+[gd_scene load_steps=35 format=3 uid="uid://br1j5hyvrh1wj"]
 
 [ext_resource type="Script" uid="uid://bhhp0xjd7jo3j" path="res://scenes/levels/w_1_3r.gd" id="1_nngvg"]
 [ext_resource type="PackedScene" uid="uid://gkr8sq0f7u2l" path="res://scenes/game objects/player.tscn" id="2_efy15"]
@@ -13,8 +13,11 @@
 [ext_resource type="PackedScene" uid="uid://qr1ksy7vf7t6" path="res://scenes/components/detection_area_component_3d.tscn" id="11_7fkar"]
 [ext_resource type="PackedScene" uid="uid://1svmbegxbhcd" path="res://scenes/game objects/level_objects/object_cannon.tscn" id="12_7fkar"]
 [ext_resource type="PackedScene" uid="uid://dcb0agy4esnmg" path="res://scenes/entity_layer.tscn" id="12_wfaoe"]
-[ext_resource type="PackedScene" uid="uid://dmadrerobybqv" path="res://scenes/game objects/ball.tscn" id="13_u3ffq"]
+[ext_resource type="Script" uid="uid://bgaw6gvvx5lb8" path="res://scenes/game objects/ball.gd" id="13_36mks"]
+[ext_resource type="PackedScene" uid="uid://crvkgueatr3xs" path="res://scenes/components/projectile_hurtbox_area_3d.tscn" id="14_leq4t"]
 [ext_resource type="PackedScene" uid="uid://onrhweqk11fc" path="res://scenes/enemies/pod_head.tscn" id="14_u3ffq"]
+[ext_resource type="Material" uid="uid://b2tmxvpji4wwy" path="res://assets/materials/greybox.tres" id="15_3qgwx"]
+[ext_resource type="PackedScene" uid="uid://dp1wpl8tbfyuh" path="res://scenes/components/health_component.tscn" id="15_7ggaw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lsfw2"]
 size = Vector3(291.758, 1, 463.355)
@@ -25,6 +28,80 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Arr
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3qgwx"]
 radius = 33.2296
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_grfoj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h4qw6"]
+resource_local_to_scene = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_qv4px"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_h4qw6")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_h4qw6"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_er8da"]
+radius = 0.62
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_b5gdj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mgqmk"]
+radius = 1.50169
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_d1om0"]
+radius = 1.50169
+
+[sub_resource type="PackedScene" id="PackedScene_hx1i4"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Ball", "script", "BASE_SPEED", "hitbox_component_3d", "start_team", "projectile_hurtbox", "lock_on_area_3d", "protection_area_3d", "CharacterBody3D", "BallCollisionShape3D", "shape", "CollisionShape3D", "MeshInstance3D", "mesh", "LifetimeTimer", "Timer", "Area3D", "HitCollisionShape3D", "ColorswitcherTimer", "unique_name_in_owner", "wait_time", "one_shot", "HitboxComponent3D", "damage", "isProjectile", "debug_color", "ProjectileHurtboxArea3D", "health_component", "HitCollisionShape3D2", "HealthComponent", "max_health", "LockOnArea3D", "collision_layer", "collision_mask", "ProtectionArea3D"),
+"node_count": 16,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 8, 0, -1, 7, 1, 0, 2, 1, 1073741827, 2, 4, 3, 1073741829, 4, 1073741830, 5, 1073741831, 6, 0, 0, 0, 11, 9, -1, 1, 10, 7, 0, 0, 0, 12, 12, -1, 1, 13, 8, 0, 0, 0, 15, 14, -1, 0, 0, 0, 0, 16, 16, -1, 0, 0, 4, 0, 11, 17, -1, 1, 10, 9, 0, 0, 0, 15, 18, -1, 3, 19, 10, 20, 11, 21, 10, 0, 0, 0, 2147483647, 22, 12, 2, 23, 13, 24, 10, 0, 7, 0, 11, 11, -1, 2, 10, 14, 25, 15, 0, 0, 0, 2147483647, 26, 16, 2, 19, 10, 1073741851, 17, 0, 9, 0, 11, 28, -1, 2, 10, 18, 25, 19, 0, 0, 0, 2147483647, 29, 20, 1, 30, 13, 0, 0, 0, 16, 31, -1, 2, 32, 21, 33, 22, 0, 12, 0, 11, 11, -1, 2, 10, 23, 25, 24, 0, 0, 0, 16, 34, -1, 2, 32, 25, 33, 25, 0, 14, 0, 11, 11, -1, 2, 10, 26, 25, 27, 0),
+"variants": [ExtResource("13_36mks"), 62.0, NodePath("HitboxComponent3D"), 3, NodePath("ProjectileHurtboxArea3D"), NodePath("LockOnArea3D"), NodePath("ProtectionArea3D"), SubResource("SphereShape3D_grfoj"), SubResource("SphereMesh_qv4px"), SubResource("SphereShape3D_h4qw6"), true, 0.1, ExtResource("6_1n32e"), 1.0, SubResource("SphereShape3D_er8da"), Color(0.920547, 5.92008e-05, 0.69448, 0.42), ExtResource("14_leq4t"), NodePath("../HealthComponent"), SubResource("SphereShape3D_b5gdj"), Color(0.612, 0.536, 0.13, 1), ExtResource("15_7ggaw"), 0, 2, SubResource("SphereShape3D_mgqmk"), Color(0.466667, 0.529412, 0.164706, 1), 8, SubResource("SphereShape3D_d1om0"), Color(0.835004, 0.151446, 0.582099, 1)],
+"version": 3
+}
+
+[sub_resource type="PackedScene" id="PackedScene_48ebj"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Ball", "script", "BASE_SPEED", "hitbox_component_3d", "start_team", "projectile_hurtbox", "lock_on_area_3d", "protection_area_3d", "CharacterBody3D", "BallCollisionShape3D", "shape", "CollisionShape3D", "MeshInstance3D", "mesh", "LifetimeTimer", "Timer", "Area3D", "HitCollisionShape3D", "ColorswitcherTimer", "unique_name_in_owner", "wait_time", "one_shot", "HitboxComponent3D", "damage", "isProjectile", "debug_color", "ProjectileHurtboxArea3D", "health_component", "HitCollisionShape3D2", "HealthComponent", "max_health", "LockOnArea3D", "collision_layer", "collision_mask", "ProtectionArea3D"),
+"node_count": 16,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 8, 0, -1, 7, 1, 0, 2, 1, 1073741827, 2, 4, 3, 1073741829, 4, 1073741830, 5, 1073741831, 6, 0, 0, 0, 11, 9, -1, 1, 10, 7, 0, 0, 0, 12, 12, -1, 1, 13, 8, 0, 0, 0, 15, 14, -1, 0, 0, 0, 0, 16, 16, -1, 0, 0, 4, 0, 11, 17, -1, 1, 10, 9, 0, 0, 0, 15, 18, -1, 3, 19, 10, 20, 11, 21, 10, 0, 0, 0, 2147483647, 22, 12, 2, 23, 13, 24, 10, 0, 7, 0, 11, 11, -1, 2, 10, 14, 25, 15, 0, 0, 0, 2147483647, 26, 16, 2, 19, 10, 1073741851, 17, 0, 9, 0, 11, 28, -1, 2, 10, 18, 25, 19, 0, 0, 0, 2147483647, 29, 20, 1, 30, 13, 0, 0, 0, 16, 31, -1, 2, 32, 21, 33, 22, 0, 12, 0, 11, 11, -1, 2, 10, 23, 25, 24, 0, 0, 0, 16, 34, -1, 2, 32, 25, 33, 25, 0, 14, 0, 11, 11, -1, 2, 10, 26, 25, 27, 0),
+"variants": [ExtResource("13_36mks"), 62.0, NodePath("HitboxComponent3D"), 3, NodePath("ProjectileHurtboxArea3D"), NodePath("LockOnArea3D"), NodePath("ProtectionArea3D"), SubResource("SphereShape3D_grfoj"), SubResource("SphereMesh_qv4px"), SubResource("SphereShape3D_h4qw6"), true, 0.1, ExtResource("6_1n32e"), 1.0, SubResource("SphereShape3D_er8da"), Color(0.920547, 5.92008e-05, 0.69448, 0.42), ExtResource("14_leq4t"), NodePath("../HealthComponent"), SubResource("SphereShape3D_b5gdj"), Color(0.612, 0.536, 0.13, 1), ExtResource("15_7ggaw"), 0, 2, SubResource("SphereShape3D_mgqmk"), Color(0.466667, 0.529412, 0.164706, 1), 8, SubResource("SphereShape3D_d1om0"), Color(0.835004, 0.151446, 0.582099, 1)],
+"version": 3
+}
+
+[sub_resource type="PackedScene" id="PackedScene_wj286"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Ball", "script", "BASE_SPEED", "hitbox_component_3d", "start_team", "projectile_hurtbox", "lock_on_area_3d", "protection_area_3d", "CharacterBody3D", "BallCollisionShape3D", "shape", "CollisionShape3D", "MeshInstance3D", "mesh", "LifetimeTimer", "Timer", "Area3D", "HitCollisionShape3D", "ColorswitcherTimer", "unique_name_in_owner", "wait_time", "one_shot", "HitboxComponent3D", "damage", "isProjectile", "debug_color", "ProjectileHurtboxArea3D", "health_component", "HitCollisionShape3D2", "HealthComponent", "max_health", "LockOnArea3D", "collision_layer", "collision_mask", "ProtectionArea3D"),
+"node_count": 16,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 8, 0, -1, 7, 1, 0, 2, 1, 1073741827, 2, 4, 3, 1073741829, 4, 1073741830, 5, 1073741831, 6, 0, 0, 0, 11, 9, -1, 1, 10, 7, 0, 0, 0, 12, 12, -1, 1, 13, 8, 0, 0, 0, 15, 14, -1, 0, 0, 0, 0, 16, 16, -1, 0, 0, 4, 0, 11, 17, -1, 1, 10, 9, 0, 0, 0, 15, 18, -1, 3, 19, 10, 20, 11, 21, 10, 0, 0, 0, 2147483647, 22, 12, 2, 23, 13, 24, 10, 0, 7, 0, 11, 11, -1, 2, 10, 14, 25, 15, 0, 0, 0, 2147483647, 26, 16, 2, 19, 10, 1073741851, 17, 0, 9, 0, 11, 28, -1, 2, 10, 18, 25, 19, 0, 0, 0, 2147483647, 29, 20, 1, 30, 13, 0, 0, 0, 16, 31, -1, 2, 32, 21, 33, 22, 0, 12, 0, 11, 11, -1, 2, 10, 23, 25, 24, 0, 0, 0, 16, 34, -1, 2, 32, 25, 33, 25, 0, 14, 0, 11, 11, -1, 2, 10, 26, 25, 27, 0),
+"variants": [ExtResource("13_36mks"), 62.0, NodePath("HitboxComponent3D"), 3, NodePath("ProjectileHurtboxArea3D"), NodePath("LockOnArea3D"), NodePath("ProtectionArea3D"), SubResource("SphereShape3D_grfoj"), SubResource("SphereMesh_qv4px"), SubResource("SphereShape3D_h4qw6"), true, 0.1, ExtResource("6_1n32e"), 1.0, SubResource("SphereShape3D_er8da"), Color(0.920547, 5.92008e-05, 0.69448, 0.42), ExtResource("14_leq4t"), NodePath("../HealthComponent"), SubResource("SphereShape3D_b5gdj"), Color(0.612, 0.536, 0.13, 1), ExtResource("15_7ggaw"), 0, 2, SubResource("SphereShape3D_mgqmk"), Color(0.466667, 0.529412, 0.164706, 1), 8, SubResource("SphereShape3D_d1om0"), Color(0.835004, 0.151446, 0.582099, 1)],
+"version": 3
+}
+
+[sub_resource type="PackedScene" id="PackedScene_pr6l0"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Ball", "script", "BASE_SPEED", "hitbox_component_3d", "start_team", "projectile_hurtbox", "lock_on_area_3d", "protection_area_3d", "CharacterBody3D", "BallCollisionShape3D", "shape", "CollisionShape3D", "MeshInstance3D", "mesh", "LifetimeTimer", "Timer", "Area3D", "HitCollisionShape3D", "ColorswitcherTimer", "unique_name_in_owner", "wait_time", "one_shot", "HitboxComponent3D", "damage", "isProjectile", "debug_color", "ProjectileHurtboxArea3D", "health_component", "HitCollisionShape3D2", "HealthComponent", "max_health", "LockOnArea3D", "collision_layer", "collision_mask", "ProtectionArea3D"),
+"node_count": 16,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 8, 0, -1, 7, 1, 0, 2, 1, 1073741827, 2, 4, 3, 1073741829, 4, 1073741830, 5, 1073741831, 6, 0, 0, 0, 11, 9, -1, 1, 10, 7, 0, 0, 0, 12, 12, -1, 1, 13, 8, 0, 0, 0, 15, 14, -1, 0, 0, 0, 0, 16, 16, -1, 0, 0, 4, 0, 11, 17, -1, 1, 10, 9, 0, 0, 0, 15, 18, -1, 3, 19, 10, 20, 11, 21, 10, 0, 0, 0, 2147483647, 22, 12, 2, 23, 13, 24, 10, 0, 7, 0, 11, 11, -1, 2, 10, 14, 25, 15, 0, 0, 0, 2147483647, 26, 16, 2, 19, 10, 1073741851, 17, 0, 9, 0, 11, 28, -1, 2, 10, 18, 25, 19, 0, 0, 0, 2147483647, 29, 20, 1, 30, 13, 0, 0, 0, 16, 31, -1, 2, 32, 21, 33, 22, 0, 12, 0, 11, 11, -1, 2, 10, 23, 25, 24, 0, 0, 0, 16, 34, -1, 2, 32, 25, 33, 25, 0, 14, 0, 11, 11, -1, 2, 10, 26, 25, 27, 0),
+"variants": [ExtResource("13_36mks"), 62.0, NodePath("HitboxComponent3D"), 3, NodePath("ProjectileHurtboxArea3D"), NodePath("LockOnArea3D"), NodePath("ProtectionArea3D"), SubResource("SphereShape3D_grfoj"), SubResource("SphereMesh_qv4px"), SubResource("SphereShape3D_h4qw6"), true, 0.1, ExtResource("6_1n32e"), 1.0, SubResource("SphereShape3D_er8da"), Color(0.920547, 5.92008e-05, 0.69448, 0.42), ExtResource("14_leq4t"), NodePath("../HealthComponent"), SubResource("SphereShape3D_b5gdj"), Color(0.612, 0.536, 0.13, 1), ExtResource("15_7ggaw"), 0, 2, SubResource("SphereShape3D_mgqmk"), Color(0.466667, 0.529412, 0.164706, 1), 8, SubResource("SphereShape3D_d1om0"), Color(0.835004, 0.151446, 0.582099, 1)],
+"version": 3
+}
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u3ffq"]
 radius = 35.8864
@@ -96,37 +173,78 @@ debug_color = Color(0.984314, 0, 0.34902, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.736992, 0, -40.884)
 
 [node name="ObjectCannon" parent="Level/BigArea" instance=ExtResource("12_7fkar")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.851, 1.86521, 0.394207)
-projectile_shoot_speed = 60
-projectile_shoot_cadence = 1.25
-cannon_projectile = ExtResource("13_u3ffq")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.44782, 1.86521, -1.56681)
+projectile_shoot_speed = 55
+projectile_shoot_cadence = 2.0
+cannon_projectile = SubResource("PackedScene_hx1i4")
 
 [node name="ObjectCannon2" parent="Level/BigArea" instance=ExtResource("12_7fkar")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 14.8666, 1.86521, -1.68741)
-projectile_shoot_speed = 60
-projectile_shoot_cadence = 1.5
-cannon_projectile = ExtResource("13_u3ffq")
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4.69876, 1.86521, -7.85295)
+projectile_shoot_speed = 55
+projectile_shoot_cadence = 2.2
+cannon_projectile = SubResource("PackedScene_48ebj")
 
 [node name="PodHead" parent="Level/BigArea" node_paths=PackedStringArray("detection_area_component_3d") instance=ExtResource("14_u3ffq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.543104, 3.18912, -9.13438)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766419, 3.61735, -17.6796)
 detection_area_component_3d = NodePath("../DetectionAreaComponent3D")
+COOLDOWN_TIMING = 0.2
 
 [node name="ObjectCannon3" parent="Level/BigArea" instance=ExtResource("12_7fkar")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.851, 1.86521, -4.09146)
-projectile_shoot_speed = 60
-projectile_shoot_cadence = 1.25
-cannon_projectile = ExtResource("13_u3ffq")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.69461, 1.86521, -6.05248)
+projectile_shoot_speed = 55
+projectile_shoot_cadence = 2.1
+cannon_projectile = SubResource("PackedScene_wj286")
 
 [node name="ObjectCannon4" parent="Level/BigArea" instance=ExtResource("12_7fkar")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 14.8666, 1.86521, -6.38134)
-projectile_shoot_speed = 60
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 7.07406, 1.86521, -12.8234)
+projectile_shoot_speed = 55
 projectile_shoot_cadence = 1.5
-cannon_projectile = ExtResource("13_u3ffq")
+cannon_projectile = SubResource("PackedScene_pr6l0")
 
 [node name="DetectionAreaComponent3D" parent="Level/BigArea" instance=ExtResource("11_7fkar")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/BigArea/DetectionAreaComponent3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32.4227)
 shape = SubResource("SphereShape3D_u3ffq")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Level/BigArea"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.8687, 4.18994, 2.79517)
+size = Vector3(6.14819, 9.37988, 1)
+material = ExtResource("15_3qgwx")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Level/BigArea"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.18673, 4.18994, 2.72667)
+size = Vector3(6.17809, 9.37988, 1)
+material = ExtResource("15_3qgwx")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Level/BigArea"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.5875, 4.18994, -3.65866)
+size = Vector3(6.71814, 9.37988, 2.19287)
+material = ExtResource("15_3qgwx")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Level/BigArea"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.66215, 4.18994, -3.64761)
+size = Vector3(6.71814, 9.37988, 2.30383)
+material = ExtResource("15_3qgwx")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Level/BigArea"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.66215, 4.18994, -9.71041)
+size = Vector3(6.71814, 9.37988, 2.30981)
+material = ExtResource("15_3qgwx")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Level/BigArea"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.6788, 4.18994, -9.73336)
+size = Vector3(6.71814, 9.37988, 2.26392)
+material = ExtResource("15_3qgwx")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Level/BigArea"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.6788, 4.18994, -15.6048)
+size = Vector3(6.71814, 9.37988, 3.49683)
+material = ExtResource("15_3qgwx")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Level/BigArea"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.44004, 4.18994, -15.53)
+size = Vector3(6.71814, 9.37988, 3.34735)
+material = ExtResource("15_3qgwx")
 
 [node name="Entities" parent="." instance=ExtResource("12_wfaoe")]
