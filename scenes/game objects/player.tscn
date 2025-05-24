@@ -2693,6 +2693,7 @@ shape = SubResource("BoxShape3D_1eir6")
 disabled = true
 
 [node name="HitboxComponent3D" parent="FreelookPivot/Head/Hitboxes" instance=ExtResource("7_0nwx7")]
+unique_name_in_owner = true
 team = 1
 
 [node name="PaddleHitbox" type="CollisionShape3D" parent="FreelookPivot/Head/Hitboxes/HitboxComponent3D"]

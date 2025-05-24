@@ -56,6 +56,12 @@ process_mode = 2
 layout_mode = 2
 text = "Play Demo"
 
+[node name="MainMenuButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+process_mode = 2
+layout_mode = 2
+text = "Main Menu"
+
 [node name="OptionsButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 process_mode = 2

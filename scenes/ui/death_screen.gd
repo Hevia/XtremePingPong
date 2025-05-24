@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var restart_button: Button = %RestartButton
 @onready var quit_button: Button = %QuitButton
 @onready var options_button: Button = %OptionsButton
+@onready var main_menu_button: Button = %MainMenuButton
 
 
 func _ready() -> void:
@@ -13,6 +14,7 @@ func _ready() -> void:
 	options_button.pressed.connect(on_options_pressed)
 	quit_button.pressed.connect(on_quit_pressed)
 	restart_button.pressed.connect(on_restart_pressed)
+	main_menu_button.pressed.connect(on_main_menu_pressed)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 func ensure_music_stays_consistent() -> void:
@@ -36,6 +38,11 @@ func close():
 	
 func on_quit_pressed():
 	get_tree().quit()
+	
+func on_main_menu_pressed():
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
 
 func on_restart_pressed():
 	get_tree().paused = false

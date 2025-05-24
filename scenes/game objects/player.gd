@@ -86,6 +86,7 @@ var slow_time_toggle = false
 @onready var paddle_collision_shape: CollisionShape3D = %PaddleCollisionShape
 @onready var grab_collision_shape_3d: CollisionShape3D = %GrabCollisionShape3D
 @onready var paddle_hitbox: CollisionShape3D = %PaddleHitbox
+@onready var hitbox_component_3d: HitboxComponent3D = %HitboxComponent3D
 
 @export var player_color: Color = Color.BLUE
 
@@ -114,6 +115,7 @@ func _ready():
 	# Signals
 	paddle_area_3d.area_entered.connect(on_paddle_area_entered)
 	grab_area_3d.area_entered.connect(on_grab_area_entered)
+	hitbox_component_3d.area_entered.connect(on_hitbox_area_entered)
 	
 	# Timers
 	grab_cooldown_timer.timeout.connect(on_grab_timer_timeout)
@@ -206,6 +208,9 @@ func on_grab_area_entered(other_area: Area3D):
 		grabbed_object_ref = ball
 		ball.set_grabbed_parent_ref(self)
 
+func on_hitbox_area_entered(other_area: Area3D):
+	if other_area.owner is EnemyBase:
+		trigger_hitmarker()
 	
 func on_grab_timer_timeout() -> void:
 	grab_ready = true
