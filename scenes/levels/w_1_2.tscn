@@ -117,7 +117,7 @@ shape = SubResource("SphereShape3D_t71ks")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.3156, -31.7486)
 
 [node name="JumpPad2" parent="Level/JumpLevel3" instance=ExtResource("3_s6omy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.374781, 31.4992, -31.2357)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.374781, 31.4992, -32.7978)
 jump_pad_strength = 35.0
 
 [node name="SmallGrassPlatform" parent="Level/JumpLevel3" instance=ExtResource("2_s6bl6")]

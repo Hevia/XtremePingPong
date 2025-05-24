@@ -7,10 +7,10 @@
 script = ExtResource("1_xax0q")
 name = "Overcast"
 skybox_prefab = ExtResource("2_kgk2a")
-attack_speed_multiplier = 1.25
+attack_speed_multiplier = 1.15
 enemy_damage_multipler = 1.0
 enemy_health_multipler = 1.0
-projectile_speed_modifier = 0.25
+projectile_speed_modifier = 0.15
 slow_mode_disabled = false
 starting_player_health = 3
 enemies_on_ready = true

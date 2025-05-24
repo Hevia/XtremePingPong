@@ -129,8 +129,8 @@ func on_lock_on_area_entered(other_area: Area3D):
 
 func on_protection_area_entered(other_area: Area3D):
 	if protection_area_enabled and other_area.owner is Throwable and last_hit_or_thrown_by is Player:
-		print("why are we hitting this..?")
-		other_area.owner.call_deferred("queue_free")
+		if not (other_area.owner as Throwable).is_grabbed:
+			other_area.owner.call_deferred("queue_free")
 
 
 # Default physics process unless overridden

@@ -85,6 +85,7 @@ var slow_time_toggle = false
 @onready var paddle_cooldown_timer: Timer = %PaddleCooldownTimer
 @onready var paddle_collision_shape: CollisionShape3D = %PaddleCollisionShape
 @onready var grab_collision_shape_3d: CollisionShape3D = %GrabCollisionShape3D
+@onready var paddle_hitbox: CollisionShape3D = %PaddleHitbox
 
 @export var player_color: Color = Color.BLUE
 
@@ -186,7 +187,7 @@ func on_paddle_area_entered(other_area: Area3D):
 		var ball: Throwable = other_area.owner as Ball
 		var hit_direction = calculate_hit_direction()
 		var force = hit_direction * (hit_force + calc_bonus_charge_force())
-		hitstop(0.05, 0.3)
+		hitstop(0.1, 0.5)
 		shake_screen()
 		trigger_small_paddle_hitmarker()
 		enemy_target_ref = is_auto_aim_targetting()
@@ -368,6 +369,7 @@ func clean_up_anims() -> void:
 	arms_anim_player.stop()
 	paddle_collision_shape.disabled = true
 	grab_collision_shape_3d.disabled = true
+	paddle_hitbox.disabled = true
 
 func _process(_delta):
 	draw_lock_on_reticle()
@@ -426,7 +428,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Crouching is dominant, we want it to overwrite sprint
 	if (Input.is_action_pressed("crouch") || sliding) && not dashing:
-		current_speed = lerp(current_speed, B_CROUCHING_SPEED, delta*lerp_speed)
+		current_speed = lerp(current_speed, B_CROUCHING_SPEED+BASE_SPEED_BOOST, delta*lerp_speed)
 		head.position.y = lerp(head.position.y, CROUCHING_DEPTH, delta*lerp_speed)
 		crouching_collision_shape.disabled = false
 		standing_collision_shape.disabled = true
@@ -451,11 +453,11 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed("sprint") && not dashing:
 			walking = false
 			sprinting = true
-			current_speed = lerp(current_speed, B_SPRINTING_SPEED, delta*lerp_speed)
+			current_speed = lerp(current_speed, B_SPRINTING_SPEED+BASE_SPEED_BOOST, delta*lerp_speed)
 		else:
 			walking = true
 			sprinting = false
-			current_speed = lerp(current_speed, B_WALKING_SPEED, delta*lerp_speed)
+			current_speed = lerp(current_speed, B_WALKING_SPEED+BASE_SPEED_BOOST, delta*lerp_speed)
 		
 	# Handle freelooking
 	if Input.is_action_pressed("freelook") || sliding:
@@ -566,8 +568,8 @@ func _physics_process(delta: float) -> void:
 		if sliding:
 			# this makes the slide slow down over time
 			# add 0.1 so it never truly reaches 0
-			velocity.x = direction.x * (slide_timer + 0.1) * B_SLIDE_SPEED
-			velocity.z = direction.z * slide_timer * B_SLIDE_SPEED
+			velocity.x = direction.x * (slide_timer + 0.1) * B_SLIDE_SPEED+BASE_SPEED_BOOST
+			velocity.z = direction.z * slide_timer * B_SLIDE_SPEED+BASE_SPEED_BOOST
 		elif dashing:
 			velocity.x = direction.x * (dash_timer + 0.1) * B_DASH_SPEED
 			velocity.z = direction.z * (dash_timer + 0.1) * B_DASH_SPEED
