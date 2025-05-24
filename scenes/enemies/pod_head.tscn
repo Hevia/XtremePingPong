@@ -13254,6 +13254,7 @@ sampling_rate = 44100.0
 packet_sequence = SubResource("OggPacketSequence_fbhds")
 
 [node name="PodHead" type="CharacterBody3D" node_paths=PackedStringArray("los_ray_cast_3d") groups=["enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 script = ExtResource("1_xgim7")
 los_ray_cast_3d = NodePath("LOSRayCast3D")
 

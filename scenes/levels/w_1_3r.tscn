@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://br1j5hyvrh1wj"]
+[gd_scene load_steps=44 format=3 uid="uid://br1j5hyvrh1wj"]
 
 [ext_resource type="Script" uid="uid://bhhp0xjd7jo3j" path="res://scenes/levels/w_1_3r.gd" id="1_nngvg"]
 [ext_resource type="PackedScene" uid="uid://gkr8sq0f7u2l" path="res://scenes/game objects/player.tscn" id="2_efy15"]
@@ -18,6 +18,12 @@
 [ext_resource type="PackedScene" uid="uid://onrhweqk11fc" path="res://scenes/enemies/pod_head.tscn" id="14_u3ffq"]
 [ext_resource type="Material" uid="uid://b2tmxvpji4wwy" path="res://assets/materials/greybox.tres" id="15_3qgwx"]
 [ext_resource type="PackedScene" uid="uid://dp1wpl8tbfyuh" path="res://scenes/components/health_component.tscn" id="15_7ggaw"]
+[ext_resource type="PackedScene" uid="uid://rvhk047tw82v" path="res://scenes/dog/buddy.tscn" id="18_7ggaw"]
+[ext_resource type="PackedScene" uid="uid://2s2qtkxhaasb" path="res://scenes/game objects/spikes.tscn" id="19_hx1i4"]
+[ext_resource type="PackedScene" uid="uid://3y52ngi3ldx1" path="res://scenes/terrain/x_small_grass_platform.tscn" id="20_hx1i4"]
+[ext_resource type="PackedScene" uid="uid://bdm2w08yicde0" path="res://scenes/terrain/timed_platform.tscn" id="21_48ebj"]
+[ext_resource type="PackedScene" uid="uid://bphii4n3scmky" path="res://scenes/game objects/level_objects/goal.tscn" id="22_wj286"]
+[ext_resource type="PackedScene" uid="uid://dbkb7j6v1or38" path="res://scenes/levels/w_1_4.tscn" id="23_pr6l0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lsfw2"]
 size = Vector3(291.758, 1, 463.355)
@@ -25,6 +31,9 @@ size = Vector3(291.758, 1, 463.355)
 [sub_resource type="NavigationMesh" id="NavigationMesh_u3ffq"]
 vertices = PackedVector3Array(-16.9743, 1.96508, -74.5394, -16.9743, 1.96508, -37.2894, 20.0257, 1.96508, -37.2894, 20.0257, 1.96508, -74.5394, 2.27574, -0.0349228, -32.2894, 2.77574, -0.0349228, -31.0394, 3.52574, -0.0349228, -31.0394, 3.52574, -0.0349228, -35.2894, -1.72426, -0.0349228, -31.2894, 0.52574, -0.0349228, -31.2894, 0.77574, -0.0349228, -32.2894, -1.72426, -0.0349228, -35.2894, 2.27574, -0.0349228, -30.0394, 3.52574, -0.0349228, -25.7894, 1.02574, -0.0349228, -30.0394, -1.72426, -0.0349228, -25.7894, -9.47426, -0.0349228, -13.7894, -4.22426, -0.0349228, -13.7894, -3.97426, -0.0349228, -15.5394, -4.22426, -0.0349228, -23.2894, -9.47426, -0.0349228, -23.2894, -1.72426, -0.0349228, -23.2894, -1.72426, -0.0349228, -13.7894, 3.52574, -0.0349228, -13.7894, 3.52574, -0.0349228, -23.2894, 6.77574, -0.0349228, -19.2894, 8.27574, -0.0349228, -19.2894, 8.52574, -0.0349228, -20.5394, 6.77574, -0.0349228, -23.2894, 10.0257, -0.0349228, -20.5394, 10.5257, -0.0349228, -19.2894, 12.0257, -0.0349228, -19.2894, 11.7757, -0.0349228, -23.2894, 8.52574, -0.0349228, -18.2894, 6.77574, -0.0349228, -13.7894, 10.0257, -0.0349228, -18.2894, 11.7757, -0.0349228, -13.7894, -1.72426, 26.9651, 1.71062, -1.72426, 26.9651, 10.9606, 3.52574, 26.9651, 10.9606, 3.52574, 26.9651, 1.71062)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(4, 10, 7), PackedInt32Array(7, 10, 11), PackedInt32Array(5, 6, 12), PackedInt32Array(12, 6, 13), PackedInt32Array(8, 9, 14), PackedInt32Array(8, 14, 15), PackedInt32Array(15, 14, 13), PackedInt32Array(14, 12, 13), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(19, 16, 20), PackedInt32Array(24, 23, 21), PackedInt32Array(21, 23, 22), PackedInt32Array(26, 25, 27), PackedInt32Array(27, 25, 28), PackedInt32Array(30, 29, 31), PackedInt32Array(31, 29, 32), PackedInt32Array(27, 28, 29), PackedInt32Array(29, 28, 32), PackedInt32Array(26, 33, 25), PackedInt32Array(25, 33, 34), PackedInt32Array(30, 31, 35), PackedInt32Array(35, 31, 36), PackedInt32Array(35, 36, 33), PackedInt32Array(33, 36, 34), PackedInt32Array(40, 39, 37), PackedInt32Array(37, 39, 38)]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7ggaw"]
+radius = 20.3428
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3qgwx"]
 radius = 33.2296
@@ -103,8 +112,14 @@ _bundled = {
 "version": 3
 }
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_48ebj"]
+radius = 9.07706
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_u3ffq"]
-radius = 35.8864
+radius = 42.8747
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wj286"]
+radius = 29.0441
 
 [node name="W1-3R" type="Node3D" node_paths=PackedStringArray("player", "music_player")]
 script = ExtResource("1_nngvg")
@@ -112,7 +127,7 @@ player = NodePath("Player")
 music_player = NodePath("DemoStageMusicPlayer")
 
 [node name="Player" parent="." instance=ExtResource("2_efy15")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01099, 27.2544, 9.71807)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01099, 27.2544, 29.2261)
 
 [node name="Environment" parent="." instance=ExtResource("3_dfwbe")]
 
@@ -131,8 +146,25 @@ debug_color = Color(0.886275, 0.117647, 0, 1)
 [node name="Level" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_u3ffq")
 
+[node name="SmallGrassPlatform6" parent="Level" instance=ExtResource("5_5ew73")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.9313, 30.9014)
+
+[node name="XSmallGrassPlatform" parent="Level" instance=ExtResource("20_hx1i4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.45403, 24.9649, 26.4839)
+
+[node name="Buddy" parent="Level" node_paths=PackedStringArray("tutorial_detection_area3d") instance=ExtResource("18_7ggaw")]
+transform = Transform3D(0.546977, 0, 0.513143, 0, 0.75, 0, -0.513143, 0, 0.546977, -2.23812, 27.8041, 24.0484)
+tutorial_detection_area3d = NodePath("DetectionAreaComponent3D")
+tutorial_message = "Sprint using shift which lets you jump longer distances"
+
+[node name="DetectionAreaComponent3D" parent="Level/Buddy" instance=ExtResource("11_7fkar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.86104, 0, -1.2692)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Buddy/DetectionAreaComponent3D"]
+shape = SubResource("SphereShape3D_7ggaw")
+
 [node name="LootDrop" parent="Level" instance=ExtResource("6_lsfw2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.06865, 27.3692, 3.04933)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.06865, 27.3692, 3.97174)
 loot_resource = ExtResource("7_wfaoe")
 
 [node name="SmallGrassPlatform" parent="Level" instance=ExtResource("5_5ew73")]
@@ -157,10 +189,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.91089, -25.4172)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54355, 1.5128, -31.2214)
 detection_area_component_3d = NodePath("../DetectionAreaComponent3D")
 loot_to_drop = ExtResource("7_wfaoe")
+los_check_required = false
 
 [node name="FishBowlHead2" parent="Level" node_paths=PackedStringArray("detection_area_component_3d") instance=ExtResource("10_lgdfg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.28053, 1.00014, -19.4071)
 detection_area_component_3d = NodePath("../DetectionAreaComponent3D")
+los_check_required = false
+base_difficulty_spawn = 3
 
 [node name="DetectionAreaComponent3D" parent="Level" instance=ExtResource("11_7fkar")]
 
@@ -175,19 +210,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.736992, 0, -40.884)
 [node name="ObjectCannon" parent="Level/BigArea" instance=ExtResource("12_7fkar")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.44782, 1.86521, -1.56681)
 projectile_shoot_speed = 55
-projectile_shoot_cadence = 2.0
+projectile_shoot_cadence = 1.1
 cannon_projectile = SubResource("PackedScene_hx1i4")
 
 [node name="ObjectCannon2" parent="Level/BigArea" instance=ExtResource("12_7fkar")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4.69876, 1.86521, -7.85295)
 projectile_shoot_speed = 55
-projectile_shoot_cadence = 2.2
+projectile_shoot_cadence = 2.1
 cannon_projectile = SubResource("PackedScene_48ebj")
-
-[node name="PodHead" parent="Level/BigArea" node_paths=PackedStringArray("detection_area_component_3d") instance=ExtResource("14_u3ffq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766419, 3.61735, -17.6796)
-detection_area_component_3d = NodePath("../DetectionAreaComponent3D")
-COOLDOWN_TIMING = 0.2
 
 [node name="ObjectCannon3" parent="Level/BigArea" instance=ExtResource("12_7fkar")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.69461, 1.86521, -6.05248)
@@ -201,50 +231,244 @@ projectile_shoot_speed = 55
 projectile_shoot_cadence = 1.5
 cannon_projectile = SubResource("PackedScene_pr6l0")
 
-[node name="DetectionAreaComponent3D" parent="Level/BigArea" instance=ExtResource("11_7fkar")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/BigArea/DetectionAreaComponent3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32.4227)
-shape = SubResource("SphereShape3D_u3ffq")
-
 [node name="CSGBox3D" type="CSGBox3D" parent="Level/BigArea"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.8687, 4.18994, 2.79517)
+use_collision = true
 size = Vector3(6.14819, 9.37988, 1)
 material = ExtResource("15_3qgwx")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Level/BigArea"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.18673, 4.18994, 2.72667)
+use_collision = true
 size = Vector3(6.17809, 9.37988, 1)
 material = ExtResource("15_3qgwx")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Level/BigArea"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.5875, 4.18994, -3.65866)
+use_collision = true
 size = Vector3(6.71814, 9.37988, 2.19287)
 material = ExtResource("15_3qgwx")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Level/BigArea"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.66215, 4.18994, -3.64761)
+use_collision = true
 size = Vector3(6.71814, 9.37988, 2.30383)
 material = ExtResource("15_3qgwx")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="Level/BigArea"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.66215, 4.18994, -9.71041)
+use_collision = true
 size = Vector3(6.71814, 9.37988, 2.30981)
 material = ExtResource("15_3qgwx")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="Level/BigArea"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.6788, 4.18994, -9.73336)
+use_collision = true
 size = Vector3(6.71814, 9.37988, 2.26392)
 material = ExtResource("15_3qgwx")
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="Level/BigArea"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.6788, 4.18994, -15.6048)
+use_collision = true
 size = Vector3(6.71814, 9.37988, 3.49683)
 material = ExtResource("15_3qgwx")
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="Level/BigArea"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.44004, 4.18994, -15.53)
+use_collision = true
 size = Vector3(6.71814, 9.37988, 3.34735)
 material = ExtResource("15_3qgwx")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Level/BigArea"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.6788, 4.18994, -25.5787)
+use_collision = true
+size = Vector3(6.71814, 9.37988, 16.5258)
+material = ExtResource("15_3qgwx")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Level/BigArea"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.46107, 4.18994, -25.5787)
+use_collision = true
+size = Vector3(6.71814, 9.37988, 16.5258)
+material = ExtResource("15_3qgwx")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Level/BigArea"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.864064, 6.06213, -26.061)
+use_collision = true
+size = Vector3(6.71814, 5.6355, 8.38067)
+material = ExtResource("15_3qgwx")
+
+[node name="Buddy" parent="Level/BigArea" node_paths=PackedStringArray("tutorial_detection_area3d") instance=ExtResource("18_7ggaw")]
+transform = Transform3D(0.637337, 0, 0.39535, 0, 0.75, 0, -0.39535, 0, 0.637337, -1.21604, 2.31519, -19.6296)
+tutorial_detection_area3d = NodePath("DetectionAreaComponent3D")
+tutorial_message = "Press Control/Ctrl while sprinting to slide!"
+
+[node name="DetectionAreaComponent3D" parent="Level/BigArea/Buddy" instance=ExtResource("11_7fkar")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/BigArea/Buddy/DetectionAreaComponent3D"]
+shape = SubResource("SphereShape3D_48ebj")
+
+[node name="ObjectCannon5" parent="Level/BigArea" instance=ExtResource("12_7fkar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.44782, 3.59809, -1.56681)
+projectile_shoot_speed = 55
+projectile_shoot_cadence = 1.1
+cannon_projectile = SubResource("PackedScene_hx1i4")
+
+[node name="ObjectCannon6" parent="Level/BigArea" instance=ExtResource("12_7fkar")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4.69876, 3.59809, -7.85295)
+projectile_shoot_speed = 55
+projectile_shoot_cadence = 2.1
+cannon_projectile = SubResource("PackedScene_48ebj")
+
+[node name="ObjectCannon7" parent="Level/BigArea" instance=ExtResource("12_7fkar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.69461, 3.59809, -6.05248)
+projectile_shoot_speed = 55
+projectile_shoot_cadence = 2.1
+cannon_projectile = SubResource("PackedScene_wj286")
+
+[node name="ObjectCannon8" parent="Level/BigArea" instance=ExtResource("12_7fkar")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 7.07406, 3.59809, -12.8234)
+projectile_shoot_speed = 55
+projectile_shoot_cadence = 1.5
+cannon_projectile = SubResource("PackedScene_pr6l0")
+
+[node name="ObjectCannon9" parent="Level/BigArea" instance=ExtResource("12_7fkar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.44782, 5.35139, -1.56681)
+projectile_shoot_speed = 55
+projectile_shoot_cadence = 1.1
+cannon_projectile = SubResource("PackedScene_hx1i4")
+
+[node name="ObjectCannon10" parent="Level/BigArea" instance=ExtResource("12_7fkar")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4.69876, 5.35139, -7.85295)
+projectile_shoot_speed = 55
+projectile_shoot_cadence = 2.1
+cannon_projectile = SubResource("PackedScene_48ebj")
+
+[node name="ObjectCannon11" parent="Level/BigArea" instance=ExtResource("12_7fkar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.69461, 5.35139, -6.05248)
+projectile_shoot_speed = 55
+projectile_shoot_cadence = 2.1
+cannon_projectile = SubResource("PackedScene_wj286")
+
+[node name="ObjectCannon12" parent="Level/BigArea" instance=ExtResource("12_7fkar")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 7.07406, 5.35139, -12.8234)
+projectile_shoot_speed = 55
+projectile_shoot_cadence = 1.5
+cannon_projectile = SubResource("PackedScene_pr6l0")
+
+[node name="LootDrop" parent="Level/BigArea" instance=ExtResource("6_lsfw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.22492, 3.08144, -16.8907)
+loot_resource = ExtResource("7_wfaoe")
+
+[node name="TimedJumpArea" type="Node3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -85.0062)
+
+[node name="SpikeCluster" type="Node3D" parent="Level/TimedJumpArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.83302)
+
+[node name="Spikes" parent="Level/TimedJumpArea/SpikeCluster" instance=ExtResource("19_hx1i4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42863, -0.738533, 0)
+
+[node name="Spikes2" parent="Level/TimedJumpArea/SpikeCluster" instance=ExtResource("19_hx1i4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.38704, -0.738533, 0)
+
+[node name="Spikes3" parent="Level/TimedJumpArea/SpikeCluster" instance=ExtResource("19_hx1i4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.699514, -0.738533, 0.0207291)
+
+[node name="Spikes4" parent="Level/TimedJumpArea/SpikeCluster" instance=ExtResource("19_hx1i4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42863, -0.738533, 2.00364)
+
+[node name="Spikes5" parent="Level/TimedJumpArea/SpikeCluster" instance=ExtResource("19_hx1i4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.471399, -0.738533, 2.00364)
+
+[node name="Spikes6" parent="Level/TimedJumpArea/SpikeCluster" instance=ExtResource("19_hx1i4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.23326, -0.738533, 2.00364)
+
+[node name="SpikeCluster2" type="Node3D" parent="Level/TimedJumpArea"]
+transform = Transform3D(0.853314, 0, -0.521397, 0, 1, 0, 0.521397, 0, 0.853314, 6.69079, 0, -13.7472)
+
+[node name="Spikes" parent="Level/TimedJumpArea/SpikeCluster2" instance=ExtResource("19_hx1i4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42863, -0.738533, 0)
+
+[node name="Spikes2" parent="Level/TimedJumpArea/SpikeCluster2" instance=ExtResource("19_hx1i4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.38704, -0.738533, 0)
+
+[node name="Spikes3" parent="Level/TimedJumpArea/SpikeCluster2" instance=ExtResource("19_hx1i4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.699514, -0.738533, 0.0207291)
+
+[node name="Spikes4" parent="Level/TimedJumpArea/SpikeCluster2" instance=ExtResource("19_hx1i4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42863, -0.738533, 2.00364)
+
+[node name="Spikes5" parent="Level/TimedJumpArea/SpikeCluster2" instance=ExtResource("19_hx1i4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.471399, -0.738533, 2.00364)
+
+[node name="Spikes6" parent="Level/TimedJumpArea/SpikeCluster2" instance=ExtResource("19_hx1i4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.23326, -0.738533, 2.00364)
+
+[node name="SpikeCluster3" type="Node3D" parent="Level/TimedJumpArea"]
+transform = Transform3D(0.0560131, 0, -0.99843, 0, 1, 0, 0.99843, 0, 0.0560131, 18.7506, 0, -13.7472)
+
+[node name="Spikes" parent="Level/TimedJumpArea/SpikeCluster3" instance=ExtResource("19_hx1i4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42863, -0.738533, 0)
+
+[node name="Spikes2" parent="Level/TimedJumpArea/SpikeCluster3" instance=ExtResource("19_hx1i4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.38704, -0.738533, 0)
+
+[node name="Spikes3" parent="Level/TimedJumpArea/SpikeCluster3" instance=ExtResource("19_hx1i4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.699514, -0.738533, 0.0207291)
+
+[node name="Spikes4" parent="Level/TimedJumpArea/SpikeCluster3" instance=ExtResource("19_hx1i4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42863, -0.738533, 2.00364)
+
+[node name="Spikes5" parent="Level/TimedJumpArea/SpikeCluster3" instance=ExtResource("19_hx1i4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.471399, -0.738533, 2.00364)
+
+[node name="Spikes6" parent="Level/TimedJumpArea/SpikeCluster3" instance=ExtResource("19_hx1i4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.23326, -0.738533, 2.00364)
+
+[node name="PodHead" parent="Level/TimedJumpArea" node_paths=PackedStringArray("detection_area_component_3d") instance=ExtResource("14_u3ffq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4526, 0.945538, -12.3257)
+RING_ATTACK_LENGTH = 10.0
+detection_area_component_3d = NodePath("../DetectionAreaComponent3D")
+ATTACK_TIMING = 0.1
+COOLDOWN_TIMING = 0.1
+loot_to_drop = ExtResource("7_wfaoe")
+los_check_required = false
+
+[node name="DetectionAreaComponent3D" parent="Level/TimedJumpArea" instance=ExtResource("11_7fkar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.736992, 0, -5.55254)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/TimedJumpArea/DetectionAreaComponent3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32.4227)
+shape = SubResource("SphereShape3D_u3ffq")
+
+[node name="TimedPlatform" parent="Level/TimedJumpArea" instance=ExtResource("21_48ebj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.617422, -5.46341)
+
+[node name="TimedPlatform2" parent="Level/TimedJumpArea" instance=ExtResource("21_48ebj")]
+transform = Transform3D(0.866069, 0, -0.499924, 0, 1, 0, 0.499924, 0, 0.866069, 6.38225, 0.617422, -13.4458)
+
+[node name="TimedPlatform3" parent="Level/TimedJumpArea" instance=ExtResource("21_48ebj")]
+transform = Transform3D(-0.0436368, 0, -0.999047, 0, 1, 0, 0.999047, 0, -0.0436368, 18.5984, 0.617422, -14.5513)
+
+[node name="LootDrop" parent="Level/TimedJumpArea" instance=ExtResource("6_lsfw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.18271, 1.9225, -4.19296)
+loot_resource = ExtResource("7_wfaoe")
+
+[node name="SmallGrassPlatform2" parent="Level/TimedJumpArea" instance=ExtResource("5_5ew73")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.5212, 0, -8.25764)
+
+[node name="Goal" parent="Level/TimedJumpArea" node_paths=PackedStringArray("level") instance=ExtResource("22_wj286")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.9236, 3.72294, -15.2342)
+next_scene = ExtResource("23_pr6l0")
+level = NodePath("../../..")
+
+[node name="FishBowlHead" parent="Level/TimedJumpArea" node_paths=PackedStringArray("detection_area_component_3d") instance=ExtResource("10_lgdfg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.2895, 2.81433, -10.925)
+detection_area_component_3d = NodePath("DetectionAreaComponent3D")
+
+[node name="DetectionAreaComponent3D" parent="Level/TimedJumpArea/FishBowlHead" instance=ExtResource("11_7fkar")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/TimedJumpArea/FishBowlHead/DetectionAreaComponent3D"]
+shape = SubResource("SphereShape3D_wj286")
 
 [node name="Entities" parent="." instance=ExtResource("12_wfaoe")]

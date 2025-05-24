@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://cefxljdlu2rw"]
+[gd_scene load_steps=35 format=4 uid="uid://cefxljdlu2rw"]
 
 [ext_resource type="Script" uid="uid://bhp6sbr1df281" path="res://scenes/game objects/level_objects/boost_gate.gd" id="1_mei72"]
 [ext_resource type="PackedScene" uid="uid://n8od5lwhtmgi" path="res://scenes/buffs/boost_gate_buff.tscn" id="2_2ggtd"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://cu76pblhpxdqp" path="res://assets/models/SpeedRingV09_GreenButterflyTex.png" id="5_3su1e"]
 [ext_resource type="Texture2D" uid="uid://b7ervmrgrcvr0" path="res://assets/models/SpeedRingV09_RingTex.png" id="6_pnir0"]
 [ext_resource type="Material" uid="uid://c134t4c33og68" path="res://assets/materials/transparent_ring_fill.tres" id="7_4kah1"]
+[ext_resource type="PackedScene" uid="uid://2f2c8xqvyuwd" path="res://scenes/components/random_stream_player_component.tscn" id="8_3su1e"]
+[ext_resource type="AudioStream" uid="uid://ccq54w6wm43xc" path="res://assets/audio/kenney-interface-audio/pluck_001.ogg" id="9_e5wva"]
+[ext_resource type="AudioStream" uid="uid://1grn4gm36scj" path="res://assets/audio/kenney-interface-audio/pluck_002.ogg" id="10_j7slc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3nmts"]
 resource_name = "Material.003"
@@ -801,3 +804,7 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BoostArea3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0894809, 0.246102, 0)
 shape = SubResource("CylinderShape3D_2ggtd")
+
+[node name="RandomStreamPlayerComponent" parent="." instance=ExtResource("8_3su1e")]
+unique_name_in_owner = true
+streams = Array[AudioStream]([ExtResource("9_e5wva"), ExtResource("10_j7slc")])

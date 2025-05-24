@@ -5,6 +5,7 @@ extends Node3D
 @onready var boost_area_3d: Area3D = %BoostArea3D
 @export var buff_length: float = 2.0
 @export var buff_to_grant: PackedScene
+@onready var random_stream_player_component: RandomAudioStreamPlayer = %RandomStreamPlayerComponent
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,4 +13,5 @@ func _ready() -> void:
 
 func on_boost_area_entered(other_area: Node3D):
 	if other_area and other_area.owner is CharacterBase or other_area.owner is Player:
+		random_stream_player_component.play_random()
 		(other_area.owner as CharacterBase).add_timed_buff(buff_to_grant, buff_length)

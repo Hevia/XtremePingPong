@@ -1,7 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://bod1hcvwmskyn"]
+[gd_scene load_steps=11 format=4 uid="uid://bod1hcvwmskyn"]
 
 [ext_resource type="Script" uid="uid://c0px3rgoppchj" path="res://scenes/game objects/level_objects/jump_pad.gd" id="1_i57y7"]
+[ext_resource type="PackedScene" uid="uid://2f2c8xqvyuwd" path="res://scenes/components/random_stream_player_component.tscn" id="3_pjajm"]
 [ext_resource type="Texture2D" uid="uid://btairlsq5osm0" path="res://assets/textures/props/TrampolineTex.png" id="3_wm1wa"]
+[ext_resource type="AudioStream" uid="uid://dlnvjcqp55q57" path="res://assets/audio/kenney-interface-audio/glass_001.ogg" id="4_eod32"]
+[ext_resource type="AudioStream" uid="uid://c48l86g182pnf" path="res://assets/audio/kenney-interface-audio/glass_002.ogg" id="5_psppy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4d4v1"]
 size = Vector3(2.45605, 1, 2.46313)
@@ -84,3 +87,7 @@ skin = SubResource("Skin_g4np7")
 [node name="BoneShapeBase" type="Node3D" parent="TrampolineModel"]
 
 [node name="BoneShapeTramp" type="Node3D" parent="TrampolineModel"]
+
+[node name="RandomStreamPlayerComponent" parent="." instance=ExtResource("3_pjajm")]
+unique_name_in_owner = true
+streams = Array[AudioStream]([ExtResource("4_eod32"), ExtResource("5_psppy")])

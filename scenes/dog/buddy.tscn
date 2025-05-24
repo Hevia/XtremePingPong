@@ -1,7 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://rvhk047tw82v"]
+[gd_scene load_steps=12 format=4 uid="uid://rvhk047tw82v"]
 
 [ext_resource type="Script" uid="uid://bfy1w3jscarxd" path="res://scenes/dog/buddy.gd" id="1_eo52y"]
 [ext_resource type="Texture2D" uid="uid://dqp5k6bx8hmm7" path="res://assets/textures/otriel.png" id="2_ehp0o"]
+[ext_resource type="PackedScene" uid="uid://2f2c8xqvyuwd" path="res://scenes/components/random_stream_player_component.tscn" id="3_ehp0o"]
+[ext_resource type="AudioStream" uid="uid://dhq1mdhjoyp8h" path="res://assets/audio/dev/0x2A4940.wav" id="4_q6bci"]
+[ext_resource type="AudioStream" uid="uid://nvs608yw7t2o" path="res://assets/audio/dev/0x2A6560.wav" id="5_seihx"]
+[ext_resource type="AudioStream" uid="uid://t63la2x0g4l5" path="res://assets/audio/dev/0x2AB420.wav" id="6_y4k1q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v1lsu"]
 resource_name = "nemmando.001"
@@ -68,3 +72,8 @@ billboard = 1
 text = "lorem ipsum example text for you to read I hope its not too long but we need this like this for now blah blah"
 outline_size = 16
 autowrap_mode = 2
+
+[node name="RandomStreamPlayerComponent" parent="." instance=ExtResource("3_ehp0o")]
+unique_name_in_owner = true
+volume_db = -1.5
+streams = Array[AudioStream]([ExtResource("4_q6bci"), ExtResource("5_seihx"), ExtResource("6_y4k1q")])

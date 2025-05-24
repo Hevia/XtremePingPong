@@ -99,6 +99,7 @@ shader_parameter/vignette_rgb = Color(0.247059, 0.14902, 0.192157, 1)
 script = ExtResource("1_55ahl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_ww4dk")
 }

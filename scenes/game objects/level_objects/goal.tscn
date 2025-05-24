@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bphii4n3scmky"]
+[gd_scene load_steps=4 format=3 uid="uid://bphii4n3scmky"]
 
 [ext_resource type="Script" uid="uid://bh6wru0ttnjlg" path="res://scenes/game objects/level_objects/goal.gd" id="1_yjqep"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yjqep"]
+albedo_color = Color(1, 1, 0, 1)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_m5fhx"]
 height = 2.752
@@ -10,6 +13,7 @@ radius = 0.75
 script = ExtResource("1_yjqep")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+material = SubResource("StandardMaterial3D_yjqep")
 
 [node name="GoalArea3D" type="Area3D" parent="."]
 unique_name_in_owner = true

@@ -18,6 +18,8 @@ class_name EnemyBase extends CharacterBase
 @export var path_update_window = 0
 
 @export var loot_to_drop: Loot
+@export var los_check_required: bool = true
+@export var base_difficulty_spawn: int = 1
 
 var search_tick_window = 0
 var is_searching: bool = true
@@ -26,7 +28,12 @@ var can_attack: bool = false
 var player_already_spotted = false
 
 func _ready() -> void:
+	if base_difficulty_spawn > GameState.current_difficulty.difficulty_level:
+		queue_free()
+		
 	update_stats(GameState.current_difficulty)
+	
+
 
 func update_stats(difficulty: Difficulty):
 	# TODO: Nah dont like this 0.6 + (0.6 - (0.6*1.25))
@@ -44,6 +51,9 @@ func check_for_search_reset():
 		
 # Check if the enemy has LOS on the player
 func check_if_los(player: Player) -> bool:
+	if not los_check_required:
+		return true
+		
 	var player_pos = player.global_transform.origin
 	var ray_origin = los_ray_cast_3d.global_transform.origin
 	los_ray_cast_3d.target_position = los_ray_cast_3d.to_local(player_pos) + Vector3(0, 1, 0) # aim at player torso

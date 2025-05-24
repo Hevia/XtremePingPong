@@ -4,6 +4,7 @@ class_name Dog extends CharacterBase
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+@onready var random_stream_player_component: RandomAudioStreamPlayer = %RandomStreamPlayerComponent
 @export var tutorial_detection_area3d: Area3D = null
 @export_multiline var tutorial_message: String = "lorem ipsum example text for you to read I hope its not too long but we need this like this for now blah blah"
 @onready var tutorial_label_3d: Label3D = %TutorialLabel3D
@@ -27,11 +28,10 @@ func toggle_visibility() -> void:
 	self.visible = !self.visible
 
 func on_tut_area_entered(other_area: Area3D) -> void:
-	print("area entered")
 	if other_area and other_area.owner is Player:
-		toggle_visibility()
+		self.visible = true
+		random_stream_player_component.play_random()
 
 func on_tut_area_exited(other_area: Area3D) -> void:
-	print("area exited")
 	if other_area and other_area.owner is Player:
-		toggle_visibility()
+		self.visible = false

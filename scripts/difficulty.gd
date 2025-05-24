@@ -10,3 +10,4 @@ class_name Difficulty extends Resource
 @export var slow_mode_disabled: bool = false
 @export var starting_player_health: int = 3
 @export var enemies_on_ready: bool = false
+@export var difficulty_level: int = 1

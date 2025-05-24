@@ -35,6 +35,7 @@ func _ready() -> void:
 	immune_cylinder.radius = starting_radius - ring_grow_rate
 	ring_mesh.inner_radius = starting_radius -ring_grow_rate
 	
+func start_attacl() -> void:
 	attack_timer.start()
 	
 func _physics_process(delta: float) -> void:

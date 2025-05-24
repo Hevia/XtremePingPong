@@ -1,0 +1,100 @@
+[gd_scene load_steps=12 format=3 uid="uid://dbkb7j6v1or38"]
+
+[ext_resource type="PackedScene" uid="uid://biebk77iwy1p5" path="res://scenes/environment.tscn" id="1_mqb70"]
+[ext_resource type="PackedScene" uid="uid://cgiexc1aw85eg" path="res://scenes/audio/demo_stage_music_player.tscn" id="2_5rwct"]
+[ext_resource type="PackedScene" uid="uid://74od70l2slni" path="res://scenes/components/hitbox_component_3d.tscn" id="3_qthpr"]
+[ext_resource type="PackedScene" uid="uid://dcb0agy4esnmg" path="res://scenes/entity_layer.tscn" id="4_jjcqu"]
+[ext_resource type="PackedScene" uid="uid://bll7ewpiaocvf" path="res://scenes/terrain/small_grass_platform.tscn" id="4_qthpr"]
+[ext_resource type="PackedScene" uid="uid://gkr8sq0f7u2l" path="res://scenes/game objects/player.tscn" id="6_jjcqu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ss7yj"]
+size = Vector3(291.758, 1, 463.355)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ss7yj"]
+vertices = PackedVector3Array(-1.60931, 0.160469, 7.93257, -1.60931, 0.160469, 17.1826, 3.39069, 0.160469, 17.1826, 3.39069, 0.160469, 7.93257)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="Animation" id="Animation_1nkcx"]
+resource_name = "moving__platforms"
+length = 7.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SmallGrassPlatform:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5, 5, 7.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(6.52685, 0, 0), Vector3(22.1719, 0, 0), Vector3(-10.2545, 0, 0), Vector3(6.49634, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7bgnr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SmallGrassPlatform:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(6.52685, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3dmcp"]
+_data = {
+&"RESET": SubResource("Animation_7bgnr"),
+&"moving__platforms": SubResource("Animation_1nkcx")
+}
+
+[node name="W1_4" type="Node3D"]
+
+[node name="Environment" parent="." instance=ExtResource("1_mqb70")]
+
+[node name="DemoStageMusicPlayer" parent="." instance=ExtResource("2_5rwct")]
+
+[node name="WorldDeathHitboxComponent3D" parent="." instance=ExtResource("3_qthpr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.77593, -17.7204, -42.9566)
+damage = 100.0
+team = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldDeathHitboxComponent3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.5683, 0, -132.881)
+shape = SubResource("BoxShape3D_ss7yj")
+debug_color = Color(0.886275, 0.117647, 0, 1)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_ss7yj")
+
+[node name="SmallGrassPlatform" parent="NavigationRegion3D" instance=ExtResource("4_qthpr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7155, 17.6137)
+
+[node name="SmallGrassPlatform2" parent="NavigationRegion3D" instance=ExtResource("4_qthpr")]
+transform = Transform3D(1, 0, 0, 0, 0.909294, -0.416154, 0, 0.416154, 0.909294, 0, 0, -27.6628)
+
+[node name="WildShit" type="Node3D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WildShit"]
+libraries = {
+&"": SubResource("AnimationLibrary_3dmcp")
+}
+autoplay = "moving__platforms"
+
+[node name="SmallGrassPlatform" parent="WildShit" instance=ExtResource("4_qthpr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.52685, 0, 0)
+
+[node name="SmallGrassPlatform2" parent="WildShit" instance=ExtResource("4_qthpr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.49634, 0, -8.21014)
+
+[node name="SmallGrassPlatform3" parent="WildShit" instance=ExtResource("4_qthpr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.49634, 0, -17.2915)
+
+[node name="Entities" parent="." instance=ExtResource("4_jjcqu")]
+
+[node name="Player" parent="." instance=ExtResource("6_jjcqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.624599, 0, 15.1749)

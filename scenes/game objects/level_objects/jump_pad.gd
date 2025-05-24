@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var jump_pad_area_3d: Area3D = $JumpPadArea3D
+@onready var random_stream_player_component: RandomAudioStreamPlayer = %RandomStreamPlayerComponent
 
 @export var jump_pad_strength: float = 10.0
 
@@ -10,4 +11,5 @@ func _ready() -> void:
 
 func on_jump_pad_area_entered(other_body: Node3D):
 	if other_body and other_body is CharacterBase:
+		random_stream_player_component.play_random()
 		(other_body as CharacterBase).force_jump(jump_pad_strength)

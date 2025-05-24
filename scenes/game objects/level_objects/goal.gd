@@ -12,8 +12,12 @@ func _ready() -> void:
 	if not level:
 		level = get_tree().get_first_node_in_group("level")
 
+func ensure_music_stays_consistent() -> void:
+	GameState.music_progress = level.music_player.get_playback_position()
+
 func change_level() -> void:
 	GameState.reset_enemy_counts()
+	ensure_music_stays_consistent()
 	get_tree().change_scene_to_packed(next_scene)
 
 func on_goal_area_entetered(other_area: Area3D) -> void:

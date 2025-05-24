@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdm2w08yicde0"]
+
+[ext_resource type="Script" uid="uid://b3wm7qf3xdwk5" path="res://scenes/terrain/timed_platform.gd" id="1_4i7cj"]
+[ext_resource type="Material" uid="uid://b5q8ndt1gr8bc" path="res://assets/materials/timed_platform_shader.tres" id="1_5s7fs"]
+[ext_resource type="PackedScene" uid="uid://2f2c8xqvyuwd" path="res://scenes/components/random_stream_player_component.tscn" id="3_uca6u"]
+[ext_resource type="AudioStream" uid="uid://dyls5wn2et4k6" path="res://assets/audio/dev/clock_tick.ogg" id="4_uca6u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uca6u"]
+size = Vector3(5.18953, 1.2149, 3.9725)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ybfgr"]
+size = Vector3(5.18953, 0.766113, 3.9725)
+
+[node name="TimedPlatform" type="StaticBody3D"]
+collision_mask = 0
+script = ExtResource("1_4i7cj")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45347, -0.131104, 0.777271)
+size = Vector3(5.18102, 0.737793, 3.86523)
+material = ExtResource("1_5s7fs")
+
+[node name="PlayerDetectionArea3D" type="Area3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetectionArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45179, 0.107452, 0.793808)
+shape = SubResource("BoxShape3D_uca6u")
+debug_color = Color(0.997257, 0, 0.169914, 0.42)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45179, -0.116943, 0.793808)
+shape = SubResource("BoxShape3D_ybfgr")
+
+[node name="LifetimeTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="RandomStreamPlayerComponent" parent="." instance=ExtResource("3_uca6u")]
+unique_name_in_owner = true
+streams = Array[AudioStream]([ExtResource("4_uca6u")])

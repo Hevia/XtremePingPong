@@ -87,6 +87,9 @@ var slow_time_toggle = false
 @onready var grab_collision_shape_3d: CollisionShape3D = %GrabCollisionShape3D
 @onready var paddle_hitbox: CollisionShape3D = %PaddleHitbox
 @onready var hitbox_component_3d: HitboxComponent3D = %HitboxComponent3D
+@onready var swing_random_stream_player_component: RandomAudioStreamPlayer = %SwingRandomStreamPlayerComponent
+@onready var grab_random_stream_player_component: RandomAudioStreamPlayer = %GrabRandomStreamPlayerComponent
+@onready var loot_acquired_random_stream_player_component: RandomAudioStreamPlayer = %LootAcquiredRandomStreamPlayerComponent
 
 @export var player_color: Color = Color.BLUE
 
@@ -105,6 +108,7 @@ var enemy_target_ref: CharacterBody3D = null
 
 
 func _ready():
+	reset_time()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	caclulate_movement_parameters()
 	
@@ -174,6 +178,7 @@ func grant_item_to_player(item: PackedScene) -> void:
 			item_instance.global_position = grab_marker_3d.global_position
 			grabbed_object_ref = item_instance
 			item_instance.set_grabbed_parent_ref(self)
+			loot_acquired_random_stream_player_component.play_random()
 
 func calc_bonus_charge_force() -> float:
 	var charge_force: float = 0.0
@@ -347,6 +352,7 @@ func swing_paddle():
 	
 	can_resume_paddle_anim()
 	arms_anim_player.play("swing_paddle")
+	swing_random_stream_player_component.play_random()
 
 
 	
@@ -375,6 +381,8 @@ func clean_up_anims() -> void:
 	paddle_collision_shape.disabled = true
 	grab_collision_shape_3d.disabled = true
 	paddle_hitbox.disabled = true
+	swing_random_stream_player_component.stop()
+	grab_random_stream_player_component.stop()
 
 func _process(_delta):
 	draw_lock_on_reticle()
