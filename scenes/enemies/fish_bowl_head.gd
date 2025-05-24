@@ -8,6 +8,8 @@ var projectile_scene = preload("res://scenes/game objects/ball.tscn")
 @onready var search_update_timer: Timer = %SearchUpdateTimer
 @onready var search_cooldown_timer: Timer = %SearchCooldownTimer
 @onready var alert_spawn_marker_3d: Marker3D = %AlertSpawnMarker3D
+@onready var attack_random_stream_player_component: RandomAudioStreamPlayer = %AttackRandomStreamPlayerComponent
+@onready var alert_random_stream_player_component: RandomAudioStreamPlayer = %AlertRandomStreamPlayerComponent
 
 @export var BASE_BALL_SHOOT_SPEED = 70
 
@@ -51,7 +53,7 @@ func shoot_projectile():
 			backup_ref = player_ref
 		else:
 			return
-			
+		
 		var projectile_instance = projectile_scene.instantiate() as Throwable
 		can_attack = false
 		attack_cooldown_timer.start()
@@ -59,7 +61,7 @@ func shoot_projectile():
 		projectile_instance.global_position = attack_spawn_marker_3d.global_position
 		var predicted_player_position = backup_ref.global_position + Vector3(0,1,0) # aim for torso
 		var dir_vec = (predicted_player_position - projectile_instance.global_position).normalized()
-		
+		attack_random_stream_player_component.play_random()
 		# Rotate the ball to face the player
 		var yaw_rad = atan2(dir_vec.x, dir_vec.z)
 		projectile_instance.rotation.y = yaw_rad
@@ -94,6 +96,7 @@ func search_for_player():
 		is_searching = false
 		if not player_already_spotted:
 			animation_player.play("Suprise")
+			alert_random_stream_player_component.play_random()
 			player_already_spotted = true
 
 func ready_attack():

@@ -1,7 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://2f2c8xqvyuwd"]
 
-[ext_resource type="Script" path="res://scenes/component/random_stream_player_component.gd" id="1_rdcla"]
+[ext_resource type="Script" uid="uid://cahq0aq6ufwva" path="res://scenes/components/random_stream_player_component.gd" id="1_c6l28"]
 
 [node name="RandomStreamPlayerComponent" type="AudioStreamPlayer"]
-bus = &"sfx"
-script = ExtResource("1_rdcla")
+script = ExtResource("1_c6l28")

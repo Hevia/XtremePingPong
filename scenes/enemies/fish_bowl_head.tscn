@@ -1,9 +1,16 @@
-[gd_scene load_steps=30 format=4 uid="uid://dexbd75gmjttf"]
+[gd_scene load_steps=37 format=4 uid="uid://dexbd75gmjttf"]
 
 [ext_resource type="Script" uid="uid://jqctocarg5rh" path="res://scenes/components/hurtbox_component_3d.gd" id="1_h3747"]
 [ext_resource type="Script" uid="uid://bp3rqtseg3bnp" path="res://scenes/enemies/fish_bowl_head.gd" id="1_mj6hu"]
 [ext_resource type="Script" uid="uid://6lmdyb8yon5s" path="res://scenes/components/health_component.gd" id="2_04vnv"]
 [ext_resource type="PackedScene" uid="uid://dejmusi3xe1tg" path="res://scenes/components/auto_aim_area_component_3d.tscn" id="4_fi4pd"]
+[ext_resource type="PackedScene" uid="uid://2f2c8xqvyuwd" path="res://scenes/components/random_stream_player_component.tscn" id="5_v5bhp"]
+[ext_resource type="AudioStream" uid="uid://bny4mljrfvtjp" path="res://assets/audio/kenney-interface-audio/confirmation_001.ogg" id="6_pmdpb"]
+[ext_resource type="AudioStream" uid="uid://f71itlia2dne" path="res://assets/audio/kenney-interface-audio/confirmation_002.ogg" id="7_82868"]
+[ext_resource type="AudioStream" uid="uid://fo25v5to3ntj" path="res://assets/audio/kenney-interface-audio/confirmation_003.ogg" id="8_oocm0"]
+[ext_resource type="AudioStream" uid="uid://c0bg8u3bbqt2m" path="res://assets/audio/kenney-interface-audio/confirmation_004.ogg" id="9_ien7a"]
+[ext_resource type="AudioStream" uid="uid://w3pah341uurs" path="res://assets/audio/kenney-interface-audio/drop_003.ogg" id="10_fsa15"]
+[ext_resource type="AudioStream" uid="uid://bx4q6ppnjnoa8" path="res://assets/audio/kenney-interface-audio/drop_004.ogg" id="11_dojko"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1r5d1"]
 radius = 0.8
@@ -11932,3 +11939,11 @@ one_shot = true
 [node name="AlertSpawnMarker3D" type="Marker3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.78401, 0)
+
+[node name="AlertRandomStreamPlayerComponent" parent="." instance=ExtResource("5_v5bhp")]
+unique_name_in_owner = true
+streams = Array[AudioStream]([ExtResource("6_pmdpb"), ExtResource("7_82868"), ExtResource("8_oocm0"), ExtResource("9_ien7a")])
+
+[node name="AttackRandomStreamPlayerComponent" parent="." instance=ExtResource("5_v5bhp")]
+unique_name_in_owner = true
+streams = Array[AudioStream]([ExtResource("10_fsa15"), ExtResource("11_dojko")])

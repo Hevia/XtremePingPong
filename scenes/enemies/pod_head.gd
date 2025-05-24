@@ -10,6 +10,8 @@ var ring_attack_scene = preload("res://scenes/game objects/attacks/ring_attack.t
 @onready var search_cooldown_timer: Timer = %SearchCooldownTimer
 @onready var search_update_timer: Timer = %SearchUpdateTimer
 @onready var alert_spawn_marker_3d: Marker3D = %AlertSpawnMarker3D
+@onready var alert_random_stream_player_component: RandomAudioStreamPlayer = %AlertRandomStreamPlayerComponent
+@onready var attack_random_stream_player_component: RandomAudioStreamPlayer = %AttackRandomStreamPlayerComponent
 
 @export var RING_ATTACK_LENGTH = 1.5
 
@@ -49,6 +51,7 @@ func spawn_ring_attack():
 		entity_layer.add_child(ring_attack_instance)
 		ring_attack_instance.global_position = attack_spawn_marker_3d.global_position
 		ring_attack_instance.attack_length = RING_ATTACK_LENGTH
+		attack_random_stream_player_component.play_random()
 		
 func try_shoot_at_player():
 	if can_attack and player_ref and check_if_los(player_ref):
@@ -63,7 +66,6 @@ func _physics_process(delta: float) -> void:
 		update_search_ticks()
 	
 	if player_ref and player_already_spotted:
-		print("we be looking...")
 		look_at(player_ref.global_position)
 		# we try to shoot at the player if our attack isnt on cooldown
 		try_shoot_at_player()
@@ -76,6 +78,7 @@ func search_for_player():
 		is_searching = false
 		if not player_already_spotted:
 			animation_player.play("Surprise")
+			alert_random_stream_player_component.play_random()
 			player_already_spotted = true
 
 func ready_attack():

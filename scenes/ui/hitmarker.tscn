@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnmdyijam3gp4"]
+[gd_scene load_steps=6 format=3 uid="uid://dnmdyijam3gp4"]
 
 [ext_resource type="Script" uid="uid://bgm3h47m2w8rl" path="res://scenes/ui/hitmarker.gd" id="1_4w68y"]
 [ext_resource type="Texture2D" uid="uid://bupspfre6of7m" path="res://assets/crosshair/White/crosshair086.png" id="2_psyit"]
+[ext_resource type="PackedScene" uid="uid://2f2c8xqvyuwd" path="res://scenes/components/random_stream_player_component.tscn" id="3_psyit"]
+[ext_resource type="AudioStream" uid="uid://h7gw40q5psh5" path="res://assets/audio/kenney-impact-audio/impactGeneric_light_001.ogg" id="4_puihs"]
+[ext_resource type="AudioStream" uid="uid://cbhqfmyjkcwjs" path="res://assets/audio/kenney-impact-audio/impactGeneric_light_003.ogg" id="5_fyk6s"]
 
 [node name="Hitmarker" type="CanvasLayer"]
 script = ExtResource("1_4w68y")
@@ -22,6 +25,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+modulate = Color(0.945592, 0, 0.104366, 1)
 layout_mode = 2
 texture = ExtResource("2_psyit")
 
@@ -29,3 +33,8 @@ texture = ExtResource("2_psyit")
 wait_time = 0.25
 one_shot = true
 autostart = true
+
+[node name="RandomStreamPlayerComponent" parent="." instance=ExtResource("3_psyit")]
+bus = &"SFX"
+streams = Array[AudioStream]([ExtResource("4_puihs"), ExtResource("5_fyk6s")])
+play_on_start = true
