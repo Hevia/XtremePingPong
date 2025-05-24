@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://cgiexc1aw85eg"]
+
+[node name="DemoStageMusicPlayer" type="AudioStreamPlayer"]

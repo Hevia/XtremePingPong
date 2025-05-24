@@ -17,6 +17,8 @@ class_name EnemyBase extends CharacterBase
 # Lower this to update the "thinking" more often
 @export var path_update_window = 0
 
+@export var loot_to_drop: Loot
+
 var search_tick_window = 0
 var is_searching: bool = true
 var player_ref: Player

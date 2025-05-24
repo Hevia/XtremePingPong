@@ -24,5 +24,6 @@ func update_difficulty_settings() -> void:
 		
 
 func on_player_death() -> void:
+	GameState.reset_enemy_counts()
 	add_child(death_menu_scene.instantiate())
 	#get_tree().paused = true # TODO: Might cause issues lol

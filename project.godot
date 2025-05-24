@@ -43,6 +43,7 @@ folder_colors={
 entity_layer=""
 enemies="Make sure all enemies exist in this group so difficultiy settings work"
 player=""
+level=""
 
 [input]
 

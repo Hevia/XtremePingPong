@@ -8,6 +8,9 @@ extends Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	goal_area_3d.area_entered.connect(on_goal_area_entetered)
+	
+	if not level:
+		level = get_tree().get_first_node_in_group("level")
 
 func change_level() -> void:
 	GameState.reset_enemy_counts()

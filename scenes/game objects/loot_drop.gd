@@ -15,6 +15,11 @@ func _ready() -> void:
 	pickup_area_3d.area_entered.connect(on_pickup_area_entered)
 	loot_refresh_timer.timeout.connect(on_loot_refresh_timer_timeout)
 	
+	create_loot_drop(loot_resource)
+
+
+func create_loot_drop(loot_res: Loot) -> void:
+	loot_resource = loot_res
 	if loot_resource:
 		label_3d.text = loot_resource.name
 		mesh_preview.add_child(loot_resource.pickup_model.instantiate())

@@ -5,6 +5,9 @@ signal died
 signal health_changed
 signal health_decreased
 
+# TODO: I dont love having it here tbh.....
+var loot_drop_scene: PackedScene = preload("res://scenes/game objects/loot_drop.tscn")
+
 @export var max_health: float = 10
 @export var persist_after_death: bool = false
 @export var is_enemy: bool = false # TODO: I dont love this approach tbh
@@ -38,6 +41,15 @@ func check_death():
 		
 		if is_enemy:
 			GameState.enemies -= 1
+			var enemy_instance = owner as EnemyBase
+			
+			if enemy_instance.loot_to_drop:
+				var entity_layer = get_tree().get_first_node_in_group("entity_layer")
+				if entity_layer:
+					var loot_drop_instance: LootDrop = loot_drop_scene.instantiate()
+					entity_layer.add_child(loot_drop_instance)
+					loot_drop_instance.create_loot_drop(enemy_instance.loot_to_drop)
+					loot_drop_instance.global_position = enemy_instance.global_position
 		
 		# If we dont persist the object after death lets just queue free it
 		if not persist_after_death:

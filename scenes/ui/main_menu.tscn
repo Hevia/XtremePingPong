@@ -1,14 +1,30 @@
-[gd_scene load_steps=7 format=3 uid="uid://b72sc8a7v1e2k"]
+[gd_scene load_steps=10 format=3 uid="uid://b72sc8a7v1e2k"]
 
 [ext_resource type="Script" uid="uid://jbg8fjx8bfhs" path="res://scenes/ui/main_menu.gd" id="1_uhagc"]
 [ext_resource type="PackedScene" uid="uid://byleeou0wi21u" path="res://scenes/ui/difficulty_button.tscn" id="1_x2yvf"]
 [ext_resource type="Resource" uid="uid://b1a5j7fwoj7i2" path="res://resources/difficulties/sunshine.tres" id="2_uhagc"]
+[ext_resource type="Texture2D" uid="uid://dv16wrxqadbnr" path="res://assets/backgrounds/DemoBackground.webp" id="2_wb0q5"]
 [ext_resource type="Resource" uid="uid://bj4d18n3mffy3" path="res://resources/difficulties/overcast.tres" id="3_btxxm"]
+[ext_resource type="Theme" uid="uid://c1118xes6wfp2" path="res://resources/oat_theme.tres" id="3_q85j6"]
 [ext_resource type="Resource" uid="uid://bacapfs6cdjtc" path="res://resources/difficulties/thunderstorm.tres" id="4_wb0q5"]
 [ext_resource type="Resource" uid="uid://shvtnilyga6q" path="res://resources/difficulties/typhoon.tres" id="5_q85j6"]
+[ext_resource type="PackedScene" uid="uid://dvp00khus4kv8" path="res://scenes/audio/main_menu_audio_player.tscn" id="7_btxxm"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_uhagc")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -30.5
+offset_bottom = 30.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("2_wb0q5")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -25,6 +41,7 @@ size_flags_vertical = 4
 [node name="DemoButton" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("3_q85j6")
 text = "Play Demo
 "
 
@@ -33,6 +50,9 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("3_q85j6")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
 text = "Select Difficulty:"
 
 [node name="DifficultyButton" parent="MarginContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_x2yvf")]
@@ -60,24 +80,35 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
+theme = ExtResource("3_q85j6")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
 text = "Current Difficulty:"
 
 [node name="CurrDiffLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("3_q85j6")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Sunshine"
 
 [node name="SandboxButton" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("3_q85j6")
 text = "Sandbox"
 
 [node name="OptionsButton" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("3_q85j6")
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme = ExtResource("3_q85j6")
 text = "Quit"
+
+[node name="MainMenuAudioPlayer" parent="." instance=ExtResource("7_btxxm")]

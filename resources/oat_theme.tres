@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c1118xes6wfp2"]
+
+[ext_resource type="FontFile" uid="uid://biwbxthp3xu3y" path="res://assets/fonts/twoweekendgo-regular.otf" id="1_xpmaq"]
+
+[resource]
+default_font = ExtResource("1_xpmaq")
+Button/font_sizes/font_size = 18
+Button/fonts/font = ExtResource("1_xpmaq")
+Label/fonts/font = ExtResource("1_xpmaq")
+RichTextLabel/fonts/normal_font = ExtResource("1_xpmaq")

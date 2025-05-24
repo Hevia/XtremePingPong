@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bk2gwve2q8ntk"]
+[gd_scene load_steps=30 format=3 uid="uid://bk2gwve2q8ntk"]
 
 [ext_resource type="Script" uid="uid://bkj8suvgdui8q" path="res://scripts/sp_level.gd" id="1_j8ys7"]
 [ext_resource type="PackedScene" uid="uid://biebk77iwy1p5" path="res://scenes/environment.tscn" id="1_q2v23"]
@@ -20,8 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://dcb0agy4esnmg" path="res://scenes/entity_layer.tscn" id="9_r5f0m"]
 [ext_resource type="PackedScene" uid="uid://3y52ngi3ldx1" path="res://scenes/terrain/x_small_grass_platform.tscn" id="10_obenf"]
 [ext_resource type="PackedScene" uid="uid://b45mqhm5mlwy5" path="res://scenes/environment/water.tscn" id="16_j8ys7"]
-[ext_resource type="PackedScene" uid="uid://r75mgjc51kjn" path="res://scenes/end_loading_node.tscn" id="21_06mmi"]
-[ext_resource type="Script" uid="uid://e6al8gurf1p8" path="res://scenes/end_loading_node.gd" id="22_3ngt6"]
+[ext_resource type="PackedScene" uid="uid://onrhweqk11fc" path="res://scenes/enemies/pod_head.tscn" id="17_5e34t"]
+[ext_resource type="Resource" uid="uid://ctn43h8hpy8c5" path="res://resources/loot/Ball.tres" id="18_3ngt6"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_r5f0m"]
 vertices = PackedVector3Array(14.6475, 12.6331, -77.0297, 14.8975, 12.6331, -75.2797, 18.6475, 12.6331, -75.5297, 18.6475, 12.6331, -86.5297, 6.14749, 12.6331, -74.7797, 11.1475, 12.6331, -74.7797, 11.3975, 12.6331, -77.0297, 6.14749, 12.6331, -86.5297, 20.8975, 12.6331, -80.5297, 22.6475, 12.6331, -80.5297, 23.1475, 12.6331, -81.7797, 20.8975, 12.6331, -86.5297, 24.3975, 12.6331, -81.7797, 30.3975, 12.6331, -80.5297, 30.3975, 12.6331, -86.5297, 24.8975, 12.6331, -80.5297, 32.6475, 12.6331, -86.5297, 32.6475, 12.6331, -49.0297, 43.1475, 12.6331, -49.0297, 43.1475, 12.6331, -86.5297, 22.8975, 12.6331, -79.5297, 20.8975, 12.6331, -69.5297, 25.1475, 12.6331, -69.2797, 25.3975, 12.6331, -71.0297, 24.6475, 12.6331, -79.5297, 27.1475, 12.6331, -71.0297, 30.3975, 12.6331, -65.2797, 27.3975, 12.6331, -65.2797, 12.1475, 19.8831, -76.0297, 12.1475, 19.8831, -49.0297, 13.8975, 19.8831, -49.0297, 13.8975, 19.8831, -76.0297, 12.3975, 12.6331, -75.7797, 12.3975, 12.6331, -49.2797, 13.6475, 12.6331, -49.2797, 13.6475, 12.6331, -75.7797, 14.8975, 12.6331, -65.0297, 18.6475, 12.6331, -65.2797, 6.14749, 12.6331, -49.0297, 11.1475, 12.6331, -49.0297, -2.10251, 12.6331, -72.7797, -2.10251, 12.6331, -59.5297, 3.39749, 12.6331, -59.5297, 3.39749, 12.6331, -72.7797, 14.8975, 12.6331, -56.2797, 15.6475, 12.6331, -56.2797, 15.3975, 12.6331, -57.5297, 18.8975, 12.6331, -63.5297, 16.1475, 12.6331, -58.2797, 20.8975, 12.6331, -63.7797, 17.6475, 12.6331, -57.7797, 17.6475, 12.6331, -56.2797, 25.1475, 12.6331, -56.2797, 27.3975, 12.6331, -63.7797, 27.3975, 12.6331, -56.0297, 28.1475, 12.6331, -56.7797, 30.3975, 12.6331, -56.7797, 30.3975, 12.6331, -63.7797, -2.10251, 5.3831, -52.5297, -0.35251, 5.3831, -52.7797, -1.10251, 5.3831, -53.7797, 2.89749, 5.3831, -53.5297, 2.14749, 5.3831, -53.0297, 2.64749, 5.3831, -51.7797, 3.39749, 5.3831, -51.7797, 3.39749, 5.3831, -57.0297, 1.89749, 5.3831, -56.5297, 2.89749, 5.3831, -55.5297, -2.10251, 5.3831, -57.0297, -0.85251, 5.3831, -55.7797, 0.14749, 5.3831, -56.5297, 28.6475, 13.3831, -54.0297, 29.3975, 13.3831, -53.7797, 30.1475, 13.3831, -54.2797, 29.8975, 13.3831, -55.7797, 28.3975, 13.3831, -55.5297, 1.39749, 6.1331, -55.5297, 0.14749, 6.1331, -55.2797, -0.10251, 6.1331, -54.7797, 0.39749, 6.1331, -53.5297, 1.89749, 6.1331, -54.0297, 15.1475, 18.1331, -55.2797, 15.1475, 18.1331, -54.0297, 25.6475, 18.1331, -54.0297, 25.6475, 18.1331, -55.2797, 15.3975, 12.6331, -54.2797, 25.3975, 12.6331, -54.2797, 25.1475, 12.6331, -55.0297, 15.3975, 12.6331, -55.0297, 27.3975, 12.6331, -53.7797, 27.3975, 12.6331, -54.7797, 26.6475, 12.6331, -54.5297, 26.3975, 12.6331, -53.0297, 14.8975, 12.6331, -49.0297, 30.3975, 12.6331, -49.0297, 14.8975, 12.6331, -53.0297, 28.1475, 12.6331, -53.0297, 30.3975, 12.6331, -53.0297, 2.64749, 5.3831, -50.7797, 3.39749, 5.3831, -43.7797, -0.35251, 5.3831, -51.2797, 0.39749, 5.3831, -50.0297, -2.10251, 5.3831, -43.7797, 1.89749, 5.3831, -50.0297, 29.8975, 25.8831, -38.0297, 30.1475, 25.8831, -37.0297, 31.6475, 25.8831, -37.0297, 31.3975, 25.8831, -43.7797, 26.3975, 25.8831, -37.0297, 27.8975, 25.8831, -37.0297, 28.3975, 25.8831, -38.0297, 26.3975, 25.8831, -43.7797, -2.10251, 5.3831, -39.5297, -2.10251, 5.3831, -26.2797, 3.39749, 5.3831, -26.2797, 3.39749, 5.3831, -39.5297, 29.6475, 25.8831, -35.7797, 31.3975, 25.8831, -34.2797, 28.6475, 25.8831, -35.7797, 26.3975, 25.8831, -34.2797, -1.85251, 3.8831, -24.5297, -1.85251, 3.8831, -25.2797, -2.85251, 3.8831, -25.2797, -3.35251, 3.8831, -24.5297, -4.60251, 3.8831, -20.7797, -4.10251, 3.8831, -22.2797, -4.10251, 3.8831, -24.0297, -4.60251, 3.8831, -26.0297, -3.10251, 3.8831, -26.0297, -3.35251, 3.8831, -20.7797, 3.39749, 3.8831, -23.0297, 3.64749, 3.8831, -20.7797, 4.64749, 3.8831, -20.7797, 4.64749, 3.8831, -24.0297, -2.35251, 5.1331, -11.5297, 2.64749, 5.1331, -11.5297, 2.89749, 5.1331, -12.5297, 2.64749, 5.1331, -20.7797, -2.35251, 5.1331, -21.0297, -1.85251, 0.883098, -7.02968, -1.60251, 0.883098, -9.02968, -2.35251, 0.883098, -9.02968, 2.89749, 0.883098, -9.02968, 1.89749, 0.883098, -9.02968, 2.14749, 0.883098, -6.77968, 2.89749, 0.883098, 0.220322, 1.64749, 0.883098, -6.02968, -0.85251, 0.883098, -5.77968, -2.35251, 0.883098, 0.220322, 1.14749, 1.3831, -7.27968, 1.14749, 1.3831, -8.27968, 0.39749, 1.3831, -8.77968, -0.85251, 1.3831, -8.02968, -0.35251, 1.3831, -6.77968)
@@ -36,13 +36,16 @@ radius = 9.59322
 [sub_resource type="SphereShape3D" id="SphereShape3D_5e34t"]
 radius = 9.59322
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_2wi7d"]
+radius = 21.7973
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_1cc8h"]
 radius = 31.5346
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e8v5i"]
 radius = 30.518
 
-[node name="W1-1" type="Node3D" node_paths=PackedStringArray("player")]
+[node name="W1-1" type="Node3D" node_paths=PackedStringArray("player") groups=["level"]]
 script = ExtResource("1_j8ys7")
 player = NodePath("Player")
 
@@ -65,8 +68,8 @@ jump_pad_strength = 12.0
 
 [node name="Buddy" parent="Level/StarterArea" node_paths=PackedStringArray("tutorial_detection_area3d") instance=ExtResource("5_1cc8h")]
 transform = Transform3D(0.552967, 0, 0.506683, 0, 0.75, 0, -0.506683, 0, 0.552967, -3.63922, 5.36569, -17.8063)
-tutorial_detection_area3d = NodePath("DetectionAreaComponent3D")
 tutorial_message = "Press Space Bar to Jump!"
+tutorial_detection_area3d = NodePath("DetectionAreaComponent3D")
 
 [node name="DetectionAreaComponent3D" parent="Level/StarterArea/Buddy" instance=ExtResource("7_frnh5")]
 collision_mask = 2
@@ -127,9 +130,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.94455, 4.62104, -34.3763)
 
 [node name="Buddy" parent="Level/GateTutArea" node_paths=PackedStringArray("tutorial_detection_area3d") instance=ExtResource("5_1cc8h")]
 transform = Transform3D(0.38899, 0, -0.641238, 0, 0.75, 0, 0.641238, 0, 0.38899, 4.20952, 6.15213, -30.4907)
-tutorial_detection_area3d = NodePath("DetectionAreaComponent3D")
 tutorial_message = "Hit balls with the left mouse button
 "
+tutorial_detection_area3d = NodePath("DetectionAreaComponent3D")
 
 [node name="DetectionAreaComponent3D" parent="Level/GateTutArea/Buddy" instance=ExtResource("7_frnh5")]
 collision_mask = 2
@@ -170,11 +173,8 @@ material = ExtResource("2_4geqx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.9816, 12.5514, -51.2014)
 jump_pad_strength = 25.0
 
-[node name="ThrowableGate" parent="Level/GrabFinishArea" instance=ExtResource("5_evlf6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.7472, 14.1852, -80.8371)
-
 [node name="Goal" parent="Level/GrabFinishArea" instance=ExtResource("8_6rvjq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.1096, 26.8879, -25.8959)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.1096, 26.8879, -16.1038)
 next_scene = ExtResource("9_2p250")
 
 [node name="XLGrassyPlain" parent="Level/GrabFinishArea" instance=ExtResource("8_x0rb5")]
@@ -188,9 +188,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.4963, 11.1157, -87.4256)
 
 [node name="Buddy" parent="Level/GrabFinishArea" node_paths=PackedStringArray("tutorial_detection_area3d") instance=ExtResource("5_1cc8h")]
 transform = Transform3D(0.749943, 0, -0.00921518, 0, 0.75, 0, 0.00921518, 0, 0.749943, 0.901422, 12.8513, -72.0258)
-tutorial_detection_area3d = NodePath("DetectionAreaComponent3D")
 tutorial_message = "Boo! Danger lurks around the corner.....
 "
+tutorial_detection_area3d = NodePath("DetectionAreaComponent3D")
 
 [node name="DetectionAreaComponent3D" parent="Level/GrabFinishArea/Buddy" instance=ExtResource("7_frnh5")]
 collision_mask = 2
@@ -198,11 +198,24 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/GrabFinishArea/Buddy/DetectionAreaComponent3D"]
 shape = SubResource("SphereShape3D_5e34t")
 
+[node name="SmallGrassPlatform2" parent="Level/GrabFinishArea" instance=ExtResource("2_2p250")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.0415, 23.9926, -14.3151)
+
+[node name="PodHead" parent="Level/GrabFinishArea" node_paths=PackedStringArray("detection_area_component_3d") instance=ExtResource("17_5e34t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.9664, 25.8774, -25.3002)
+detection_area_component_3d = NodePath("DetectionAreaComponent3D")
+
+[node name="DetectionAreaComponent3D" parent="Level/GrabFinishArea/PodHead" instance=ExtResource("7_frnh5")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/GrabFinishArea/PodHead/DetectionAreaComponent3D"]
+shape = SubResource("SphereShape3D_2wi7d")
+
 [node name="FishBowlHead3" parent="Level" node_paths=PackedStringArray("detection_area_component_3d") instance=ExtResource("6_frnh5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.779, 14.0983, -53.5093)
 detection_area_component_3d = NodePath("DetectionAreaComponent3D")
 ATTACK_TIMING = 0.1
 COOLDOWN_TIMING = 0.3
+loot_to_drop = ExtResource("18_3ngt6")
 
 [node name="DetectionAreaComponent3D" parent="Level/FishBowlHead3" instance=ExtResource("7_frnh5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.240788, 0, 0)
@@ -249,7 +262,3 @@ transform = Transform3D(101.572, 0, 0, 0, 1, 0, 0, 0, 124.367, 0, 0, 2.91601)
 
 [node name="SmallGrassPlatform" parent="." instance=ExtResource("2_2p250")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.0415, 23.9926, -24.1893)
-
-[node name="EndLoadingNode" parent="." instance=ExtResource("21_06mmi")]
-unique_name_in_owner = true
-script = ExtResource("22_3ngt6")

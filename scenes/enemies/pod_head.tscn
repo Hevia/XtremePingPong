@@ -16564,6 +16564,7 @@ shape = SubResource("CapsuleShape3D_panld")
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_6ofed")
 max_health = 1.0
+is_enemy = true
 
 [node name="AttackSpawnMarker3D" type="Marker3D" parent="."]
 unique_name_in_owner = true

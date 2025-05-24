@@ -10095,6 +10095,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_v3w5x")
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("2_04vnv")
 max_health = 1.0
+is_enemy = true
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00376743, 0.468243, -0.144635)

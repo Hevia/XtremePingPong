@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://byleeou0wi21u"]
+[gd_scene load_steps=3 format=3 uid="uid://byleeou0wi21u"]
 
 [ext_resource type="Script" uid="uid://88dog1p2vfgk" path="res://scenes/ui/difficulty_button.gd" id="1_d23ms"]
+[ext_resource type="Theme" uid="uid://c1118xes6wfp2" path="res://resources/oat_theme.tres" id="1_y8qss"]
 
 [node name="DifficultyButton" type="Button"]
 offset_right = 8.0
 offset_bottom = 8.0
+theme = ExtResource("1_y8qss")
 text = "Placeholder Diff"
 script = ExtResource("1_d23ms")

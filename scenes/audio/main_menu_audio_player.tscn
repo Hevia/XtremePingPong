@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvp00khus4kv8"]
+
+[ext_resource type="AudioStream" uid="uid://18c4uwhm2dxb" path="res://assets/audio/lets play tennis (main menu) Demo.mp3" id="1_4nbvf"]
+
+[node name="MainMenuAudioPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_4nbvf")
+autoplay = true
+bus = &"Music"
