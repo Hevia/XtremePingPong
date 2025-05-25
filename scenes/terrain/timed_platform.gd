@@ -1,6 +1,6 @@
 class_name TimedPlatform extends StaticBody3D
 
-@export var platform_lifetime: float = 3.0
+@export var platform_lifetime: float = 5.0
 
 @onready var player_detection_area_3d: Area3D = %PlayerDetectionArea3D
 @onready var lifetime_timer: Timer = %LifetimeTimer

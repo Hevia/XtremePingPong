@@ -443,12 +443,11 @@ shape = SubResource("SphereShape3D_u3ffq")
 
 [node name="TimedPlatform" parent="Level/TimedJumpArea" instance=ExtResource("21_48ebj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.617422, -5.46341)
-
-[node name="TimedPlatform2" parent="Level/TimedJumpArea" instance=ExtResource("21_48ebj")]
-transform = Transform3D(0.866069, 0, -0.499924, 0, 1, 0, 0.499924, 0, 0.866069, 6.38225, 0.617422, -13.4458)
+platform_lifetime = 7.0
 
 [node name="TimedPlatform3" parent="Level/TimedJumpArea" instance=ExtResource("21_48ebj")]
 transform = Transform3D(-0.0436368, 0, -0.999047, 0, 1, 0, 0.999047, 0, -0.0436368, 18.5984, 0.617422, -14.5513)
+platform_lifetime = 7.0
 
 [node name="LootDrop" parent="Level/TimedJumpArea" instance=ExtResource("6_lsfw2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.18271, 1.9225, -4.19296)
@@ -470,5 +469,8 @@ detection_area_component_3d = NodePath("DetectionAreaComponent3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/TimedJumpArea/FishBowlHead/DetectionAreaComponent3D"]
 shape = SubResource("SphereShape3D_wj286")
+
+[node name="SmallGrassPlatform3" parent="Level/TimedJumpArea" instance=ExtResource("5_5ew73")]
+transform = Transform3D(0.533614, 0, 0.845728, 0, 1, 0, -0.845728, 0, 0.533614, 10.8782, -0.792014, -8.72317)
 
 [node name="Entities" parent="." instance=ExtResource("12_wfaoe")]
