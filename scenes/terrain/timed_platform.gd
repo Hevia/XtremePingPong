@@ -8,6 +8,7 @@ class_name TimedPlatform extends StaticBody3D
 
 
 func _ready() -> void:
+	lifetime_timer.wait_time = platform_lifetime
 	player_detection_area_3d.area_entered.connect(player_detection_area_entered)
 	lifetime_timer.timeout.connect(on_lifetime_timer_timeout)
 	

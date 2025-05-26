@@ -19,7 +19,7 @@ const B_MAX_DASH = 2
 const B_DASH_COOLDOWN = 0.4
 const B_MAX_CHARGE = 100
 const B_CHARGE_RATE = 25
-@export var ANIMATION_SCALE_SPEED = 1.0
+@export var ANIMATION_SCALE_SPEED = 2.00
 
 # Jump Movement Variables
 const B_JUMP_PEAK_TIME = 0.5
