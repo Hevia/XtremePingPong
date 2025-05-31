@@ -1,5 +1,6 @@
-extends CanvasLayer
+class_name OptionsMenu extends CanvasLayer
 
+signal back_pressed
 
 @onready var mouse_sen_slider: HSlider = %MouseSenSlider
 @onready var mouse_sen_label: Label = %MouseSenLabel

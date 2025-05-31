@@ -30,5 +30,12 @@ func on_demo_pressed():
 func on_options_pressed():
 	get_tree().change_scene_to_file("res://scenes/ui/options_menu.tscn")
 	
+	#var options_instance = options_scene.instantiate()
+	#add_child(options_instance)
+	#options_instance.back_pressed.connect(on_options_closed.bind(options_instance))
+
+#func on_options_closed(options_instance: Node):
+#	options_instance.queue_free()
+
 func on_sandbox_pressed():
 	get_tree().change_scene_to_file("res://scenes/world.tscn")
