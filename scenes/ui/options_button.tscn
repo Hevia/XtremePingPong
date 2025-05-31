@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgrrforonq0kk"]
+
+[ext_resource type="Theme" uid="uid://c1118xes6wfp2" path="res://resources/oat_theme.tres" id="1_l2sjv"]
+[ext_resource type="Script" uid="uid://dp5tc4rl55gf6" path="res://scenes/ui/options_button.gd" id="2_bwjwl"]
+
+[node name="OptionsButton" type="Button"]
+theme = ExtResource("1_l2sjv")
+text = "Options"
+script = ExtResource("2_bwjwl")

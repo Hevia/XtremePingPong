@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b72sc8a7v1e2k"]
+[gd_scene load_steps=11 format=3 uid="uid://b72sc8a7v1e2k"]
 
 [ext_resource type="Script" uid="uid://jbg8fjx8bfhs" path="res://scenes/ui/main_menu.gd" id="1_uhagc"]
 [ext_resource type="PackedScene" uid="uid://byleeou0wi21u" path="res://scenes/ui/difficulty_button.tscn" id="1_x2yvf"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://bacapfs6cdjtc" path="res://resources/difficulties/thunderstorm.tres" id="4_wb0q5"]
 [ext_resource type="Resource" uid="uid://shvtnilyga6q" path="res://resources/difficulties/typhoon.tres" id="5_q85j6"]
 [ext_resource type="PackedScene" uid="uid://dvp00khus4kv8" path="res://scenes/audio/main_menu_audio_player.tscn" id="7_btxxm"]
+[ext_resource type="PackedScene" uid="uid://dgrrforonq0kk" path="res://scenes/ui/options_button.tscn" id="9_8g5eo"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_uhagc")
@@ -99,11 +100,9 @@ layout_mode = 2
 theme = ExtResource("3_q85j6")
 text = "Sandbox"
 
-[node name="OptionsButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="OptionsButton" parent="MarginContainer/VBoxContainer" instance=ExtResource("9_8g5eo")]
 unique_name_in_owner = true
 layout_mode = 2
-theme = ExtResource("3_q85j6")
-text = "Options"
 
 [node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
