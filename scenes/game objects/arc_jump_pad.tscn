@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=4 uid="uid://q4d16b8ujfde"]
 
 [ext_resource type="Script" uid="uid://y2md28k6b702" path="res://scenes/game objects/arc_jump_pad.gd" id="1_0hfca"]
-[ext_resource type="Texture2D" uid="uid://btairlsq5osm0" path="res://assets/textures/props/TrampolineTex.png" id="2_ae6b3"]
+[ext_resource type="Texture2D" uid="uid://btairlsq5osm0" path="res://textures/props/TrampolineTex.png" id="2_ae6b3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vtsyd"]
 size = Vector3(2.45605, 1, 2.46313)

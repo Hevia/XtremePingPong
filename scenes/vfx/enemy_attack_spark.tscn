@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=3 uid="uid://cqsy6j8ohx1je"]
 
 [ext_resource type="Shader" uid="uid://dtcf5u2uuovlf" path="res://shaders/simple_hitspark.tres" id="1_lhsus"]
-[ext_resource type="Texture2D" uid="uid://cm8dnxci8hbmy" path="res://assets/textures/T_flare81.png" id="2_xygnw"]
+[ext_resource type="Texture2D" uid="uid://cm8dnxci8hbmy" path="res://textures/T_flare81.png" id="2_xygnw"]
 [ext_resource type="Material" uid="uid://b3y8ba4pg8gub" path="res://resources/vfx/enemy_attack_spark.tres" id="3_xlx2j"]
-[ext_resource type="Texture2D" uid="uid://dvcns3np3t8lt" path="res://assets/textures/T_flare12.png" id="4_4ty6v"]
+[ext_resource type="Texture2D" uid="uid://dvcns3np3t8lt" path="res://textures/T_flare12.png" id="4_4ty6v"]
 [ext_resource type="Script" uid="uid://df14kvyl3s0ny" path="res://scenes/vfx/enemy_attack_spark.gd" id="4_s3ht1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jnlw8"]
