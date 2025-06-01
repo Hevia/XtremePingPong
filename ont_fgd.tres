@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=2 format=3 uid="uid://bs31ic1lhp47c"]
+
+[ext_resource type="Script" uid="uid://beq0knijrug1f" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_tvxkf"]
+
+[resource]
+script = ExtResource("1_tvxkf")
+export_file = false
+target_map_editor = 1
+fgd_name = "FuncGodot"
+base_fgd_files = Array[Resource]([])
+entity_definitions = Array[Resource]([])
+metadata/_custom_type_script = "uid://beq0knijrug1f"
