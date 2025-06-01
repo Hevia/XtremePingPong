@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dwvssq6m7j6xu"]
 
-[ext_resource type="Shader" uid="uid://x3306iww1uyw" path="res://toon_ocean.gdshader" id="1_7gasa"]
+[ext_resource type="Shader" uid="uid://x3306iww1uyw" path="res://shaders/toon_ocean.gdshader" id="1_7gasa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hyilo"]
 render_priority = 0

@@ -8,4 +8,4 @@ func _ready() -> void:
 func on_options_button_pressed() -> void:
 	var options_instance: OptionsMenu = options_scene.instantiate()
 	get_tree().root.add_child(options_instance)
-	options_instance.back_pressed.connect(on_options_closed.bind(options_instance))
+	#options_instance.back_pressed.connect(on_options_closed.bind(options_instance))

@@ -2,3 +2,6 @@
 .godot/
 /android/
 exports/
+
+# Ignore our local trenchbroom install, leaving it here for consistency
+TrenchBroom/
