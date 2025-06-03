@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c6vl2v6e2kvlv"
-path="res://.godot/imported/Urchin.glb-58fea746e9fb3c47e8e81df60b7964e1.scn"
+uid="uid://c6akju1r24obr"
+path="res://.godot/imported/actor_fishbowlhead.glb-75d15d0596644e9957c4ad154511e2c1.scn"
 
 [deps]
 
-source_file="res://assets/models/Urchin.glb"
-dest_files=["res://.godot/imported/Urchin.glb-58fea746e9fb3c47e8e81df60b7964e1.scn"]
+source_file="res://assets/models/actor_fishbowlhead.glb"
+dest_files=["res://.godot/imported/actor_fishbowlhead.glb-75d15d0596644e9957c4ad154511e2c1.scn"]
 
 [params]
 

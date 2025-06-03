@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxfwm34sgkidp"
-path.s3tc="res://.godot/imported/SpeedRingV09_ButterflyOutline.png-d91190973fc472f1f5117486a19eca47.s3tc.ctex"
+uid="uid://b7ervmrgrcvr0"
+path.s3tc="res://.godot/imported/SpeedRingV09_RingTex.png-c9cbe05284bbc52af18c4ac97b07c648.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "759f3fd322a4afe046a90f68366ba62a"
+"md5": "b7695eefd781842607ac1d065a3fe3f5"
 }
 
 [deps]
 
-source_file="res://assets/models/SpeedRingV09_ButterflyOutline.png"
-dest_files=["res://.godot/imported/SpeedRingV09_ButterflyOutline.png-d91190973fc472f1f5117486a19eca47.s3tc.ctex"]
+source_file="res://models/SpeedRingV09_RingTex.png"
+dest_files=["res://.godot/imported/SpeedRingV09_RingTex.png-c9cbe05284bbc52af18c4ac97b07c648.s3tc.ctex"]
 
 [params]
 

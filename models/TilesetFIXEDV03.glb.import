@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bya1fkk6f4ojb"
-path="res://.godot/imported/Trampoline.glb-deccef4064762b570eee5ac74bf03cf8.scn"
+uid="uid://cise80hdk8q2g"
+path="res://.godot/imported/TilesetFIXEDV03.glb-89b3a478949be93d9c4234a850855cf6.scn"
 
 [deps]
 
-source_file="res://assets/models/Trampoline.glb"
-dest_files=["res://.godot/imported/Trampoline.glb-deccef4064762b570eee5ac74bf03cf8.scn"]
+source_file="res://models/TilesetFIXEDV03.glb"
+dest_files=["res://.godot/imported/TilesetFIXEDV03.glb-89b3a478949be93d9c4234a850855cf6.scn"]
 
 [params]
 
@@ -32,6 +32,17 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"Grass": {
+"use_external/enabled": true,
+"use_external/path": "uid://ddl8v5uc1bhx6"
+},
+"Sand": {
+"use_external/enabled": true,
+"use_external/path": "uid://c7ktds4efovrf"
+}
+}
+}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

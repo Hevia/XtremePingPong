@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bivrplgu8md7u"
-path="res://.godot/imported/SeaWallFIX.glb-34cbec8f11e302df53688ab630f9ffc7.scn"
+path="res://.godot/imported/SeaWallFIX.glb-afc764579f6da1380f8ed0cb854810f2.scn"
 
 [deps]
 
-source_file="res://assets/models/SeaWallFIX.glb"
-dest_files=["res://.godot/imported/SeaWallFIX.glb-34cbec8f11e302df53688ab630f9ffc7.scn"]
+source_file="res://models/SeaWallFIX.glb"
+dest_files=["res://.godot/imported/SeaWallFIX.glb-afc764579f6da1380f8ed0cb854810f2.scn"]
 
 [params]
 

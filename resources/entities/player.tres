@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDEntityClass" load_steps=2 format=3 uid="uid://8p35pr6pl840"]
+
+[ext_resource type="Script" uid="uid://c7lghtc376i1e" path="res://addons/func_godot/src/fgd/func_godot_fgd_entity_class.gd" id="1_ybkb0"]
+
+[resource]
+script = ExtResource("1_ybkb0")
+classname = "Player"
+description = "Its the player!!"
+func_godot_internal = false
+base_classes = Array[Resource]([null])
+class_properties = {}
+class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
+meta_properties = {
+"color": Color(1, 0.684509, 0.613189, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = ""
+metadata/_custom_type_script = "uid://c7lghtc376i1e"

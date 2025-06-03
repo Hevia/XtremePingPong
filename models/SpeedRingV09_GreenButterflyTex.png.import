@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y2xi3yhm3xad"
-path.s3tc="res://.godot/imported/SpeakerV05_SpeakerCol.png-3723a1ea294caafcd4a56c053a07ae39.s3tc.ctex"
+uid="uid://cu76pblhpxdqp"
+path.s3tc="res://.godot/imported/SpeedRingV09_GreenButterflyTex.png-d95afbea3f9e975050b4e8123b2bf5ac.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "d662185976d22310c06edc9986001e0d"
+"md5": "794a33898d27c2a6c0c5d4e5a026b4a6"
 }
 
 [deps]
 
-source_file="res://assets/models/SpeakerV05_SpeakerCol.png"
-dest_files=["res://.godot/imported/SpeakerV05_SpeakerCol.png-3723a1ea294caafcd4a56c053a07ae39.s3tc.ctex"]
+source_file="res://models/SpeedRingV09_GreenButterflyTex.png"
+dest_files=["res://.godot/imported/SpeedRingV09_GreenButterflyTex.png-d95afbea3f9e975050b4e8123b2bf5ac.s3tc.ctex"]
 
 [params]
 

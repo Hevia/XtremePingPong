@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://daf6dynnsuws7"
-path="res://.godot/imported/ball.glb-54e57a8d163cfef28e5e007118be03c5.scn"
+uid="uid://c6vl2v6e2kvlv"
+path="res://.godot/imported/Urchin.glb-3cf535a6cfafb3079d330e3d5a0e1368.scn"
 
 [deps]
 
-source_file="res://assets/models/ball.glb"
-dest_files=["res://.godot/imported/ball.glb-54e57a8d163cfef28e5e007118be03c5.scn"]
+source_file="res://models/Urchin.glb"
+dest_files=["res://.godot/imported/Urchin.glb-3cf535a6cfafb3079d330e3d5a0e1368.scn"]
 
 [params]
 

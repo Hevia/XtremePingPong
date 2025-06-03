@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cxq15kjchmbq4"
-path="res://.godot/imported/Target.glb-89932850eff0175c297047a3afc3f754.scn"
+uid="uid://bya1fkk6f4ojb"
+path="res://.godot/imported/Trampoline.glb-5f0ecc986b1f52fe0ee6932b267001ce.scn"
 
 [deps]
 
-source_file="res://assets/models/Target.glb"
-dest_files=["res://.godot/imported/Target.glb-89932850eff0175c297047a3afc3f754.scn"]
+source_file="res://models/Trampoline.glb"
+dest_files=["res://.godot/imported/Trampoline.glb-5f0ecc986b1f52fe0ee6932b267001ce.scn"]
 
 [params]
 

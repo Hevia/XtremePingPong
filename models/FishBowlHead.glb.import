@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://77u6s6kw24fa"
-path="res://.godot/imported/PalmTrees.fbx-bfc26aa9ece6e05696efbd6c31c34248.scn"
+uid="uid://bbv8hk2hy817m"
+path="res://.godot/imported/FishBowlHead.glb-474b74b3b4b05fc42974cb9020b24139.scn"
 
 [deps]
 
-source_file="res://assets/models/PalmTrees.fbx"
-dest_files=["res://.godot/imported/PalmTrees.fbx-bfc26aa9ece6e05696efbd6c31c34248.scn"]
+source_file="res://models/FishBowlHead.glb"
+dest_files=["res://.godot/imported/FishBowlHead.glb-474b74b3b4b05fc42974cb9020b24139.scn"]
 
 [params]
 
@@ -28,11 +28,10 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=true
+animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-fbx/importer=0
-fbx/allow_geometry_helper_nodes=false
-fbx/embedded_image_handling=1
+gltf/naming_version=1
+gltf/embedded_image_handling=1

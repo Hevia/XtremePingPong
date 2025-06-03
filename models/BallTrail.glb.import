@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cise80hdk8q2g"
-path="res://.godot/imported/TilesetFIXEDV03.glb-c4a7d7073c804051cd95553148b6df69.scn"
+uid="uid://dyer0dhaq2gk3"
+path="res://.godot/imported/BallTrail.glb-11307fad4e603b30aeb69349e7d73d70.scn"
 
 [deps]
 
-source_file="res://assets/models/TilesetFIXEDV03.glb"
-dest_files=["res://.godot/imported/TilesetFIXEDV03.glb-c4a7d7073c804051cd95553148b6df69.scn"]
+source_file="res://models/BallTrail.glb"
+dest_files=["res://.godot/imported/BallTrail.glb-11307fad4e603b30aeb69349e7d73d70.scn"]
 
 [params]
 
@@ -32,17 +32,6 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"materials": {
-"Grass": {
-"use_external/enabled": true,
-"use_external/path": "uid://ddl8v5uc1bhx6"
-},
-"Sand": {
-"use_external/enabled": true,
-"use_external/path": "uid://c7ktds4efovrf"
-}
-}
-}
+_subresources={}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

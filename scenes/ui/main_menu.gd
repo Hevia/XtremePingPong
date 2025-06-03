@@ -1,11 +1,10 @@
-class_name MainMenu extends CanvasLayer
+class_name MainMenu extends MenuBase
 
 @onready var demo_button: Button = %DemoButton
 @onready var curr_diff_label: Label = %CurrDiffLabel
 @onready var sandbox_button: Button = %SandboxButton
 @onready var options_button: Button = %OptionsButton
 @onready var quit_button: Button = %QuitButton
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,16 +25,6 @@ func on_quit_pressed():
 
 func on_demo_pressed():
 	get_tree().change_scene_to_file("res://scenes/levels/w_1_1.tscn")
-
-func on_options_pressed():
-	get_tree().change_scene_to_file("res://scenes/ui/options_menu.tscn")
-	
-	#var options_instance = options_scene.instantiate()
-	#add_child(options_instance)
-	#options_instance.back_pressed.connect(on_options_closed.bind(options_instance))
-
-#func on_options_closed(options_instance: Node):
-#	options_instance.queue_free()
 
 func on_sandbox_pressed():
 	get_tree().change_scene_to_file("res://scenes/world.tscn")

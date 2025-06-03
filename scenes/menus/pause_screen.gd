@@ -1,4 +1,4 @@
-extends CanvasLayer
+class_name PauseMenu extends MenuBase
 
 @onready var resume_button: Button = %ResumeButton
 @onready var options_button: Button = %OptionsButton
@@ -6,6 +6,8 @@ extends CanvasLayer
 @onready var demo_button: Button = %DemoButton
 @onready var restart_button: Button = %RestartButton
 @onready var main_menu_button: Button = %MainMenuButton
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -42,6 +44,3 @@ func on_main_menu_pressed():
 	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
-
-func on_options_pressed():
-	get_tree().change_scene_to_file("res://scenes/ui/options_menu.tscn")

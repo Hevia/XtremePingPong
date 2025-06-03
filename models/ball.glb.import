@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bbv8hk2hy817m"
-path="res://.godot/imported/FishBowlHead.glb-9f9a2fa0d442d3e43bdd7a4d284aff55.scn"
+uid="uid://daf6dynnsuws7"
+path="res://.godot/imported/ball.glb-bd262ba87458ff78d22f74b842849068.scn"
 
 [deps]
 
-source_file="res://assets/models/FishBowlHead.glb"
-dest_files=["res://.godot/imported/FishBowlHead.glb-9f9a2fa0d442d3e43bdd7a4d284aff55.scn"]
+source_file="res://models/ball.glb"
+dest_files=["res://.godot/imported/ball.glb-bd262ba87458ff78d22f74b842849068.scn"]
 
 [params]
 
