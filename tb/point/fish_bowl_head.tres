@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=3 format=3 uid="uid://dlu4pst8ryvex"]
+
+[ext_resource type="Script" uid="uid://d0v3ufc8jjjqq" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="1_k5eow"]
+[ext_resource type="PackedScene" uid="uid://dexbd75gmjttf" path="res://scenes/enemies/fish_bowl_head.tscn" id="1_stggl"]
+
+[resource]
+script = ExtResource("1_k5eow")
+target_map_editor = 1
+models_sub_folder = ""
+scale_expression = ""
+generate_size_property = false
+generate_gd_ignore_file = false
+scene_file = ExtResource("1_stggl")
+apply_rotation_on_map_build = true
+apply_scale_on_map_build = true
+classname = "actor_fishbowlhead"
+description = "Basic projectile enemy"
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {}
+class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"model": "\"assets/models/FishBowlHead.glb\"",
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = ""
+metadata/_custom_type_script = "uid://d0v3ufc8jjjqq"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=3 format=3 uid="uid://cu4ym6wdh3l0i"]
+
+[ext_resource type="Resource" uid="uid://dlu4pst8ryvex" path="res://trenchbroom/point/fish_bowl_head.tres" id="1_2gibp"]
+[ext_resource type="Script" uid="uid://beq0knijrug1f" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_024aa"]
+
+[resource]
+script = ExtResource("1_024aa")
+export_file = false
+target_map_editor = 1
+fgd_name = "PointEntities"
+base_fgd_files = Array[Resource]([])
+entity_definitions = Array[Resource]([ExtResource("1_2gibp")])
+metadata/_custom_type_script = "uid://beq0knijrug1f"
