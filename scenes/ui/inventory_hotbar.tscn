@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c5oslhyvbw0yi"]
 
 [ext_resource type="Script" uid="uid://cs2mrpimqktgq" path="res://scenes/ui/inventory_hotbar.gd" id="1_2l6e1"]
-[ext_resource type="Texture2D" uid="uid://dk0oivmjqvt2c" path="res://textures/dev/Icons - icones/book-01.png" id="2_4xme0"]
+[ext_resource type="Texture2D" uid="uid://dk0oivmjqvt2c" path="res://assets/textures/dev/Icons - icones/book-01.png" id="2_4xme0"]
 
 [node name="InventoryHotbar" type="CanvasLayer"]
 script = ExtResource("1_2l6e1")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=4 uid="uid://c6lx8m12vwbql"]
 
 [ext_resource type="Script" uid="uid://do4silg2ippml" path="res://scenes/game objects/throwable_gate.gd" id="1_yhjku"]
-[ext_resource type="Texture2D" uid="uid://cc3vx5xulbub4" path="res://textures/props/TargetTex.png" id="2_mx6wy"]
+[ext_resource type="Texture2D" uid="uid://cc3vx5xulbub4" path="res://assets/textures/props/TargetTex.png" id="2_mx6wy"]
 [ext_resource type="PackedScene" uid="uid://dp1wpl8tbfyuh" path="res://scenes/components/health_component.tscn" id="3_fdtf7"]
 [ext_resource type="PackedScene" uid="uid://bt640cn1jf6m8" path="res://scenes/components/hurtbox_component_3d.tscn" id="4_2j7b7"]
 [ext_resource type="PackedScene" uid="uid://dejmusi3xe1tg" path="res://scenes/components/auto_aim_area_component_3d.tscn" id="5_2j7b7"]

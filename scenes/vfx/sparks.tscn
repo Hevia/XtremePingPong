@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://e2dlgaehadwh"]
 
 [ext_resource type="Shader" uid="uid://c2itrjv0hjop5" path="res://shaders/simple_vfx_shader.tres" id="1_lkgsy"]
-[ext_resource type="Texture2D" uid="uid://cns6kixx5nld1" path="res://textures/T_circle42.PNG" id="2_trhqa"]
+[ext_resource type="Texture2D" uid="uid://cns6kixx5nld1" path="res://assets/textures/T_circle42.PNG" id="2_trhqa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a3fjs"]
 render_priority = 0

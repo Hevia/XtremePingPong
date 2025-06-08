@@ -1,12 +1,12 @@
 [gd_scene load_steps=23 format=3 uid="uid://rgkk0jhrco5f"]
 
 [ext_resource type="Shader" uid="uid://dycvoe5jl0mpy" path="res://shaders/slash_material.tres" id="1_8n44p"]
-[ext_resource type="Texture2D" uid="uid://johhoeddvnjn" path="res://textures/slash/Gradient01.png" id="2_hor1g"]
-[ext_resource type="ArrayMesh" uid="uid://djj620mnmynr2" path="res://textures/slash/ProjectileMesh02.obj" id="3_juwbw"]
-[ext_resource type="Texture2D" uid="uid://b1nko0ji7ps00" path="res://textures/slash/Gradient02.png" id="4_dbma8"]
+[ext_resource type="Texture2D" uid="uid://johhoeddvnjn" path="res://assets/textures/slash/Gradient01.png" id="2_hor1g"]
+[ext_resource type="ArrayMesh" uid="uid://djj620mnmynr2" path="res://assets/textures/slash/ProjectileMesh02.obj" id="3_juwbw"]
+[ext_resource type="Texture2D" uid="uid://b1nko0ji7ps00" path="res://assets/textures/slash/Gradient02.png" id="4_dbma8"]
 [ext_resource type="Shader" uid="uid://djr7mpq7ecgmx" path="res://shaders/texture_scroll.tres" id="5_5uriy"]
-[ext_resource type="Texture2D" uid="uid://cd2sk55l2p80m" path="res://textures/slash/Noise01.png" id="6_3h3en"]
-[ext_resource type="Texture2D" uid="uid://bv0ye5rfgg6w3" path="res://textures/slash/Flare01.PNG" id="7_hor1g"]
+[ext_resource type="Texture2D" uid="uid://cd2sk55l2p80m" path="res://assets/textures/slash/Noise01.png" id="6_3h3en"]
+[ext_resource type="Texture2D" uid="uid://bv0ye5rfgg6w3" path="res://assets/textures/slash/Flare01.PNG" id="7_hor1g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6cv25"]
 render_priority = 0

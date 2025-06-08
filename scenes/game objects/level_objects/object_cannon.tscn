@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=4 uid="uid://1svmbegxbhcd"]
 
 [ext_resource type="Script" uid="uid://btrg7wcn7lndv" path="res://scenes/game objects/level_objects/object_cannon.gd" id="1_ggkgt"]
-[ext_resource type="Texture2D" uid="uid://y2xi3yhm3xad" path="res://models/SpeakerV05_SpeakerCol.png" id="2_jyjhq"]
-[ext_resource type="Texture2D" uid="uid://dgxgckwbv4a" path="res://textures/SpeakerCol.png" id="3_xn1p6"]
+[ext_resource type="Texture2D" uid="uid://y2xi3yhm3xad" path="res://assets/models/SpeakerV05_SpeakerCol.png" id="2_jyjhq"]
+[ext_resource type="Texture2D" uid="uid://dgxgckwbv4a" path="res://assets/textures/SpeakerCol.png" id="3_xn1p6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_osr6e"]
 resource_name = "Speaker"
