@@ -3,12 +3,12 @@
 importer="func_godot.map"
 type="Resource"
 uid="uid://b8tks3bdjybu8"
-path="res://.godot/imported/learn_to_move.map-210f2e39ac6d2670f1beca999e89326f.tres"
+path="res://.godot/imported/learn_to_move.map-ab24d3438ce0bff4da4943fdc83b9d48.tres"
 
 [deps]
 
-source_file="res://trenchbroom/maps/learn_to_move.map"
-dest_files=["res://.godot/imported/learn_to_move.map-210f2e39ac6d2670f1beca999e89326f.tres"]
+source_file="res://tb/maps/learn_to_move.map"
+dest_files=["res://.godot/imported/learn_to_move.map-ab24d3438ce0bff4da4943fdc83b9d48.tres"]
 
 [params]
 
